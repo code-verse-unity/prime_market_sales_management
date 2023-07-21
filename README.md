@@ -28,6 +28,19 @@ To clone the repository, follow these steps:
 git clone https://github.com/code-verse-unity/prime_market_sales_management
 ```
 
+## Opening the Project in Visual Studio
+
+To open the C# WinForms application in Visual Studio, do the following:
+
+1. Launch Visual Studio.
+
+2. From the top menu, click on "File" > "Open" > "Project/Solution."
+
+3. Navigate to the directory where you cloned the repository and select the .sln file.
+
+4. Click on "Open" to open the project in Visual Studio.
+
+
 ## Build and Run the Application
 
 Once the project is opened in Visual Studio, follow these steps to build and run the application:
