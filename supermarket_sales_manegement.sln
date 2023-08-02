@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "supermarket_sales_manegement", "supermarket_sales_manegement\supermarket_sales_manegement.csproj", "{A8A40B16-6D86-4DAC-8E79-0606BC1BA108}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PresentationLayer", "supermarket_sales_manegement\PresentationLayer.csproj", "{A8A40B16-6D86-4DAC-8E79-0606BC1BA108}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DomainLayer", "DomainLayer\DomainLayer.csproj", "{F07D2FE9-EDA1-4515-BD18-E6CEDA51E981}"
 EndProject
