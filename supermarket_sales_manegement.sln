@@ -5,6 +5,10 @@ VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "supermarket_sales_manegement", "supermarket_sales_manegement\supermarket_sales_manegement.csproj", "{A8A40B16-6D86-4DAC-8E79-0606BC1BA108}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DomainLayer", "DomainLayer\DomainLayer.csproj", "{F07D2FE9-EDA1-4515-BD18-E6CEDA51E981}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfrastructureLayer", "InfrastructureLayer\InfrastructureLayer.csproj", "{138273CE-2248-4BFF-80A3-AC876F33D690}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{A8A40B16-6D86-4DAC-8E79-0606BC1BA108}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A8A40B16-6D86-4DAC-8E79-0606BC1BA108}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A8A40B16-6D86-4DAC-8E79-0606BC1BA108}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F07D2FE9-EDA1-4515-BD18-E6CEDA51E981}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F07D2FE9-EDA1-4515-BD18-E6CEDA51E981}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F07D2FE9-EDA1-4515-BD18-E6CEDA51E981}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F07D2FE9-EDA1-4515-BD18-E6CEDA51E981}.Release|Any CPU.Build.0 = Release|Any CPU
+		{138273CE-2248-4BFF-80A3-AC876F33D690}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{138273CE-2248-4BFF-80A3-AC876F33D690}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{138273CE-2248-4BFF-80A3-AC876F33D690}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{138273CE-2248-4BFF-80A3-AC876F33D690}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
