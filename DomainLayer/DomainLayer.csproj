@@ -44,14 +44,17 @@
   <ItemGroup>
     <Compile Include="Models\CategoryModel\CategoryModel.cs" />
     <Compile Include="Models\CategoryModel\ICategoryModel.cs" />
+    <Compile Include="Models\PriceModel\IPriceModel.cs" />
+    <Compile Include="Models\PriceModel\PriceModel.cs" />
+    <Compile Include="Models\ProductModel\IProductModel.cs" />
+    <Compile Include="Models\ProductModel\ProductModel.cs" />
+    <Compile Include="Models\StockModel\IStockModel.cs" />
+    <Compile Include="Models\StockModel\StockModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Models\PriceModel\" />
-    <Folder Include="Models\ProductModel\" />
     <Folder Include="Models\ProductPurchaseModel\" />
     <Folder Include="Models\PurchaseModel\" />
-    <Folder Include="Models\StockModel\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
