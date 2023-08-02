@@ -30,18 +30,18 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.categoryName = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.label4 = new System.Windows.Forms.Label();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.categoryRayNumber = new System.Windows.Forms.NumericUpDown();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
             this.flowLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.categoryRayNumber)).BeginInit();
             this.flowLayoutPanel3.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -54,7 +54,6 @@
             this.label1.Size = new System.Drawing.Size(91, 23);
             this.label1.TabIndex = 0;
             this.label1.Text = "Ajouter";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
@@ -66,13 +65,13 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "un nouveau rayon de produits";
             // 
-            // textBox1
+            // categoryName
             // 
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox1.Location = new System.Drawing.Point(3, 18);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(274, 20);
-            this.textBox1.TabIndex = 2;
+            this.categoryName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.categoryName.Location = new System.Drawing.Point(3, 18);
+            this.categoryName.Name = "categoryName";
+            this.categoryName.Size = new System.Drawing.Size(274, 20);
+            this.categoryName.TabIndex = 2;
             // 
             // label3
             // 
@@ -87,7 +86,7 @@
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.Controls.Add(this.label3);
-            this.flowLayoutPanel1.Controls.Add(this.textBox1);
+            this.flowLayoutPanel1.Controls.Add(this.categoryName);
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(18, 90);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -97,7 +96,7 @@
             // flowLayoutPanel2
             // 
             this.flowLayoutPanel2.Controls.Add(this.label4);
-            this.flowLayoutPanel2.Controls.Add(this.numericUpDown1);
+            this.flowLayoutPanel2.Controls.Add(this.categoryRayNumber);
             this.flowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel2.Location = new System.Drawing.Point(18, 154);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
@@ -114,12 +113,12 @@
             this.label4.TabIndex = 3;
             this.label4.Text = "Numero de l\'allee";
             // 
-            // numericUpDown1
+            // categoryRayNumber
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(3, 18);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(274, 20);
-            this.numericUpDown1.TabIndex = 6;
+            this.categoryRayNumber.Location = new System.Drawing.Point(3, 18);
+            this.categoryRayNumber.Name = "categoryRayNumber";
+            this.categoryRayNumber.Size = new System.Drawing.Size(274, 20);
+            this.categoryRayNumber.TabIndex = 6;
             // 
             // button1
             // 
@@ -175,7 +174,7 @@
             this.flowLayoutPanel1.PerformLayout();
             this.flowLayoutPanel2.ResumeLayout(false);
             this.flowLayoutPanel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.categoryRayNumber)).EndInit();
             this.flowLayoutPanel3.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -186,12 +185,12 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox categoryName;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown categoryRayNumber;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;

@@ -41,19 +41,15 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.CategoryDataGridView = new System.Windows.Forms.DataGridView();
             this.edit = new System.Windows.Forms.DataGridViewButtonColumn();
             this.delete = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ray_number = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.product_count = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CategoryDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -143,7 +139,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(318, 95);
             this.panel2.TabIndex = 3;
-            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
             // label1
             // 
@@ -164,12 +159,11 @@
             this.label2.Size = new System.Drawing.Size(305, 30);
             this.label2.TabIndex = 1;
             this.label2.Text = "Ajouter, modifier ou supprimer des rayons dans cette section";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.panel3.Controls.Add(this.dataGridView1);
+            this.panel3.Controls.Add(this.CategoryDataGridView);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(0, 95);
             this.panel3.Name = "panel3";
@@ -177,12 +171,12 @@
             this.panel3.Size = new System.Drawing.Size(995, 509);
             this.panel3.TabIndex = 1;
             // 
-            // dataGridView1
+            // CategoryDataGridView
             // 
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
-            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            this.CategoryDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.CategoryDataGridView.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
+            this.CategoryDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.CategoryDataGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Lucida Sans", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -190,18 +184,15 @@
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.CategoryDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.CategoryDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.CategoryDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.edit,
-            this.delete,
-            this.Id,
-            this.name,
-            this.ray_number,
-            this.product_count});
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(10, 0);
-            this.dataGridView1.Name = "dataGridView1";
+            this.delete});
+            this.CategoryDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CategoryDataGridView.Location = new System.Drawing.Point(10, 0);
+            this.CategoryDataGridView.Name = "CategoryDataGridView";
+            this.CategoryDataGridView.ReadOnly = true;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Lucida Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -209,16 +200,17 @@
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridView1.Size = new System.Drawing.Size(975, 499);
-            this.dataGridView1.TabIndex = 0;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.CategoryDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.CategoryDataGridView.Size = new System.Drawing.Size(975, 499);
+            this.CategoryDataGridView.TabIndex = 0;
+            this.CategoryDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // edit
             // 
             this.edit.FillWeight = 55F;
             this.edit.HeaderText = "Modification";
             this.edit.Name = "edit";
+            this.edit.ReadOnly = true;
             this.edit.Text = "Modifier";
             this.edit.UseColumnTextForButtonValue = true;
             // 
@@ -227,34 +219,9 @@
             this.delete.FillWeight = 55.96944F;
             this.delete.HeaderText = "Suppression";
             this.delete.Name = "delete";
+            this.delete.ReadOnly = true;
             this.delete.Text = "Supprimer";
             this.delete.UseColumnTextForButtonValue = true;
-            // 
-            // Id
-            // 
-            this.Id.FillWeight = 30F;
-            this.Id.HeaderText = "ID";
-            this.Id.Name = "Id";
-            this.Id.ReadOnly = true;
-            this.Id.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // name
-            // 
-            this.name.FillWeight = 87.00832F;
-            this.name.HeaderText = "Nom du rayon";
-            this.name.Name = "name";
-            // 
-            // ray_number
-            // 
-            this.ray_number.FillWeight = 87.00832F;
-            this.ray_number.HeaderText = "Numero de l\'allee";
-            this.ray_number.Name = "ray_number";
-            // 
-            // product_count
-            // 
-            this.product_count.FillWeight = 87.00832F;
-            this.product_count.HeaderText = "Nombre de produits";
-            this.product_count.Name = "product_count";
             // 
             // RayUserControl
             // 
@@ -274,7 +241,7 @@
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CategoryDataGridView)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -284,7 +251,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView CategoryDataGridView;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Label label5;
@@ -295,9 +262,5 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DataGridViewButtonColumn edit;
         private System.Windows.Forms.DataGridViewButtonColumn delete;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn name;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ray_number;
-        private System.Windows.Forms.DataGridViewTextBoxColumn product_count;
     }
 }

@@ -1,56 +1,84 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+﻿using DomainLayer.Models.CategoryModel;
+using InfrastructureLayer.Repositories.CategoryRepository;
+using System;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace supermarket_sales_manegement.UserControls
 {
     public partial class RayUserControl : UserControl
     {
+        private ICategoryRepository categoryRepository;
+
         public RayUserControl(DockStyle dockStyle)
         {
             InitializeComponent();
+            categoryRepository = new CategoryRepository();
+            LoadCategoryIntoDataGridView();
         }
 
-        private void label2_Click(object sender, EventArgs e)
+        public void LoadCategoryIntoDataGridView()
         {
+            CategoryDataGridView.Columns.Clear();
 
-        }
+            // Create a new DataGridViewButtonColumn
+            DataGridViewButtonColumn editButton = new DataGridViewButtonColumn
+            {
+                // Set properties for the button column
+                HeaderText = "Modification", // Column header text
+                Text = "Modifier" // Text on the 
+            };
+            editButton.UseColumnTextForButtonValue = true;
+            editButton.FillWeight = 40;
+            editButton.Name = "edit";
 
-        private void label4_Click(object sender, EventArgs e)
-        {
+            DataGridViewButtonColumn deleteButton = new DataGridViewButtonColumn
+            {
+                // Set properties for the button column
+                HeaderText = "Suppression", // Column header text
+                Text = "Supprimer" // Text on the button
+            };
+            deleteButton.UseColumnTextForButtonValue = true;
+            deleteButton.FillWeight = 40;
+            deleteButton.Name = "delete";
 
-        }
 
-        private void label3_Click(object sender, EventArgs e)
-        {
+            // Add the column to the DataGridView
+            CategoryDataGridView.Columns.Add(editButton);
+            CategoryDataGridView.Columns.Add(deleteButton);
+            CategoryDataGridView.Columns.Add("Id", "ID");
+            CategoryDataGridView.Columns.Add("Name", "Nom du rayon");
+            CategoryDataGridView.Columns.Add("RayNumber", "Numéro de l'allée");
 
-        }
+            CategoryDataGridView.Columns["Id"].DataPropertyName = "Id";
+            CategoryDataGridView.Columns["Name"].DataPropertyName = "Name";
+            CategoryDataGridView.Columns["RayNumber"].DataPropertyName = "RayNumber";
 
-        private void panel2_Paint(object sender, PaintEventArgs e)
-        {
+            CategoryDataGridView.DataSource = categoryRepository.GetAll();
 
+
+            if (CategoryDataGridView.Columns.Contains("DeletedAt"))
+            {
+                CategoryDataGridView.Columns["DeletedAt"].Visible = false; // hide the delete_at column
+            }
         }
 
         private void RayUserControl_Load(object sender, EventArgs e)
         {
-            this.Dock = DockStyle.Fill;
+            Dock = DockStyle.Fill;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Form form = new Form();
-            form.FormBorderStyle = FormBorderStyle.FixedSingle;
-            form.MaximizeBox = false;
-            form.Width = 340;
-            form.Height = 390;
-            form.StartPosition = FormStartPosition.CenterScreen;
-            form.Controls.Add(new AddRayUserControl(form));
+            Form form = new Form
+            {
+                FormBorderStyle = FormBorderStyle.FixedSingle,
+                MaximizeBox = false,
+                Width = 340,
+                Height = 390,
+                StartPosition = FormStartPosition.CenterScreen
+            };
+            form.Controls.Add(new AddRayUserControl(form, this));
             form.ShowDialog();
         }
 
@@ -67,9 +95,23 @@ namespace supermarket_sales_manegement.UserControls
                 }
                 else
                 {
-                    MessageBox.Show("Etes-vous sur de vouloir supprimer cets rayon", "Suppression");
+                    DialogResult result = MessageBox.Show("Etes-vous sur de vouloir supprimer cets rayon", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                    
+                    if (result == DialogResult.Yes)
+                    {
+                        DataGridViewRow row = senderGrid.CurrentRow;
+
+                        CategoryModel category = new CategoryModel
+                        {
+                            Id = int.Parse(row.Cells["Id"].Value.ToString()),
+                            Name = row.Cells["Name"].Value.ToString(),
+                            RayNumber = int.Parse(row.Cells["RayNumber"].Value.ToString()),
+                            DeletedAt = null
+                        };
+
+                        categoryRepository.Delete(category);
+                        LoadCategoryIntoDataGridView();
+                    }
                 }
             }
         }

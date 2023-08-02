@@ -9,6 +9,9 @@ namespace supermarket_sales_manegement
         public MainView()
         {
             InitializeComponent();
+
+            // Initialize the Ray view
+            outled.Controls.Add(new RayUserControl(Dock = DockStyle.Fill));
         }
 
         private void label1_Click(object sender, EventArgs e)

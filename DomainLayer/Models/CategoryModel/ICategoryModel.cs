@@ -11,5 +11,6 @@ namespace DomainLayer.Models.CategoryModel
         int Id { get; set; }
         string Name { get; set; }
         int RayNumber { get; set; }
+        DateTime? DeletedAt { get; set; }
     }
 }

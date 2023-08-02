@@ -16,5 +16,7 @@ namespace DomainLayer.Models.CategoryModel
 
         [Required(ErrorMessage = "Category ray number is required")]
         public int RayNumber { get; set; }
+
+        public DateTime? DeletedAt { get; set; }
     }
 }
