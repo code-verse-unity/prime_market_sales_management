@@ -21,5 +21,11 @@ namespace supermarket_sales_manegement.UserControls
         {
             this.Dock = DockStyle.Fill;
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            AddProductForm updateRayForm = new AddProductForm();
+            updateRayForm.ShowDialog();
+        }
     }
 }
