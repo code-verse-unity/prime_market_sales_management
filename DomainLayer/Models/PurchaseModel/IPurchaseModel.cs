@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DomainLayer.Models.ProductPurchaseModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,5 +11,6 @@ namespace DomainLayer.Models.PurchaseModel
     {
         int Id { get; set; }
         DateTime CreatedAt { get; set; }
+        IEnumerable<IProductPurchaseModel> ProductPurchases { get; set; }
     }
 }

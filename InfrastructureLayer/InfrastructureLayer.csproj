@@ -65,6 +65,8 @@
     <Compile Include="Repositories\BaseRepository.cs" />
     <Compile Include="Repositories\CategoryRepository\CategoryRepository.cs" />
     <Compile Include="Repositories\CategoryRepository\ICategoryRepository.cs" />
+    <Compile Include="Repositories\PurchaseRepository\IPurchaseRepository.cs" />
+    <Compile Include="Repositories\PurchaseRepository\PurchaseRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DomainLayer\DomainLayer.csproj">

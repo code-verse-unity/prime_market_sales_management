@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DomainLayer.Models.ProductModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,5 +14,6 @@ namespace DomainLayer.Models.ProductPurchaseModel
         public int PurchaseId { get; set; }
         public int Quantity { get; set; }
         public double Price { get; set; }
+        public IProductModel Product { get; set; }
     }
 }
