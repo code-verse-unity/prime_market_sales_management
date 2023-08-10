@@ -86,5 +86,43 @@ namespace supermarket_sales_manegement.UserControls
 
             PurchaseDataGridView.Columns["ProductPurchases"].Visible = false;
         }
+
+        private void PurchaseDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            {
+                if (PurchaseDataGridView.Columns[e.ColumnIndex] is DataGridViewButtonColumn)
+                {
+                    IPurchaseModel purchaseModel = (IPurchaseModel)PurchaseDataGridView.Rows[e.RowIndex].DataBoundItem;
+                    switch (PurchaseDataGridView.Columns[e.ColumnIndex].HeaderText)
+                    {
+                        case "Modification":
+                            HandleEditPurchase(purchaseModel);
+                            break;
+                        case "Suppression":
+                            HandleDeletePurchase(purchaseModel);
+                            break;
+                        case "Facture":
+                            HandleBillPurchase(purchaseModel);
+                            break;
+                    }
+                }
+            }
+        }
+
+        private void HandleBillPurchase(IPurchaseModel purchaseModel)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void HandleDeletePurchase(IPurchaseModel purchaseModel)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void HandleEditPurchase(IPurchaseModel purchaseModel)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -312,6 +312,7 @@
             this.PurchaseDataGridView.Name = "PurchaseDataGridView";
             this.PurchaseDataGridView.Size = new System.Drawing.Size(651, 441);
             this.PurchaseDataGridView.TabIndex = 0;
+            this.PurchaseDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.PurchaseDataGridView_CellContentClick);
             // 
             // cancel
             // 
