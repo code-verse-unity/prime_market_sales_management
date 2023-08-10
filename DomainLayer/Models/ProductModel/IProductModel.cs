@@ -8,7 +8,7 @@ namespace DomainLayer.Models.ProductModel
         string Name { get; set; }
         int CategoryId { get; set; }
         bool IsPerishable { get; set; }
-        DateTime DeleteAt { get; set; }
+        DateTime? DeleteAt { get; set; }
         string Unit { get; set; }
     }
 }
