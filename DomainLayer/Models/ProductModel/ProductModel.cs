@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DomainLayer.Models.ProductPurchaseModel;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace DomainLayer.Models.ProductModel
@@ -19,5 +21,7 @@ namespace DomainLayer.Models.ProductModel
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "Product unit required")]
         public string Unit { get ; set ; }
+
+        public IEnumerable<IProductPurchaseModel> ProductPurchases { get; set; }
     }
 }
