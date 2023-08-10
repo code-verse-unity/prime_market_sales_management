@@ -1,6 +1,4 @@
-﻿using DomainLayer.Models.ProductPurchaseModel;
-using System;
-using System.Collections.Generic;
+﻿using System;
 
 namespace DomainLayer.Models.ProductModel
 {
@@ -12,6 +10,5 @@ namespace DomainLayer.Models.ProductModel
         bool IsPerishable { get; set; }
         DateTime DeleteAt { get; set; }
         string Unit { get; set; }
-        IEnumerable<IProductPurchaseModel> ProductPurchases { get; set; }
     }
 }
