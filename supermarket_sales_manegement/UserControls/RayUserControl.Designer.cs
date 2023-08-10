@@ -33,7 +33,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
+            this.categoryCount = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
@@ -68,7 +68,7 @@
             // 
             this.panel6.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.panel6.Controls.Add(this.label5);
-            this.panel6.Controls.Add(this.label6);
+            this.panel6.Controls.Add(this.categoryCount);
             this.panel6.Location = new System.Drawing.Point(339, 16);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(183, 63);
@@ -84,16 +84,16 @@
             this.label5.TabIndex = 8;
             this.label5.Text = "Total de rayons :";
             // 
-            // label6
+            // categoryCount
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Lucida Sans", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.label6.Location = new System.Drawing.Point(13, 34);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(38, 17);
-            this.label6.TabIndex = 9;
-            this.label6.Text = "150";
+            this.categoryCount.AutoSize = true;
+            this.categoryCount.Font = new System.Drawing.Font("Lucida Sans", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.categoryCount.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.categoryCount.Location = new System.Drawing.Point(13, 34);
+            this.categoryCount.Name = "categoryCount";
+            this.categoryCount.Size = new System.Drawing.Size(38, 17);
+            this.categoryCount.TabIndex = 9;
+            this.categoryCount.Text = "150";
             // 
             // panel5
             // 
@@ -255,7 +255,7 @@
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label categoryCount;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;

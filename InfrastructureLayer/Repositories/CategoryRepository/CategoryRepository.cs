@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Data.SQLite;
 
 namespace InfrastructureLayer.Repositories.CategoryRepository
@@ -118,7 +119,7 @@ namespace InfrastructureLayer.Repositories.CategoryRepository
                 }
                 catch (SQLiteException e)
                 {
-                    throw new Exception("Failed opening the database" + e.Message);
+                    Console.WriteLine("Failed opening the database" + e.Message);
                 }
             }
 
@@ -127,7 +128,37 @@ namespace InfrastructureLayer.Repositories.CategoryRepository
 
         public void Update(ICategoryModel category)
         {
-            throw new NotImplementedException();
+            using(SQLiteConnection connection = new SQLiteConnection(CONNECTION_STRING))
+            {
+                try
+                {
+                    connection.Open();
+                    string updateStatement = "UPDATE categories SET name = @name, ray_number = @ray_number " +
+                        "WHERE id = @id";
+
+                    using(SQLiteCommand cmd = new SQLiteCommand(updateStatement, connection))
+                    {
+                        cmd.CommandText = updateStatement;
+
+                        cmd.Parameters.AddWithValue("@id", category.Id);
+                        cmd.Parameters.AddWithValue("@name", category.Name);
+                        cmd.Parameters.AddWithValue("@ray_number", category.RayNumber);
+
+                        try
+                        {
+                            cmd.ExecuteNonQuery();
+                        }
+                        catch (SQLiteException e)
+                        {
+                            Console.WriteLine("Failed opening the database" + e.StackTrace);
+                        }
+                    }
+                }
+                catch (SQLiteException e)
+                {
+                    Console.WriteLine("Failed opening the database" + e.Message);
+                }
+            }
         }
     }
 }

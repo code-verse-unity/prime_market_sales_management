@@ -1,7 +1,9 @@
 ﻿using DomainLayer.Models.CategoryModel;
 using InfrastructureLayer.Repositories.CategoryRepository;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace supermarket_sales_manegement.UserControls
@@ -15,6 +17,11 @@ namespace supermarket_sales_manegement.UserControls
             InitializeComponent();
             categoryRepository = new CategoryRepository();
             LoadCategoryIntoDataGridView();
+        }
+
+        private void LoadCategoryCount(IEnumerable<ICategoryModel> categories)
+        {
+            categoryCount.Text = categories.Count().ToString();
         }
 
         public void LoadCategoryIntoDataGridView()
@@ -54,7 +61,9 @@ namespace supermarket_sales_manegement.UserControls
             CategoryDataGridView.Columns["Name"].DataPropertyName = "Name";
             CategoryDataGridView.Columns["RayNumber"].DataPropertyName = "RayNumber";
 
-            CategoryDataGridView.DataSource = categoryRepository.GetAll();
+            IEnumerable<ICategoryModel> categories = categoryRepository.GetAll();
+            CategoryDataGridView.DataSource = categories;
+            LoadCategoryCount(categories);
 
 
             if (CategoryDataGridView.Columns.Contains("DeletedAt"))
@@ -85,12 +94,21 @@ namespace supermarket_sales_manegement.UserControls
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             DataGridView senderGrid = (DataGridView)sender;
+            DataGridViewRow row = senderGrid.CurrentRow;
+
+            CategoryModel category = new CategoryModel
+            {
+                Id = int.Parse(row.Cells["Id"].Value.ToString()),
+                Name = row.Cells["Name"].Value.ToString(),
+                RayNumber = int.Parse(row.Cells["RayNumber"].Value.ToString()),
+                DeletedAt = null
+            };
 
             if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
             {
                 if (senderGrid.Columns[e.ColumnIndex].Name == "edit")
                 {
-                    UpdateRayForm updateRayForm = new UpdateRayForm();
+                    UpdateRayForm updateRayForm = new UpdateRayForm(category, this);
                     updateRayForm.ShowDialog();
                 }
                 else
@@ -99,16 +117,6 @@ namespace supermarket_sales_manegement.UserControls
 
                     if (result == DialogResult.Yes)
                     {
-                        DataGridViewRow row = senderGrid.CurrentRow;
-
-                        CategoryModel category = new CategoryModel
-                        {
-                            Id = int.Parse(row.Cells["Id"].Value.ToString()),
-                            Name = row.Cells["Name"].Value.ToString(),
-                            RayNumber = int.Parse(row.Cells["RayNumber"].Value.ToString()),
-                            DeletedAt = null
-                        };
-
                         categoryRepository.Delete(category);
                         LoadCategoryIntoDataGridView();
                     }
