@@ -2,11 +2,12 @@
 using DomainLayer.Models.PriceModel;
 using DomainLayer.Models.ProductModel;
 using DomainLayer.Models.StockModel;
+using InfrastructureLayer.Repositories.Category;
 using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
 
-namespace InfrastructureLayer.Repositories.ProductRepository
+namespace InfrastructureLayer.Repositories.Product
 {
     public class ProductRepository : BaseRepository, IProductRepository
     {
@@ -126,6 +127,7 @@ namespace InfrastructureLayer.Repositories.ProductRepository
         public IEnumerable<IProductModel> GetAll()
         {
             List<IProductModel> products = new List<IProductModel>();
+            ICategoryRepository categoryRepository = new CategoryRepository();
 
             using (SQLiteConnection connection = new SQLiteConnection(CONNECTION_STRING))
             {
@@ -134,7 +136,7 @@ namespace InfrastructureLayer.Repositories.ProductRepository
                     connection.Open();
                     string retrieveTotalQuantityQuery = "SELECT products.*, sum(stock.quantity) as quantity from products " +
                         "LEFT JOIN stock on products.id = stock.product_id " +
-                        "WHERE deleted_at IS NULL " +
+                        "WHERE products.deleted_at IS NULL " +
                         "GROUP BY products.id;";
 
                     using (SQLiteCommand cmd = new SQLiteCommand(retrieveTotalQuantityQuery, connection))
@@ -148,15 +150,21 @@ namespace InfrastructureLayer.Repositories.ProductRepository
                             {
                                 while (reader.Read())
                                 {
+                                    Console.WriteLine(reader["name"].ToString());
+
                                     ProductModel product = new ProductModel()
                                     {
+
                                         Id = int.Parse(reader["id"].ToString()),
                                         Name = reader["name"].ToString(),
+                                        CategoryId = int.Parse(reader["category_id"].ToString()),
                                         Price = Double.Parse(reader["cump"].ToString()),
-                                        InStock = int.Parse(reader["quantity"].ToString()),
                                         IsPerishable = int.Parse(reader["is_perishable"].ToString()) == 1,
                                         Unit = reader["unit"].ToString()  
                                     };
+
+                                    product.InStock = CalculateTotalQuantity(product.Id);
+                                    product.Category = categoryRepository.GetById(product.CategoryId);
 
                                     products.Add(product);
                                 }
@@ -232,9 +240,9 @@ namespace InfrastructureLayer.Repositories.ProductRepository
             return totalQuantityTimesAmount;
         }
 
-        private double CalculateTotalQuantity(long productId)
+        private int CalculateTotalQuantity(long productId)
         {
-            double totalQuantity = -1;
+            int totalQuantity = 0;
 
             using(SQLiteConnection connection = new SQLiteConnection(CONNECTION_STRING))
             {
@@ -260,7 +268,7 @@ namespace InfrastructureLayer.Repositories.ProductRepository
                             {
                                 while (reader.Read())
                                 {
-                                    totalQuantity = Double.Parse(reader["total_quantity"].ToString());
+                                    totalQuantity = int.Parse(reader["total_quantity"].ToString());
                                 }
                             }
 
@@ -283,7 +291,13 @@ namespace InfrastructureLayer.Repositories.ProductRepository
 
         private double CalculateCump(long productId)
         {
-            return Math.Ceiling(CalculatetotalQuantityTimesAmount(productId) / CalculateTotalQuantity(productId));
+            int totalQuantity = CalculateTotalQuantity(productId);
+            
+            if(totalQuantity == 0)
+            {
+                return 0;
+            }
+            return Math.Ceiling(CalculatetotalQuantityTimesAmount(productId) / totalQuantity);
         }
     }
 }

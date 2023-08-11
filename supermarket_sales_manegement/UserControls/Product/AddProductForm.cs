@@ -2,8 +2,8 @@
 using DomainLayer.Models.PriceModel;
 using DomainLayer.Models.ProductModel;
 using DomainLayer.Models.StockModel;
-using InfrastructureLayer.Repositories.CategoryRepository;
-using InfrastructureLayer.Repositories.ProductRepository;
+using InfrastructureLayer.Repositories.Category;
+using InfrastructureLayer.Repositories.Product;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,9 +18,12 @@ namespace supermarket_sales_manegement.UserControls
 {
     public partial class AddProductForm : Form
     {
-        public AddProductForm()
+        ProductUserControl parent;
+        public AddProductForm(ProductUserControl productUserControl)
         {
             InitializeComponent();
+            parent = productUserControl;
+
             InitializeForm();
         }
 
@@ -32,10 +35,7 @@ namespace supermarket_sales_manegement.UserControls
             ProductCategory.Items.Add("Choisir un rayon...");
             foreach (ICategoryModel category in categories)
             {
-                StringBuilder stringBuilder = new StringBuilder();
-                stringBuilder.Append(category.Id);
-                stringBuilder.Append(category.Name);
-                ProductCategory.Items.Add(stringBuilder.ToString());
+                ProductCategory.Items.Add(category);
             }
 
             ProductCategory.SelectedIndex = 0;
@@ -45,23 +45,34 @@ namespace supermarket_sales_manegement.UserControls
         {
             IPriceModel priceModel = new PriceModel()
             {
-                UnitPrice = 20,
+                UnitPrice = (double)ProductPrice.Value,
             };
+
+            bool isPerishable = ProductIsPerishable.Checked;
+            DateTime? expirationDate;
+            if (isPerishable)
+                expirationDate = ProductExpirationDate.Value;
+            else
+                expirationDate = null;
+
             IStockModel stockModel = new StockModel()
             {
-                ExpirationDate = DateTime.Now,
-                Quantity = 30,
+                ExpirationDate = expirationDate,
+                Quantity = (int)ProductQuatity.Value,
             };
             IProductModel productModel = new ProductModel()
             {
-                CategoryId = 1,
-                IsPerishable = true,
-                Name = "Test",
-                Unit = "KG"
+                CategoryId = ((CategoryModel)ProductCategory.SelectedItem).Id,
+                IsPerishable = isPerishable,
+                Name = ProductName.Text,
+                Unit = ProductUnitName.Text
             };
 
             ProductRepository productRepository = new ProductRepository();
             productRepository.Add(productModel, priceModel, stockModel);
+
+            parent.LoadProductsIntoDataGridView();
+            Close();
         }
 
         private void CancelButton_Click(object sender, EventArgs e)

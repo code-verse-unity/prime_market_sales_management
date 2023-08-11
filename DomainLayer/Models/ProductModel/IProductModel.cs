@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DomainLayer.Models.CategoryModel;
+using System;
 
 namespace DomainLayer.Models.ProductModel
 {
@@ -8,7 +9,10 @@ namespace DomainLayer.Models.ProductModel
         string Name { get; set; }
         int CategoryId { get; set; }
         bool IsPerishable { get; set; }
-        DateTime DeleteAt { get; set; }
+        DateTime DeletedAt { get; set; }
         string Unit { get; set; }
+        double Price { get; set; } // CUMP
+        int InStock { get; set; }
+        ICategoryModel Category { get; set; }
     }
 }

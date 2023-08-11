@@ -63,10 +63,10 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
-    <Compile Include="Repositories\CategoryRepository\CategoryRepository.cs" />
-    <Compile Include="Repositories\CategoryRepository\ICategoryRepository.cs" />
-    <Compile Include="Repositories\ProductRepository\IProductRepository.cs" />
-    <Compile Include="Repositories\ProductRepository\ProductRepository.cs" />
+    <Compile Include="Repositories\Category\CategoryRepository.cs" />
+    <Compile Include="Repositories\Category\ICategoryRepository.cs" />
+    <Compile Include="Repositories\Product\IProductRepository.cs" />
+    <Compile Include="Repositories\Product\ProductRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DomainLayer\DomainLayer.csproj">

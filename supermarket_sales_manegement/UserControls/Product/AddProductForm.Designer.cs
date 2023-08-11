@@ -44,7 +44,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.AddProductButton = new System.Windows.Forms.Button();
             this.CancelButton = new System.Windows.Forms.Button();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.ProductExpirationDate = new System.Windows.Forms.DateTimePicker();
             this.label8 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.ProductQuatity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ProductPrice)).BeginInit();
@@ -201,12 +201,12 @@
             this.CancelButton.UseVisualStyleBackColor = false;
             this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
-            // dateTimePicker1
+            // ProductExpirationDate
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(36, 442);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker1.TabIndex = 25;
+            this.ProductExpirationDate.Location = new System.Drawing.Point(36, 442);
+            this.ProductExpirationDate.Name = "ProductExpirationDate";
+            this.ProductExpirationDate.Size = new System.Drawing.Size(200, 20);
+            this.ProductExpirationDate.TabIndex = 25;
             // 
             // label8
             // 
@@ -222,7 +222,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(408, 565);
-            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.ProductExpirationDate);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.AddProductButton);
@@ -267,7 +267,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button AddProductButton;
         private System.Windows.Forms.Button CancelButton;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker ProductExpirationDate;
         private System.Windows.Forms.Label label8;
     }
 }

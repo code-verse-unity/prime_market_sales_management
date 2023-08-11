@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InfrastructureLayer.Repositories.ProductRepository
+namespace InfrastructureLayer.Repositories.Product
 {
     public interface IProductRepository
     {
