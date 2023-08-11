@@ -6,7 +6,8 @@ namespace DomainLayer.Models.StockModel
     {
         int Id { get; set; }
         int Quantity { get; set; }
-        DateTime ExpirationDate { get; set; }
+        DateTime? ExpirationDate { get; set; }
         int ProductId { get; set; }
+        DateTime CreatedAt { get; set; }
     }
 }

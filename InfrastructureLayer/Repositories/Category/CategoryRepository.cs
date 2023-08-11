@@ -5,7 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Data.SQLite;
 
-namespace InfrastructureLayer.Repositories.CategoryRepository
+namespace InfrastructureLayer.Repositories.Category
 {
     public class CategoryRepository : BaseRepository, ICategoryRepository
     {
@@ -124,6 +124,44 @@ namespace InfrastructureLayer.Repositories.CategoryRepository
             }
 
             return categories;
+        }
+
+        public ICategoryModel GetById(int categoryId)
+        {
+            CategoryModel category = new CategoryModel();
+
+            using (SQLiteConnection connection = new SQLiteConnection(CONNECTION_STRING))
+            {
+                try
+                {
+                    connection.Open();
+                    string sql = "SELECT * FROM categories WHERE id = " + categoryId;
+
+
+                    using (SQLiteCommand cmd = new SQLiteCommand(sql, connection))
+                    {
+                        using (SQLiteDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                category.Id = categoryId;
+                                category.Name = reader["name"].ToString();
+                                category.RayNumber = int.Parse(reader["ray_number"].ToString());
+                                //category.DeletedAt = DateTime.Parse(reader["deleted_at"].ToString());
+                            }
+                        }
+
+                        connection.Close();
+                    }
+
+                }
+                catch (SQLiteException e)
+                {
+                    Console.WriteLine("Failed opening the database" + e.Message);
+                }
+            }
+
+            return category;
         }
 
         public void Update(ICategoryModel category)

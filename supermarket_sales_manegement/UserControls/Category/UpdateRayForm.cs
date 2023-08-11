@@ -1,5 +1,5 @@
 ﻿using DomainLayer.Models.CategoryModel;
-using InfrastructureLayer.Repositories.CategoryRepository;
+using InfrastructureLayer.Repositories.Category;
 using System;
 using System.Windows.Forms;
 

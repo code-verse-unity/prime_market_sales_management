@@ -60,28 +60,40 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UserControls\AddProductForm.cs">
+    <Compile Include="UserControls\Product\AddProductForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UserControls\AddProductForm.Designer.cs">
+    <Compile Include="UserControls\Product\AddProductForm.Designer.cs">
       <DependentUpon>AddProductForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\AddRayUserControl.cs">
+    <Compile Include="UserControls\Category\AddRayUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControls\AddRayUserControl.Designer.cs">
+    <Compile Include="UserControls\Category\AddRayUserControl.Designer.cs">
       <DependentUpon>AddRayUserControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\ProductUserControl.cs">
+    <Compile Include="UserControls\Product\UpdateProductForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserControls\Product\UpdateProductForm.Designer.cs">
+      <DependentUpon>UpdateProductForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Stock\NewStockForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserControls\Stock\NewStockForm.Designer.cs">
+      <DependentUpon>NewStockForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Product\ProductUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControls\ProductUserControl.Designer.cs">
+    <Compile Include="UserControls\Product\ProductUserControl.Designer.cs">
       <DependentUpon>ProductUserControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\RayUserControl.cs">
+    <Compile Include="UserControls\Category\RayUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControls\RayUserControl.Designer.cs">
+    <Compile Include="UserControls\Category\RayUserControl.Designer.cs">
       <DependentUpon>RayUserControl.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\SaleUserControl.cs">
@@ -90,10 +102,10 @@
     <Compile Include="UserControls\SaleUserControl.Designer.cs">
       <DependentUpon>SaleUserControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\UpdateRayForm.cs">
+    <Compile Include="UserControls\Category\UpdateRayForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UserControls\UpdateRayForm.Designer.cs">
+    <Compile Include="UserControls\Category\UpdateRayForm.Designer.cs">
       <DependentUpon>UpdateRayForm.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="MainView.resx">
@@ -109,22 +121,28 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="UserControls\AddProductForm.resx">
+    <EmbeddedResource Include="UserControls\Product\AddProductForm.resx">
       <DependentUpon>AddProductForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\AddRayUserControl.resx">
+    <EmbeddedResource Include="UserControls\Category\AddRayUserControl.resx">
       <DependentUpon>AddRayUserControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\ProductUserControl.resx">
+    <EmbeddedResource Include="UserControls\Product\UpdateProductForm.resx">
+      <DependentUpon>UpdateProductForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Stock\NewStockForm.resx">
+      <DependentUpon>NewStockForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Product\ProductUserControl.resx">
       <DependentUpon>ProductUserControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\RayUserControl.resx">
+    <EmbeddedResource Include="UserControls\Category\RayUserControl.resx">
       <DependentUpon>RayUserControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\SaleUserControl.resx">
       <DependentUpon>SaleUserControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\UpdateRayForm.resx">
+    <EmbeddedResource Include="UserControls\Category\UpdateRayForm.resx">
       <DependentUpon>UpdateRayForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />

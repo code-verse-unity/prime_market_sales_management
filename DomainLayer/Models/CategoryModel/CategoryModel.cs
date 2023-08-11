@@ -18,5 +18,10 @@ namespace DomainLayer.Models.CategoryModel
         public int RayNumber { get; set; }
 
         public DateTime? DeletedAt { get; set; }
+
+        public override string ToString()
+        {
+            return $"{Name}-({RayNumber})"; // Custom representation of User
+        }
     }
 }
