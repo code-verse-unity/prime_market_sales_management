@@ -72,6 +72,12 @@
     <Compile Include="UserControls\AddRayUserControl.Designer.cs">
       <DependentUpon>AddRayUserControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\NewStockForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserControls\NewStockForm.Designer.cs">
+      <DependentUpon>NewStockForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\ProductUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -114,6 +120,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\AddRayUserControl.resx">
       <DependentUpon>AddRayUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\NewStockForm.resx">
+      <DependentUpon>NewStockForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\ProductUserControl.resx">
       <DependentUpon>ProductUserControl.cs</DependentUpon>

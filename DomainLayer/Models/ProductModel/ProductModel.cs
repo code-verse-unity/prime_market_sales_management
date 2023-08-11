@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DomainLayer.Models.PriceModel;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace DomainLayer.Models.ProductModel
@@ -19,5 +20,9 @@ namespace DomainLayer.Models.ProductModel
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "Product unit required")]
         public string Unit { get ; set ; }
+
+        public double Price { get; set; } // CUMP
+        public int InStock { get; set; }
+
     }
 }

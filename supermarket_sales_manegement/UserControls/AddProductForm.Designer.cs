@@ -44,13 +44,15 @@
             this.label7 = new System.Windows.Forms.Label();
             this.AddProductButton = new System.Windows.Forms.Button();
             this.CancelButton = new System.Windows.Forms.Button();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.label8 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.ProductQuatity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ProductPrice)).BeginInit();
             this.SuspendLayout();
             // 
             // ProductName
             // 
-            this.ProductName.Location = new System.Drawing.Point(34, 128);
+            this.ProductName.Location = new System.Drawing.Point(34, 119);
             this.ProductName.Name = "ProductName";
             this.ProductName.Size = new System.Drawing.Size(343, 20);
             this.ProductName.TabIndex = 0;
@@ -58,7 +60,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(31, 102);
+            this.label1.Location = new System.Drawing.Point(31, 98);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(79, 13);
             this.label1.TabIndex = 4;
@@ -83,12 +85,11 @@
             this.label3.Size = new System.Drawing.Size(102, 16);
             this.label3.TabIndex = 6;
             this.label3.Text = "dans les rayons";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // ProductUnit
             // 
             this.ProductUnit.AutoSize = true;
-            this.ProductUnit.Location = new System.Drawing.Point(288, 170);
+            this.ProductUnit.Location = new System.Drawing.Point(287, 160);
             this.ProductUnit.Name = "ProductUnit";
             this.ProductUnit.Size = new System.Drawing.Size(32, 13);
             this.ProductUnit.TabIndex = 8;
@@ -96,7 +97,7 @@
             // 
             // ProductUnitName
             // 
-            this.ProductUnitName.Location = new System.Drawing.Point(291, 195);
+            this.ProductUnitName.Location = new System.Drawing.Point(290, 182);
             this.ProductUnitName.Name = "ProductUnitName";
             this.ProductUnitName.Size = new System.Drawing.Size(86, 20);
             this.ProductUnitName.TabIndex = 7;
@@ -104,7 +105,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(31, 235);
+            this.label4.Location = new System.Drawing.Point(32, 221);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(38, 13);
             this.label4.TabIndex = 10;
@@ -112,8 +113,9 @@
             // 
             // ProductCategory
             // 
+            this.ProductCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ProductCategory.FormattingEnabled = true;
-            this.ProductCategory.Location = new System.Drawing.Point(33, 264);
+            this.ProductCategory.Location = new System.Drawing.Point(34, 247);
             this.ProductCategory.Name = "ProductCategory";
             this.ProductCategory.Size = new System.Drawing.Size(344, 21);
             this.ProductCategory.TabIndex = 11;
@@ -121,7 +123,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(33, 308);
+            this.label5.Location = new System.Drawing.Point(35, 360);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(137, 13);
             this.label5.TabIndex = 12;
@@ -130,17 +132,17 @@
             // ProductIsPerishable
             // 
             this.ProductIsPerishable.AutoSize = true;
-            this.ProductIsPerishable.Location = new System.Drawing.Point(33, 334);
+            this.ProductIsPerishable.Location = new System.Drawing.Point(35, 383);
             this.ProductIsPerishable.Name = "ProductIsPerishable";
-            this.ProductIsPerishable.Size = new System.Drawing.Size(74, 17);
+            this.ProductIsPerishable.Size = new System.Drawing.Size(46, 17);
             this.ProductIsPerishable.TabIndex = 13;
-            this.ProductIsPerishable.Text = "Perissable";
+            this.ProductIsPerishable.Text = "Non";
             this.ProductIsPerishable.UseVisualStyleBackColor = true;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(31, 370);
+            this.label6.Location = new System.Drawing.Point(31, 289);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(123, 13);
             this.label6.TabIndex = 14;
@@ -148,14 +150,14 @@
             // 
             // ProductQuatity
             // 
-            this.ProductQuatity.Location = new System.Drawing.Point(34, 396);
+            this.ProductQuatity.Location = new System.Drawing.Point(34, 312);
             this.ProductQuatity.Name = "ProductQuatity";
             this.ProductQuatity.Size = new System.Drawing.Size(136, 20);
             this.ProductQuatity.TabIndex = 15;
             // 
             // ProductPrice
             // 
-            this.ProductPrice.Location = new System.Drawing.Point(34, 196);
+            this.ProductPrice.Location = new System.Drawing.Point(33, 183);
             this.ProductPrice.Name = "ProductPrice";
             this.ProductPrice.Size = new System.Drawing.Size(239, 20);
             this.ProductPrice.TabIndex = 17;
@@ -163,11 +165,11 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(31, 170);
+            this.label7.Location = new System.Drawing.Point(30, 160);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(50, 13);
+            this.label7.Size = new System.Drawing.Size(61, 13);
             this.label7.TabIndex = 16;
-            this.label7.Text = "Prix unité";
+            this.label7.Text = "Prix unitaire";
             // 
             // AddProductButton
             // 
@@ -176,12 +178,13 @@
             this.AddProductButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.AddProductButton.Font = new System.Drawing.Font("Lucida Sans", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AddProductButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.AddProductButton.Location = new System.Drawing.Point(34, 447);
+            this.AddProductButton.Location = new System.Drawing.Point(35, 493);
             this.AddProductButton.Name = "AddProductButton";
-            this.AddProductButton.Size = new System.Drawing.Size(136, 32);
+            this.AddProductButton.Size = new System.Drawing.Size(157, 32);
             this.AddProductButton.TabIndex = 18;
             this.AddProductButton.Text = "Ajouter";
             this.AddProductButton.UseVisualStyleBackColor = false;
+            this.AddProductButton.Click += new System.EventHandler(this.AddProductButton_Click);
             // 
             // CancelButton
             // 
@@ -190,18 +193,37 @@
             this.CancelButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CancelButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CancelButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.CancelButton.Location = new System.Drawing.Point(241, 448);
+            this.CancelButton.Location = new System.Drawing.Point(218, 493);
             this.CancelButton.Name = "CancelButton";
-            this.CancelButton.Size = new System.Drawing.Size(136, 31);
+            this.CancelButton.Size = new System.Drawing.Size(160, 32);
             this.CancelButton.TabIndex = 19;
             this.CancelButton.Text = "Annuler";
             this.CancelButton.UseVisualStyleBackColor = false;
+            this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(36, 442);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePicker1.TabIndex = 25;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(32, 417);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(144, 13);
+            this.label8.TabIndex = 24;
+            this.label8.Text = "Date d\'expiration ( Facultatif )";
             // 
             // AddProductForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(408, 526);
+            this.ClientSize = new System.Drawing.Size(408, 565);
+            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.AddProductButton);
             this.Controls.Add(this.ProductPrice);
@@ -245,5 +267,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button AddProductButton;
         private System.Windows.Forms.Button CancelButton;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Label label8;
     }
 }

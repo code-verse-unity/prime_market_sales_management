@@ -27,5 +27,11 @@ namespace supermarket_sales_manegement.UserControls
             AddProductForm updateRayForm = new AddProductForm();
             updateRayForm.ShowDialog();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            NewStockForm  newStockForm = new NewStockForm();
+            newStockForm.ShowDialog();
+        }
     }
 }
