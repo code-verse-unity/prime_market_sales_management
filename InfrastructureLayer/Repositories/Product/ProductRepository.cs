@@ -121,7 +121,36 @@ namespace InfrastructureLayer.Repositories.Product
 
         public void Delete(IProductModel product)
         {
-            throw new NotImplementedException();
+            using(SQLiteConnection connection = new SQLiteConnection(CONNECTION_STRING))
+            {
+                try
+                {
+                    connection.Open();
+                    string deleteStatement = "UPDATE products SET deleted_at = @deletedAt where id = @productId";
+
+                    using(SQLiteCommand cmd = new SQLiteCommand(deleteStatement , connection))
+                    {
+                        cmd.CommandText = deleteStatement;
+                        cmd.Prepare();
+
+                        cmd.Parameters.AddWithValue("@productId", product.Id);
+                        cmd.Parameters.AddWithValue("@deletedAt", DateTime.Now.ToString());
+
+                        try
+                        {
+                            cmd.ExecuteNonQuery();
+                        }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine(e.Message);
+                        }
+                    }
+                }
+                catch (SQLiteException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+            }
         }
 
         public IEnumerable<IProductModel> GetAll()

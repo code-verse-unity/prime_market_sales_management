@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.ProductExpirationDate = new System.Windows.Forms.DateTimePicker();
             this.label8 = new System.Windows.Forms.Label();
             this.CancelButton = new System.Windows.Forms.Button();
             this.AddProductButton = new System.Windows.Forms.Button();
@@ -47,12 +47,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.ProductPrice)).BeginInit();
             this.SuspendLayout();
             // 
-            // dateTimePicker1
+            // ProductExpirationDate
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(30, 373);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker1.TabIndex = 43;
+            this.ProductExpirationDate.Location = new System.Drawing.Point(30, 373);
+            this.ProductExpirationDate.Name = "ProductExpirationDate";
+            this.ProductExpirationDate.Size = new System.Drawing.Size(200, 20);
+            this.ProductExpirationDate.TabIndex = 43;
             // 
             // label8
             // 
@@ -201,7 +201,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(417, 524);
-            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.ProductExpirationDate);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.AddProductButton);
@@ -228,7 +228,7 @@
 
         #endregion
 
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker ProductExpirationDate;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button CancelButton;
         private System.Windows.Forms.Button AddProductButton;

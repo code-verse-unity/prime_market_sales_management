@@ -19,10 +19,12 @@ namespace supermarket_sales_manegement.UserControls
     {
         private IEnumerable<IProductModel> products;
         private ProductRepository productRepository;
+        private CategoryRepository categoryRepository;
         public ProductUserControl(DockStyle dockStyle)
         {
             InitializeComponent();
             productRepository = new ProductRepository();
+            categoryRepository = new CategoryRepository();
 
             LoadProductsIntoDataGridView();
         }
@@ -126,13 +128,18 @@ namespace supermarket_sales_manegement.UserControls
             DataGridView senderGrid = (DataGridView)sender;
             DataGridViewRow row = senderGrid.CurrentRow;
 
+            int categoryId = int.Parse(row.Cells["CategoryId"].Value.ToString());
+
             ProductModel product = new ProductModel()
             {
                 Id = int.Parse(row.Cells["Id"].Value.ToString()),
                 Name = row.Cells["Name"].Value.ToString(),
-                CategoryId = int.Parse(row.Cells["CategoryId"].Value.ToString()),
+                CategoryId = categoryId,
                 InStock = int.Parse(row.Cells["InStock"].Value.ToString()),
                 IsPerishable = (bool)row.Cells["IsPerishable"].Value,
+                Price = (double)row.Cells["Price"].Value,
+                Unit = row.Cells["Unit"].Value.ToString(),
+                Category = categoryRepository.GetById(categoryId)
             };
 
 
@@ -140,12 +147,18 @@ namespace supermarket_sales_manegement.UserControls
             {
                 if (senderGrid.Columns[e.ColumnIndex].Name == "edit")
                 {
-                    UpdateProductForm updateProductForm = new UpdateProductForm();
+                    UpdateProductForm updateProductForm = new UpdateProductForm(product,this);
                     updateProductForm.ShowDialog();
                 }
                 else
                 {
                     DialogResult result = MessageBox.Show("Etes-vous sur de vouloir supprimer cet produit", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                    if(result == DialogResult.Yes)
+                    {
+                        productRepository.Delete(product);
+                        LoadProductsIntoDataGridView();
+                    }
                 }
             }
         }
