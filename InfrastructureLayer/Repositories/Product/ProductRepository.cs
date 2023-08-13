@@ -179,18 +179,24 @@ namespace InfrastructureLayer.Repositories.Product
                             {
                                 while (reader.Read())
                                 {
-                                    Console.WriteLine(reader["name"].ToString());
 
-                                    ProductModel product = new ProductModel()
+                                    ProductModel product = new ProductModel();
+
+                                    try
                                     {
+                                        product.Id = Convert.ToInt32(reader["id"].ToString());
+                                        product.Name = reader["name"].ToString();
+                                        product.CategoryId = Convert.ToInt32(reader["category_id"].ToString());
+                                        product.Price = Convert.ToDouble(reader["cump"].ToString());
+                                        product.IsPerishable = Convert.ToInt32(reader["is_perishable"].ToString()) == 1;
+                                        product.Unit = reader["unit"].ToString();
+                                    }
+                                    catch (FormatException ex)
+                                    {
+                                        // Handle the format exception here
+                                        Console.WriteLine("Error: " + ex.Message);
+                                    }
 
-                                        Id = int.Parse(reader["id"].ToString()),
-                                        Name = reader["name"].ToString(),
-                                        CategoryId = int.Parse(reader["category_id"].ToString()),
-                                        Price = Double.Parse(reader["cump"].ToString()),
-                                        IsPerishable = int.Parse(reader["is_perishable"].ToString()) == 1,
-                                        Unit = reader["unit"].ToString()  
-                                    };
 
                                     product.InStock = CalculateTotalQuantity(product.Id);
                                     product.Category = categoryRepository.GetById(product.CategoryId);
@@ -218,7 +224,40 @@ namespace InfrastructureLayer.Repositories.Product
 
         public void Update(IProductModel product)
         {
-            throw new NotImplementedException();
+            using (SQLiteConnection connection = new SQLiteConnection(CONNECTION_STRING))
+            {
+                try
+                {
+                    connection.Open();
+                    string updateStatement = "UPDATE products SET name = @name, cump = @price, unit = @unit, category_id = @categoryId, is_perishable = @isPerishable " +
+                        "WHERE id = @id";
+
+                    using (SQLiteCommand cmd = new SQLiteCommand(updateStatement, connection))
+                    {
+                        cmd.CommandText = updateStatement;
+
+                        cmd.Parameters.AddWithValue("@id", product.Id);
+                        cmd.Parameters.AddWithValue("@name", product.Name);
+                        cmd.Parameters.AddWithValue("@unit", product.Unit);
+                        cmd.Parameters.AddWithValue("@price", product.Price);
+                        cmd.Parameters.AddWithValue("@categoryId", product.Category.Id);
+                        cmd.Parameters.AddWithValue("@isPerishable", product.IsPerishable ? 1 : 0);
+
+                        try
+                        {
+                            cmd.ExecuteNonQuery();
+                        }
+                        catch (SQLiteException e)
+                        {
+                            Console.WriteLine("Failed opening the database" + e.StackTrace);
+                        }
+                    }
+                }
+                catch (SQLiteException e)
+                {
+                    Console.WriteLine(e.StackTrace);
+                }
+            }
         }
 
         private double CalculatetotalQuantityTimesAmount(long productId)
@@ -281,7 +320,7 @@ namespace InfrastructureLayer.Repositories.Product
                     string retrieveTotalQuantityQuery = "SELECT sum(stock.quantity) as total_quantity from products " +
                         "LEFT JOIN stock on products.id = stock.product_id " +
                         "LEFT JOIN price on products.id = price.product_id " +
-                        "where products.id = @productId " +
+                        "WHERE products.id = @productId " +
                         "GROUP by products.id;";
 
                     using (SQLiteCommand cmd = new SQLiteCommand(retrieveTotalQuantityQuery,connection))
@@ -297,7 +336,15 @@ namespace InfrastructureLayer.Repositories.Product
                             {
                                 while (reader.Read())
                                 {
-                                    totalQuantity = int.Parse(reader["total_quantity"].ToString());
+                                    try
+                                    {
+                                        totalQuantity = Convert.ToInt32(reader["total_quantity"].ToString());
+                                    }
+                                    catch (Exception e)
+                                    {
+                                        Console.WriteLine("id " + productId);
+                                    }
+                                   
                                 }
                             }
 

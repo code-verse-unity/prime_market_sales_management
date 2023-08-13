@@ -1,16 +1,9 @@
-﻿using DomainLayer.Models.CategoryModel;
-using DomainLayer.Models.ProductModel;
+﻿using DomainLayer.Models.ProductModel;
 using InfrastructureLayer.Repositories.Category;
 using InfrastructureLayer.Repositories.Product;
 using supermarket_sales_manegement.UserControls.Product;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace supermarket_sales_manegement.UserControls
@@ -147,14 +140,14 @@ namespace supermarket_sales_manegement.UserControls
             {
                 if (senderGrid.Columns[e.ColumnIndex].Name == "edit")
                 {
-                    UpdateProductForm updateProductForm = new UpdateProductForm(product,this);
+                    UpdateProductForm updateProductForm = new UpdateProductForm(product, this);
                     updateProductForm.ShowDialog();
                 }
                 else
                 {
                     DialogResult result = MessageBox.Show("Etes-vous sur de vouloir supprimer cet produit", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                    if(result == DialogResult.Yes)
+                    if (result == DialogResult.Yes)
                     {
                         productRepository.Delete(product);
                         LoadProductsIntoDataGridView();

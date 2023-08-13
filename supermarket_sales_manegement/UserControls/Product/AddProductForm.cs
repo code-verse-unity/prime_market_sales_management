@@ -60,24 +60,28 @@ namespace supermarket_sales_manegement.UserControls
                 ExpirationDate = expirationDate,
                 Quantity = (int)ProductQuatity.Value,
             };
-            IProductModel productModel = new ProductModel()
+
+            if(ProductCategory.SelectedIndex > 0)
             {
-                CategoryId = ((CategoryModel)ProductCategory.SelectedItem).Id,
-                IsPerishable = isPerishable,
-                Name = ProductName.Text,
-                Unit = ProductUnitName.Text
-            };
+                IProductModel productModel = new ProductModel()
+                {
+                    CategoryId = ((CategoryModel)ProductCategory.SelectedItem).Id,
+                    IsPerishable = isPerishable,
+                    Name = ProductName.Text,
+                    Unit = ProductUnitName.Text
+                };
 
-            ProductRepository productRepository = new ProductRepository();
-            productRepository.Add(productModel, priceModel, stockModel);
+                ProductRepository productRepository = new ProductRepository();
+                productRepository.Add(productModel, priceModel, stockModel);
 
-            parent.LoadProductsIntoDataGridView();
-            Close();
+                parent.LoadProductsIntoDataGridView();
+                Close();
+            }
         }
 
         private void CancelButton_Click(object sender, EventArgs e)
         {
-
+            Close();
         }
     }
 }
