@@ -67,8 +67,8 @@ namespace supermarket_sales_manegement.UserControls.Purchase
 
             DataGridViewButtonColumn deleteButton = new DataGridViewButtonColumn
             {
-                HeaderText = "Suppression",
-                Text = "Supprimer",
+                HeaderText = "Annulation",
+                Text = "Annuler",
                 UseColumnTextForButtonValue = true,
             };
 
@@ -102,7 +102,7 @@ namespace supermarket_sales_manegement.UserControls.Purchase
                         case "Modification":
                             HandleEditPurchase(purchaseModel);
                             break;
-                        case "Suppression":
+                        case "Annulation":
                             HandleDeletePurchase(purchaseModel);
                             break;
                         case "Facture":
@@ -120,7 +120,12 @@ namespace supermarket_sales_manegement.UserControls.Purchase
 
         private void HandleDeletePurchase(IPurchaseModel purchaseModel)
         {
-            throw new NotImplementedException();
+            DialogResult result = MessageBox.Show("Êtes-vous sûr de vouloir d'annuler cette vente ?", "Annulation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (result == DialogResult.Yes)
+            {
+                purchaseRepository.Delete(purchaseModel);
+            }
         }
 
         private void HandleEditPurchase(IPurchaseModel purchaseModel)
