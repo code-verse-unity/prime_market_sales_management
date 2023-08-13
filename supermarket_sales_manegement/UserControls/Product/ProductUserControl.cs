@@ -4,6 +4,7 @@ using InfrastructureLayer.Repositories.Product;
 using supermarket_sales_manegement.UserControls.Product;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace supermarket_sales_manegement.UserControls
@@ -19,10 +20,12 @@ namespace supermarket_sales_manegement.UserControls
             productRepository = new ProductRepository();
             categoryRepository = new CategoryRepository();
 
-            LoadProductsIntoDataGridView();
+            products = productRepository.GetAll();
+
+            LoadProductsIntoDataGridView(products);
         }
 
-        public void LoadProductsIntoDataGridView()
+        public void LoadProductsIntoDataGridView(IEnumerable<IProductModel> products)
         {
             ProductsDataGridView.Columns.Clear();
 
@@ -74,7 +77,7 @@ namespace supermarket_sales_manegement.UserControls
             ProductsDataGridView.Columns["Category"].DataPropertyName = "Category";
 
 
-            products = productRepository.GetAll();
+
             ProductsDataGridView.DataSource = products;
             ProductsDataGridView.CellFormatting += ProductsDataGridView_CellFormatting;
 
@@ -83,6 +86,14 @@ namespace supermarket_sales_manegement.UserControls
                 ProductsDataGridView.Columns["DeletedAt"].Visible = false; // hide the delete_at column
                 ProductsDataGridView.Columns["CategoryId"].Visible = false;
             }
+
+            UpdateProductsCount();
+        }
+
+        private void UpdateProductsCount()
+        {
+            ProductCount.Text = products.Count().ToString();
+            ProductPerishableCount.Text = products.Count(product => product.IsPerishable).ToString();
         }
 
         private void ProductsDataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -112,7 +123,7 @@ namespace supermarket_sales_manegement.UserControls
 
         private void button1_Click(object sender, EventArgs e)
         {
-            NewStockForm  newStockForm = new NewStockForm();
+            NewStockForm  newStockForm = new NewStockForm(this);
             newStockForm.ShowDialog();
         }
 
@@ -150,9 +161,23 @@ namespace supermarket_sales_manegement.UserControls
                     if (result == DialogResult.Yes)
                     {
                         productRepository.Delete(product);
-                        LoadProductsIntoDataGridView();
+
+                        LoadProductsIntoDataGridView(productRepository.GetAll());
                     }
                 }
+            }
+        }
+
+        private void SearchButton_Click(object sender, EventArgs e)
+        {
+            string name = ProductNameToSearch.Text;
+            if ( name != "")
+            {
+                LoadProductsIntoDataGridView(productRepository.FindByName(name));
+            }
+            else
+            {
+                LoadProductsIntoDataGridView(productRepository.GetAll());
             }
         }
     }

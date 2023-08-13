@@ -27,5 +27,9 @@ namespace DomainLayer.Models.ProductModel
 
         public ICategoryModel Category { get; set; }
 
+        public override string ToString()
+        {
+            return $"{Id} - {Name}";
+        }
     }
 }

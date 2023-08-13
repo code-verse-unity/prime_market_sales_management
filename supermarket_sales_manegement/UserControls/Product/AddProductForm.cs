@@ -74,7 +74,7 @@ namespace supermarket_sales_manegement.UserControls
                 ProductRepository productRepository = new ProductRepository();
                 productRepository.Add(productModel, priceModel, stockModel);
 
-                parent.LoadProductsIntoDataGridView();
+                parent.LoadProductsIntoDataGridView(productRepository.GetAll());
                 Close();
             }
         }

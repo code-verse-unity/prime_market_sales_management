@@ -72,7 +72,8 @@ namespace supermarket_sales_manegement.UserControls.Product
                 };
 
                 productRepository.Update(product);
-                parent.LoadProductsIntoDataGridView();
+
+                parent.LoadProductsIntoDataGridView(new ProductRepository().GetAll());
                 Close();
             }
                
