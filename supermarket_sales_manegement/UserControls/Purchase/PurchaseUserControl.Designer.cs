@@ -47,14 +47,17 @@
             this.button1 = new System.Windows.Forms.Button();
             this.panel8 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.panel12 = new System.Windows.Forms.Panel();
-            this.label6 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.PurchaseDataGridView = new System.Windows.Forms.DataGridView();
-            this.cancel = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.edit = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.created_at = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel12 = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.PurchaseIdLabel = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.PurchaseDateLabel = new System.Windows.Forms.Label();
+            this.PurchaseTotalLabel = new System.Windows.Forms.Label();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel7.SuspendLayout();
@@ -64,9 +67,10 @@
             this.panel4.SuspendLayout();
             this.panel9.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.panel12.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PurchaseDataGridView)).BeginInit();
+            this.panel12.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -257,34 +261,14 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.dataGridView1);
             this.panel2.Controls.Add(this.panel12);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(657, 157);
+            this.panel2.Location = new System.Drawing.Point(420, 157);
             this.panel2.Name = "panel2";
             this.panel2.Padding = new System.Windows.Forms.Padding(8);
-            this.panel2.Size = new System.Drawing.Size(328, 447);
+            this.panel2.Size = new System.Drawing.Size(565, 447);
             this.panel2.TabIndex = 1;
-            // 
-            // panel12
-            // 
-            this.panel12.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.panel12.Controls.Add(this.label6);
-            this.panel12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel12.Location = new System.Drawing.Point(8, 8);
-            this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(312, 431);
-            this.panel12.TabIndex = 0;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.label6.Location = new System.Drawing.Point(12, 10);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(148, 20);
-            this.label6.TabIndex = 6;
-            this.label6.Text = "Details de l\'achat";
             // 
             // panel3
             // 
@@ -293,58 +277,121 @@
             this.panel3.Location = new System.Drawing.Point(0, 157);
             this.panel3.Name = "panel3";
             this.panel3.Padding = new System.Windows.Forms.Padding(3);
-            this.panel3.Size = new System.Drawing.Size(657, 447);
+            this.panel3.Size = new System.Drawing.Size(420, 447);
             this.panel3.TabIndex = 2;
             // 
             // PurchaseDataGridView
             // 
+            this.PurchaseDataGridView.AllowUserToAddRows = false;
+            this.PurchaseDataGridView.AllowUserToDeleteRows = false;
             this.PurchaseDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.PurchaseDataGridView.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.PurchaseDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.PurchaseDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.PurchaseDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.cancel,
-            this.edit,
-            this.id,
-            this.created_at});
             this.PurchaseDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PurchaseDataGridView.Location = new System.Drawing.Point(3, 3);
             this.PurchaseDataGridView.Name = "PurchaseDataGridView";
-            this.PurchaseDataGridView.Size = new System.Drawing.Size(651, 441);
+            this.PurchaseDataGridView.ReadOnly = true;
+            this.PurchaseDataGridView.Size = new System.Drawing.Size(414, 441);
             this.PurchaseDataGridView.TabIndex = 0;
             this.PurchaseDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.PurchaseDataGridView_CellContentClick);
             // 
-            // cancel
+            // panel12
             // 
-            this.cancel.FillWeight = 60F;
-            this.cancel.HeaderText = "Annuler";
-            this.cancel.Name = "cancel";
-            this.cancel.ReadOnly = true;
+            this.panel12.BackColor = System.Drawing.Color.White;
+            this.panel12.Controls.Add(this.PurchaseTotalLabel);
+            this.panel12.Controls.Add(this.PurchaseDateLabel);
+            this.panel12.Controls.Add(this.label12);
+            this.panel12.Controls.Add(this.PurchaseIdLabel);
+            this.panel12.Controls.Add(this.label10);
+            this.panel12.Controls.Add(this.label9);
+            this.panel12.Controls.Add(this.label6);
+            this.panel12.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel12.Location = new System.Drawing.Point(8, 8);
+            this.panel12.Name = "panel12";
+            this.panel12.Size = new System.Drawing.Size(549, 134);
+            this.panel12.TabIndex = 0;
             // 
-            // edit
+            // label6
             // 
-            this.edit.FillWeight = 60F;
-            this.edit.HeaderText = "Modifier";
-            this.edit.Name = "edit";
-            this.edit.ReadOnly = true;
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.label6.Location = new System.Drawing.Point(27, 12);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(148, 20);
+            this.label6.TabIndex = 7;
+            this.label6.Text = "Details de l\'achat";
             // 
-            // id
+            // label9
             // 
-            this.id.HeaderText = "Id";
-            this.id.Name = "id";
-            this.id.ReadOnly = true;
-            this.id.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.id.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(27, 47);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(22, 13);
+            this.label9.TabIndex = 8;
+            this.label9.Text = "Id :";
             // 
-            // created_at
+            // label10
             // 
-            this.created_at.HeaderText = "Date d\'achat";
-            this.created_at.Name = "created_at";
-            this.created_at.ReadOnly = true;
-            this.created_at.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.created_at.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(28, 76);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(36, 13);
+            this.label10.TabIndex = 9;
+            this.label10.Text = "Date :";
             // 
-            // SaleUserControl
+            // PurchaseIdLabel
+            // 
+            this.PurchaseIdLabel.AutoSize = true;
+            this.PurchaseIdLabel.Location = new System.Drawing.Point(89, 47);
+            this.PurchaseIdLabel.Name = "PurchaseIdLabel";
+            this.PurchaseIdLabel.Size = new System.Drawing.Size(41, 13);
+            this.PurchaseIdLabel.TabIndex = 10;
+            this.PurchaseIdLabel.Text = "label11";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(27, 103);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(37, 13);
+            this.label12.TabIndex = 11;
+            this.label12.Text = "Total :";
+            // 
+            // PurchaseDateLabel
+            // 
+            this.PurchaseDateLabel.AutoSize = true;
+            this.PurchaseDateLabel.Location = new System.Drawing.Point(89, 76);
+            this.PurchaseDateLabel.Name = "PurchaseDateLabel";
+            this.PurchaseDateLabel.Size = new System.Drawing.Size(41, 13);
+            this.PurchaseDateLabel.TabIndex = 12;
+            this.PurchaseDateLabel.Text = "label13";
+            // 
+            // PurchaseTotalLabel
+            // 
+            this.PurchaseTotalLabel.AutoSize = true;
+            this.PurchaseTotalLabel.Location = new System.Drawing.Point(89, 103);
+            this.PurchaseTotalLabel.Name = "PurchaseTotalLabel";
+            this.PurchaseTotalLabel.Size = new System.Drawing.Size(41, 13);
+            this.PurchaseTotalLabel.TabIndex = 13;
+            this.PurchaseTotalLabel.Text = "label14";
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
+            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.Location = new System.Drawing.Point(8, 142);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.Size = new System.Drawing.Size(549, 297);
+            this.dataGridView1.TabIndex = 1;
+            // 
+            // PurchaseUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -352,7 +399,7 @@
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Name = "SaleUserControl";
+            this.Name = "PurchaseUserControl";
             this.Size = new System.Drawing.Size(985, 604);
             this.Load += new System.EventHandler(this.SaleUserControl_Load);
             this.panel1.ResumeLayout(false);
@@ -368,10 +415,11 @@
             this.panel4.ResumeLayout(false);
             this.panel9.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
-            this.panel12.ResumeLayout(false);
-            this.panel12.PerformLayout();
             this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PurchaseDataGridView)).EndInit();
+            this.panel12.ResumeLayout(false);
+            this.panel12.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -398,12 +446,15 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.DataGridView PurchaseDataGridView;
-        private System.Windows.Forms.DataGridViewButtonColumn cancel;
-        private System.Windows.Forms.DataGridViewButtonColumn edit;
-        private System.Windows.Forms.DataGridViewTextBoxColumn id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn created_at;
         private System.Windows.Forms.Panel panel9;
+        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Panel panel12;
+        private System.Windows.Forms.Label PurchaseTotalLabel;
+        private System.Windows.Forms.Label PurchaseDateLabel;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label PurchaseIdLabel;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label6;
     }
 }
