@@ -1,4 +1,5 @@
 ﻿using supermarket_sales_manegement.UserControls;
+using supermarket_sales_manegement.UserControls.Purchase;
 using System;
 using System.Windows.Forms;
 
@@ -39,7 +40,7 @@ namespace supermarket_sales_manegement
         private void button3_Click(object sender, EventArgs e)
         {
             outled.Controls.Clear();
-            outled.Controls.Add(new SaleUserControl(Dock = DockStyle.Fill));
+            outled.Controls.Add(new PurchaseUserControl(Dock = DockStyle.Fill));
         }
     }
 }

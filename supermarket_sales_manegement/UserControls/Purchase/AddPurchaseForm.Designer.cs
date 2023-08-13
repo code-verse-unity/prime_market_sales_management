@@ -1,4 +1,4 @@
-﻿namespace supermarket_sales_manegement.UserControls.PurchaseUserControl
+﻿namespace supermarket_sales_manegement.UserControls.Purchase
 {
     partial class AddPurchaseForm
     {

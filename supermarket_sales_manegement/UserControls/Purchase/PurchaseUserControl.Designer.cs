@@ -1,6 +1,6 @@
-﻿namespace supermarket_sales_manegement.UserControls
+﻿namespace supermarket_sales_manegement.UserControls.Purchase
 {
-    partial class SaleUserControl
+    partial class PurchaseUserControl
     {
         /// <summary> 
         /// Required designer variable.

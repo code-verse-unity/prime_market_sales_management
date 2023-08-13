@@ -10,16 +10,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using supermarket_sales_manegement.UserControls.PurchaseUserControl;
 
-namespace supermarket_sales_manegement.UserControls
+namespace supermarket_sales_manegement.UserControls.Purchase
 {
-    public partial class SaleUserControl : UserControl
+    public partial class PurchaseUserControl : UserControl
     {
         private IPurchaseRepository purchaseRepository;
         private IEnumerable<IPurchaseModel> purchases;
 
-        public SaleUserControl(DockStyle dockStyle)
+        public PurchaseUserControl(DockStyle dockStyle)
         {
             InitializeComponent();
             purchaseRepository = new PurchaseRepository();

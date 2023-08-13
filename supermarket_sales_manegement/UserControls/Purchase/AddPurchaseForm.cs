@@ -13,7 +13,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace supermarket_sales_manegement.UserControls.PurchaseUserControl
+namespace supermarket_sales_manegement.UserControls.Purchase
 {
     public partial class AddPurchaseForm : Form
     {

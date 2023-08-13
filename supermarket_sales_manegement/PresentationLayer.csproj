@@ -90,10 +90,10 @@
     <Compile Include="UserControls\Product\ProductUserControl.Designer.cs">
       <DependentUpon>ProductUserControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\PurchaseUserControl\AddPurchaseForm.cs">
+    <Compile Include="UserControls\Purchase\AddPurchaseForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UserControls\PurchaseUserControl\AddPurchaseForm.Designer.cs">
+    <Compile Include="UserControls\Purchase\AddPurchaseForm.Designer.cs">
       <DependentUpon>AddPurchaseForm.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Category\RayUserControl.cs">
@@ -102,11 +102,11 @@
     <Compile Include="UserControls\Category\RayUserControl.Designer.cs">
       <DependentUpon>RayUserControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\SaleUserControl.cs">
+    <Compile Include="UserControls\Purchase\PurchaseUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControls\SaleUserControl.Designer.cs">
-      <DependentUpon>SaleUserControl.cs</DependentUpon>
+    <Compile Include="UserControls\Purchase\PurchaseUserControl.Designer.cs">
+      <DependentUpon>PurchaseUserControl.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Category\UpdateRayForm.cs">
       <SubType>Form</SubType>
@@ -142,14 +142,14 @@
     <EmbeddedResource Include="UserControls\Product\ProductUserControl.resx">
       <DependentUpon>ProductUserControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\PurchaseUserControl\AddPurchaseForm.resx">
+    <EmbeddedResource Include="UserControls\Purchase\AddPurchaseForm.resx">
       <DependentUpon>AddPurchaseForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Category\RayUserControl.resx">
       <DependentUpon>RayUserControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\SaleUserControl.resx">
-      <DependentUpon>SaleUserControl.cs</DependentUpon>
+    <EmbeddedResource Include="UserControls\Purchase\PurchaseUserControl.resx">
+      <DependentUpon>PurchaseUserControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Category\UpdateRayForm.resx">
       <DependentUpon>UpdateRayForm.cs</DependentUpon>
