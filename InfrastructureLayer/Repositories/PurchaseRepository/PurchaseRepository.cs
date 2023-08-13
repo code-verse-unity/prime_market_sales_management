@@ -263,5 +263,72 @@ namespace InfrastructureLayer.Repositories.PurchaseRepository
 
             return dictionary.Values.ToList();
         }
+
+        public IEnumerable<IPurchaseModel> GetAllByDate(DateTime datetime)
+        {
+            List<PurchaseModel> categories = new List<PurchaseModel>();
+
+            using (SQLiteConnection connection = new SQLiteConnection(CONNECTION_STRING))
+            {
+                try
+                {
+                    /*
+                        TODO
+                        - add product cump
+                        - use product category
+                    */
+                    connection.Open();
+                    string sql = @"SELECT
+                        purchases.id AS PurchaseId,
+                        purchases.created_at AS PurchaseCreatedAt,
+                        product_purchases.id AS ProductPurchaseId,
+                        product_purchases.product_id AS ProductPurchaseProductId,
+                        product_purchases.purchase_id AS ProductPurchasePurchaseId,
+                        product_purchases.quantity AS ProductPurchaseQuantity,
+                        product_purchases.price AS ProductPurchasePrice,
+                        products.id AS ProductId,
+                        products.name AS ProductName,
+                        products.category_id AS ProductCategoryId,
+                        products.is_perishable AS ProductIsPerishable,
+                        products.unit AS ProductUnit,
+                        products.deleted_at AS ProductDeletedAt,
+                        categories.id AS CategoryId,
+                        categories.name AS CategoryName,
+                        categories.ray_number AS CategoryRayNumber
+                    FROM purchases
+                    INNER JOIN product_purchases
+                        ON purchases.id = product_purchases.purchase_id
+                    INNER JOIN products
+                        ON product_purchases.product_id = products.id
+                    INNER JOIN categories
+                        ON products.category_id = categories.id
+                    WHERE 
+                        DATE(purchases.created_at) = DATE(@Datetime)
+                    ORDER BY
+                        purchases.created_at DESC,
+                        purchases.id DESC;";
+
+
+                    using (SQLiteCommand cmd = new SQLiteCommand(sql, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@Datetime", datetime);
+
+                        using (SQLiteDataReader reader = cmd.ExecuteReader())
+                        {
+                            categories = CreatePurchasesFromDataReader(reader);
+                        }
+
+                        connection.Close();
+                    }
+
+                }
+                catch (SQLiteException e)
+                {
+                    Console.WriteLine("Failed opening the database" + e.Message);
+                }
+            }
+
+            return categories;
+        }
     }
 }

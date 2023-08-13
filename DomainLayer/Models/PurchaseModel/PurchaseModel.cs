@@ -14,6 +14,20 @@ namespace DomainLayer.Models.PurchaseModel
         public IEnumerable<IProductPurchaseModel> ProductPurchases { get; set; }
         public double Total => CalculateTotal();
 
+        public int ProductsCount => CalculateProductsCount();
+
+        private int CalculateProductsCount()
+        {
+            int result = 0;
+
+            foreach (IProductPurchaseModel ProductPurchase in ProductPurchases)
+            {
+                result += ProductPurchase.Quantity;
+            }
+
+            return result;
+        }
+
         private double CalculateTotal()
         {
             double result = 0;

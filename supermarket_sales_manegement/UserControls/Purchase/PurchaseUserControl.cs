@@ -28,6 +28,8 @@ namespace supermarket_sales_manegement.UserControls.Purchase
             LoadPurchases();
             ReloadPurchaseDataGridView();
             ReloadProductPurchaseDataGridView();
+            ReloadRevenueLabel();
+            ReloadPurchaseProductCountLabel();
         }
 
         public void LoadPurchases()
@@ -81,7 +83,9 @@ namespace supermarket_sales_manegement.UserControls.Purchase
             PurchaseDataGridView.Columns.Insert(1, deleteButton);
             PurchaseDataGridView.Columns.Insert(2, billButton);
 
-            PurchaseDataGridView.Columns["CreatedAt"].HeaderText = "Date d'achat";
+            PurchaseDataGridView.Columns["CreatedAt"].HeaderText = "Date et heure d'achat";
+            PurchaseDataGridView.Columns["ProductsCount"].HeaderText = "Nombres de produits";
+            PurchaseDataGridView.Columns["ProductsCount"].DisplayIndex = 5;
 
             PurchaseDataGridView.Columns["ProductPurchases"].Visible = false;
         }
@@ -145,6 +149,7 @@ namespace supermarket_sales_manegement.UserControls.Purchase
                 PurchaseIdLabel.Text = selectedPurchaseModel.Id.ToString();
                 PurchaseDateLabel.Text = selectedPurchaseModel.CreatedAt.ToString(); // TODO format date
                 PurchaseTotalLabel.Text = selectedPurchaseModel.Total.ToString();
+                ProductsCountLabel.Text = selectedPurchaseModel.ProductsCount.ToString();
             }
             else
             {
@@ -153,6 +158,7 @@ namespace supermarket_sales_manegement.UserControls.Purchase
                 PurchaseIdLabel.Text = "";
                 PurchaseDateLabel.Text = "";
                 PurchaseTotalLabel.Text = "0";
+                ProductsCountLabel.Text = "0";
             }
 
             ReloadProductPurchaseDataGridView();
@@ -185,6 +191,44 @@ namespace supermarket_sales_manegement.UserControls.Purchase
                     e.FormattingApplied = true;
                 }
             }
+        }
+
+        private void panel4_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void PurchaseCreatedAtDateTimePicker_ValueChanged(object sender, EventArgs e)
+        {
+            purchases = purchaseRepository.GetAllByDate(PurchaseCreatedAtDateTimePicker.Value);
+
+            ReloadPurchaseDataGridView();
+            ReloadRevenueLabel();
+            ReloadPurchaseProductCountLabel();
+        }
+
+        private void ReloadPurchaseProductCountLabel()
+        {
+            int result = 0;
+
+            foreach (IPurchaseModel purchaseModel in purchases)
+            {
+                result += purchaseModel.ProductsCount;
+            }
+
+            PurchaseProductCountLabel.Text = result.ToString();
+        }
+
+        private void ReloadRevenueLabel()
+        {
+            double result = 0;
+
+            foreach (IPurchaseModel purchaseModel in purchases)
+            {
+                result += purchaseModel.Total;
+            }
+
+            RevenueLabel.Text = result.ToString();
         }
     }
 }

@@ -13,5 +13,6 @@ namespace InfrastructureLayer.Repositories.PurchaseRepository
         void Delete(IPurchaseModel purchase);
         void Update(IPurchaseModel purchase);
         IEnumerable<IPurchaseModel> GetAll();
+        IEnumerable<IPurchaseModel> GetAllByDate(DateTime datetime);
     }
 }

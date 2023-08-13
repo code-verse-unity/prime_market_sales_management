@@ -13,5 +13,6 @@ namespace DomainLayer.Models.PurchaseModel
         DateTime CreatedAt { get; set; }
         IEnumerable<IProductPurchaseModel> ProductPurchases { get; set; }
         double Total { get; }
+        int ProductsCount { get; }
     }
 }
