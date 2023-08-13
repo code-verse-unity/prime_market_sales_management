@@ -8,18 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace supermarket_sales_manegement.UserControls
+namespace supermarket_sales_manegement.UserControls.Product
 {
-    public partial class AddProductForm : Form
+    public partial class UpdateProductForm : Form
     {
-        public AddProductForm()
+        public UpdateProductForm()
         {
             InitializeComponent();
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
