@@ -224,7 +224,7 @@ namespace InfrastructureLayer.Repositories.PurchaseRepository
                             CategoryId = reader.GetInt32(reader.GetOrdinal("ProductCategoryId")),
                             IsPerishable = reader.GetBoolean(reader.GetOrdinal("ProductIsPerishable")),
                             Unit = reader.GetString(reader.GetOrdinal("ProductUnit")),
-                            DeleteAt = !reader.IsDBNull(reader.GetOrdinal("ProductDeletedAt")) ? reader.GetDateTime(reader.GetOrdinal("ProductDeletedAt")) : (DateTime?)null,
+                            DeletedAt = !reader.IsDBNull(reader.GetOrdinal("ProductDeletedAt")) ? reader.GetDateTime(reader.GetOrdinal("ProductDeletedAt")) : (DateTime?)null,
                         }
                     });
                 } else
@@ -247,7 +247,7 @@ namespace InfrastructureLayer.Repositories.PurchaseRepository
                                     CategoryId = reader.GetInt32(reader.GetOrdinal("ProductCategoryId")),
                                     IsPerishable  = reader.GetBoolean(reader.GetOrdinal("ProductIsPerishable")),
                                     Unit = reader.GetString(reader.GetOrdinal("ProductUnit")),
-                                    DeleteAt = !reader.IsDBNull(reader.GetOrdinal("ProductDeletedAt")) ? reader.GetDateTime(reader.GetOrdinal("ProductDeletedAt")) : (DateTime?) null,
+                                    DeletedAt = !reader.IsDBNull(reader.GetOrdinal("ProductDeletedAt")) ? reader.GetDateTime(reader.GetOrdinal("ProductDeletedAt")) : (DateTime?) null,
                                 }
                             }
                         },

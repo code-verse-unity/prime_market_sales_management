@@ -96,7 +96,6 @@
     <Compile Include="UserControls\PurchaseUserControl\AddPurchaseForm.Designer.cs">
       <DependentUpon>AddPurchaseForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\RayUserControl.cs">
     <Compile Include="UserControls\Category\RayUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -146,7 +145,6 @@
     <EmbeddedResource Include="UserControls\PurchaseUserControl\AddPurchaseForm.resx">
       <DependentUpon>AddPurchaseForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\RayUserControl.resx">
     <EmbeddedResource Include="UserControls\Category\RayUserControl.resx">
       <DependentUpon>RayUserControl.cs</DependentUpon>
     </EmbeddedResource>

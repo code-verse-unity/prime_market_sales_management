@@ -45,9 +45,9 @@ namespace supermarket_sales_manegement.UserControls.PurchaseUserControl
                 CategoryId = 1,
                 IsPerishable = true,
                 Unit = "kg",
-                Cump = 100,
-                Stock = 20,
-                DeleteAt = null,
+                Price = 100,
+                InStock = 20,
+                DeletedAt = null,
             },
                 new ProductModel
                 {
@@ -56,9 +56,9 @@ namespace supermarket_sales_manegement.UserControls.PurchaseUserControl
                     CategoryId = 21,
                     IsPerishable = false,
                     Unit = "pcs",
-                    Cump = 50,
-                    Stock = 10,
-                    DeleteAt = null,
+                    Price = 50,
+                    InStock = 10,
+                    DeletedAt = null,
                 }
             };
 
@@ -95,13 +95,14 @@ namespace supermarket_sales_manegement.UserControls.PurchaseUserControl
             ProductDataGridView.DataSource = productsToShow.ToList();
 
             ProductDataGridView.Columns["Name"].HeaderText = "Nom";
-            ProductDataGridView.Columns["Stock"].HeaderText = "Quantité en stock";
+            ProductDataGridView.Columns["InStock"].HeaderText = "Quantité en stock";
             ProductDataGridView.Columns["Unit"].HeaderText = "Unité";
-            ProductDataGridView.Columns["Cump"].HeaderText = "Prix unitaire";
+            ProductDataGridView.Columns["Price"].HeaderText = "Prix unitaire";
             ProductDataGridView.Columns["Id"].Visible = false;
             ProductDataGridView.Columns["CategoryId"].Visible = false;
             ProductDataGridView.Columns["IsPerishable"].Visible = false;
-            ProductDataGridView.Columns["DeleteAt"].Visible = false; // Change to DeletedAt
+            ProductDataGridView.Columns["DeletedAt"].Visible = false; // Change to DeletedAt
+            ProductDataGridView.Columns["Category"].Visible = false;
         }
 
         private void ReloadProductPurchaseDataGridView()
@@ -178,17 +179,17 @@ namespace supermarket_sales_manegement.UserControls.PurchaseUserControl
             {
                 ProductNameLabel.Text = selectedProductModel.Name;
 
-                ProductQuantityInStockLabel.Text = selectedProductModel.Stock.ToString();
+                ProductQuantityInStockLabel.Text = selectedProductModel.InStock.ToString();
                 // ProductQuantityNumericUpDown.Maximum = 10000; // TODO set to real max value
                 ProductPurchaseModel productPurchaseModel = productPurchases.Find(productPurchase => productPurchase.ProductId == selectedProductModel.Id);
                 if (productPurchaseModel != null)
                 {
-                    ProductQuantityNumericUpDown.Maximum = productPurchaseModel.Quantity + selectedProductModel.Stock;
+                    ProductQuantityNumericUpDown.Maximum = productPurchaseModel.Quantity + selectedProductModel.InStock;
                     ProductQuantityNumericUpDown.Value = productPurchaseModel.Quantity;
                 }
                 else
                 {
-                    ProductQuantityNumericUpDown.Maximum = selectedProductModel.Stock;
+                    ProductQuantityNumericUpDown.Maximum = selectedProductModel.InStock;
                     ProductQuantityNumericUpDown.Value = 0;
                 }
             }
@@ -230,7 +231,7 @@ namespace supermarket_sales_manegement.UserControls.PurchaseUserControl
                 if (productPurchaseModel != null)
                 {
 
-                    selectedProductModel.Stock = selectedProductModel.Stock + productPurchaseModel.Quantity - newQuantity; // Reset the quantity in stock
+                    selectedProductModel.InStock = selectedProductModel.InStock + productPurchaseModel.Quantity - newQuantity; // Reset the quantity in stock
                     productPurchaseModel.Quantity = newQuantity;
 
                     if (newQuantity == 0)
@@ -243,11 +244,11 @@ namespace supermarket_sales_manegement.UserControls.PurchaseUserControl
                     productPurchaseModel = new ProductPurchaseModel
                     {
                         ProductId = selectedProductModel.Id,
-                        Price = selectedProductModel.Cump,
+                        Price = selectedProductModel.Price,
                         Quantity = Convert.ToInt32(ProductQuantityNumericUpDown.Value),
                         Product = products.Find(product => product.Id == selectedProductModel.Id),
                     };
-                    selectedProductModel.Stock = selectedProductModel.Stock - productPurchaseModel.Quantity;
+                    selectedProductModel.InStock = selectedProductModel.InStock - productPurchaseModel.Quantity;
                     productPurchases.Add(productPurchaseModel);
                 }
 
@@ -281,11 +282,11 @@ namespace supermarket_sales_manegement.UserControls.PurchaseUserControl
 
                 if (productPurchaseModel != null)
                 {
-                    ProductQuantityInStockLabel.Text = Convert.ToString(selectedProductModel.Stock + productPurchaseModel.Quantity - newQuantity);
+                    ProductQuantityInStockLabel.Text = Convert.ToString(selectedProductModel.InStock + productPurchaseModel.Quantity - newQuantity);
                 }
                 else
                 {
-                    ProductQuantityInStockLabel.Text = Convert.ToString(selectedProductModel.Stock - newQuantity);
+                    ProductQuantityInStockLabel.Text = Convert.ToString(selectedProductModel.InStock - newQuantity);
                 }
             }
         }
@@ -309,7 +310,7 @@ namespace supermarket_sales_manegement.UserControls.PurchaseUserControl
         private void HandleRemoveFromCart(ProductPurchaseModel productPurchaseModel)
         {
             ProductModel productModel = products.Find(product => product.Id == productPurchaseModel.ProductId);
-            productModel.Stock = productModel.Stock + productPurchaseModel.Quantity;
+            productModel.InStock = productModel.InStock + productPurchaseModel.Quantity;
             productPurchases.Remove(productPurchaseModel);
             ReloadProductPurchaseDataGridView();
             ReloadTotalLabel();
@@ -330,7 +331,7 @@ namespace supermarket_sales_manegement.UserControls.PurchaseUserControl
                 purchaseRepository.Add(purchaseModel);
                 
                 this.Close();
-                MessageBox.Show("Achat éffecté avec succès.", "Achat éffecté", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Achat éffecté avec succès.", "Achat éffectué", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             }
         }

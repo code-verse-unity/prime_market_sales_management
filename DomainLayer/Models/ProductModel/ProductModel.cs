@@ -17,7 +17,7 @@ namespace DomainLayer.Models.ProductModel
         [Required( ErrorMessage = "Product perishable status required")]
         public bool IsPerishable { get ; set ; }
 
-        public DateTime DeletedAt { get ; set ; }
+        public DateTime? DeletedAt { get ; set ; }
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "Product unit required")]
         public string Unit { get ; set ; }
