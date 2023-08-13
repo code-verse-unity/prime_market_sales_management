@@ -156,7 +156,7 @@ namespace InfrastructureLayer.Repositories.Product
                                     {
 
                                         Id = int.Parse(reader["id"].ToString()),
-                                        Name = reader["name"].ToString(),
+                                        Name = reader.GetString(reader.GetOrdinal("name")),
                                         CategoryId = int.Parse(reader["category_id"].ToString()),
                                         Price = Double.Parse(reader["cump"].ToString()),
                                         IsPerishable = int.Parse(reader["is_perishable"].ToString()) == 1,

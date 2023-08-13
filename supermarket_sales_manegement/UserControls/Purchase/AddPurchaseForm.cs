@@ -2,6 +2,8 @@
 using DomainLayer.Models.ProductModel;
 using DomainLayer.Models.ProductPurchaseModel;
 using DomainLayer.Models.PurchaseModel;
+using InfrastructureLayer.Repositories.Category;
+using InfrastructureLayer.Repositories.Product;
 using InfrastructureLayer.Repositories.PurchaseRepository;
 using System;
 using System.Collections.Generic;
@@ -18,7 +20,9 @@ namespace supermarket_sales_manegement.UserControls.Purchase
     public partial class AddPurchaseForm : Form
     {
         private IPurchaseRepository purchaseRepository;
-        private List<ProductModel> products;
+        private IProductRepository productRepository;
+        private ICategoryRepository categoryRepository;
+        private IEnumerable<IProductModel> products;
         private IEnumerable<IProductModel> productsToShow;
         private IEnumerable<ICategoryModel> categories;
         private List<ProductPurchaseModel> productPurchases; // productId as key
@@ -35,47 +39,11 @@ namespace supermarket_sales_manegement.UserControls.Purchase
         {
             InitializeComponent();
             purchaseRepository = new PurchaseRepository();
+            productRepository = new ProductRepository();
+            categoryRepository = new CategoryRepository();
 
-            // TODO fetch from repository
-            products = new List<ProductModel>() {
-                new ProductModel
-            {
-                Id = 1,
-                Name = "BabaneBabaneBabaneBabaneBabaneBabaneBabane",
-                CategoryId = 1,
-                IsPerishable = true,
-                Unit = "kg",
-                Price = 100,
-                InStock = 20,
-                DeletedAt = null,
-            },
-                new ProductModel
-                {
-                    Id = 2,
-                    Name = "Coco",
-                    CategoryId = 21,
-                    IsPerishable = false,
-                    Unit = "pcs",
-                    Price = 50,
-                    InStock = 10,
-                    DeletedAt = null,
-                }
-            };
-
-            // TODO fetch from repository
-            categories = new List<CategoryModel>()
-            {
-                new CategoryModel {
-                    Id = 1,
-                    Name = "Fruits",
-                    RayNumber = 2,
-                },
-                new CategoryModel {
-                    Id =21,
-                    Name = "Légumes",
-                    RayNumber = 4,
-                },
-            };
+            products = productRepository.GetAll();
+            categories = categoryRepository.GetAll();
 
             productPurchases = new List<ProductPurchaseModel>();
             productsToShow = new List<ProductModel>();
@@ -101,7 +69,7 @@ namespace supermarket_sales_manegement.UserControls.Purchase
             ProductDataGridView.Columns["Id"].Visible = false;
             ProductDataGridView.Columns["CategoryId"].Visible = false;
             ProductDataGridView.Columns["IsPerishable"].Visible = false;
-            ProductDataGridView.Columns["DeletedAt"].Visible = false; // Change to DeletedAt
+            ProductDataGridView.Columns["DeletedAt"].Visible = false;
             ProductDataGridView.Columns["Category"].Visible = false;
         }
 
@@ -241,12 +209,23 @@ namespace supermarket_sales_manegement.UserControls.Purchase
                 }
                 else if (newQuantity > 0) // add to cart if it have a quantity
                 {
+                    IProductModel product = null;
+
+                    foreach (IProductModel productModel in products)
+                    {
+                        if (productModel.Id == selectedProductModel.Id)
+                        {
+                            product = productModel;
+                            break;
+                        }
+                    }
+
                     productPurchaseModel = new ProductPurchaseModel
                     {
                         ProductId = selectedProductModel.Id,
                         Price = selectedProductModel.Price,
                         Quantity = Convert.ToInt32(ProductQuantityNumericUpDown.Value),
-                        Product = products.Find(product => product.Id == selectedProductModel.Id),
+                        Product = product,
                     };
                     selectedProductModel.InStock = selectedProductModel.InStock - productPurchaseModel.Quantity;
                     productPurchases.Add(productPurchaseModel);
@@ -309,7 +288,17 @@ namespace supermarket_sales_manegement.UserControls.Purchase
 
         private void HandleRemoveFromCart(ProductPurchaseModel productPurchaseModel)
         {
-            ProductModel productModel = products.Find(product => product.Id == productPurchaseModel.ProductId);
+            IProductModel productModel = null;
+
+            foreach (IProductModel p in products)
+            {
+                if (p.Id == selectedProductModel.Id)
+                {
+                    productModel = p;
+                    break;
+                }
+            }
+
             productModel.InStock = productModel.InStock + productPurchaseModel.Quantity;
             productPurchases.Remove(productPurchaseModel);
             ReloadProductPurchaseDataGridView();
