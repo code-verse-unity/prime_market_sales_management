@@ -19,5 +19,7 @@ namespace DomainLayer.Models.ProductModel
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "Product unit required")]
         public string Unit { get ; set ; }
+        public double Cump { get; set; }
+        public int Stock { get; set; }
     }
 }

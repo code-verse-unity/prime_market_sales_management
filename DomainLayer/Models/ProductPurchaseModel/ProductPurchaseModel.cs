@@ -15,5 +15,6 @@ namespace DomainLayer.Models.ProductPurchaseModel
         public int Quantity { get; set; }
         public double Price { get; set; }
         public IProductModel Product { get; set; }
+        public double SubTotal => Price * Quantity;
     }
 }

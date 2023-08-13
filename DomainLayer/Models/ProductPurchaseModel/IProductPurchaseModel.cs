@@ -14,6 +14,7 @@ namespace DomainLayer.Models.ProductPurchaseModel
         int PurchaseId { get; set; }
         int Quantity { get; set; }
         double Price { get; set; }
+        double SubTotal { get; }
         IProductModel Product { get; set; }
     }
 }

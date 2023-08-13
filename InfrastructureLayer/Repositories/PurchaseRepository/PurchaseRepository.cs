@@ -23,39 +23,112 @@ namespace InfrastructureLayer.Repositories.PurchaseRepository
                         - save product purchases
                     */
                     connection.Open();
-                    string insertStatement = @"INSERT INTO purchases
+                    string insertSPurchasetatement = @"INSERT INTO purchases
                         (created_at)
                     VALUES
                         (@created_at);";
 
-
-                    using (SQLiteCommand cmd = new SQLiteCommand(insertStatement, connection))
+                    using (SQLiteCommand cmd = new SQLiteCommand(insertSPurchasetatement, connection))
                     {
-                        cmd.CommandText = insertStatement;
-
+                        cmd.CommandText = insertSPurchasetatement;
                         cmd.Parameters.AddWithValue("@created_at", purchase.CreatedAt);
-
                         cmd.Prepare();
-
-                        try
-                        {
-                            cmd.ExecuteNonQuery();
-                        }
-                        catch (Exception ex)
-                        {
-                            Console.WriteLine(ex.ToString());
-                        }
-
-                        connection.Close();
+                        cmd.ExecuteNonQuery();
                     }
 
+                    int latestPurchaseModelId = GetLatestPurchaseModelId();
+                    if (latestPurchaseModelId != -1)
+                    {
+                        string insertProductPurchaseStatement = @"INSERT INTO product_purchases
+                        (
+                            product_id,
+                            purchase_id,
+                            quantity,
+                            price
+                        )
+                        VALUES
+                        (
+                            @ProductId,
+                            @PurchaseId,
+                            @Quantity,
+                            @Price
+                        );";
+
+                        using (SQLiteCommand cmd = new SQLiteCommand(connection))
+                        {
+                            cmd.CommandText = insertProductPurchaseStatement;
+
+                            SQLiteParameter paramProductId = cmd.Parameters.Add("@ProductId", System.Data.DbType.Int32);
+                            SQLiteParameter paramPurchaseId = cmd.Parameters.Add("@PurchaseId", System.Data.DbType.Int32);
+                            SQLiteParameter paramQuantity = cmd.Parameters.Add("@Quantity", System.Data.DbType.Int32);
+                            SQLiteParameter paramPrice = cmd.Parameters.Add("@Price", System.Data.DbType.Double);
+
+                            cmd.Prepare();
+
+                            foreach (IProductPurchaseModel productPurchaseModel in purchase.ProductPurchases)
+                            {
+                                paramProductId.Value = productPurchaseModel.ProductId;
+                                paramPurchaseId.Value = latestPurchaseModelId;
+                                paramQuantity.Value = productPurchaseModel.Quantity;
+                                paramPrice.Value = productPurchaseModel.Price;
+                                cmd.ExecuteNonQuery();
+
+                                IProductModel product = productPurchaseModel.Product;
+                                // TODO update/decrease product.Stock
+                            }
+
+                            cmd.Parameters.AddWithValue("@created_at", purchase.CreatedAt);
+                        }
+                    }
+
+                    connection.Close();
                 }
-                catch (SQLiteException e)
+                catch (Exception e)
                 {
-                    throw new Exception("Failed opening the database" + e.Message);
+                    Console.WriteLine(e.ToString());
                 }
             }
         }
+
+        private int GetLatestPurchaseModelId()
+        {
+            int result = -1;
+
+            try
+            {
+                using (SQLiteConnection connection = new SQLiteConnection(CONNECTION_STRING))
+                {
+                    connection.Open();
+
+                    string statement = @"SELECT
+                        id AS Id
+                    FROM purchases
+                    ORDER BY
+                        created_at DESC,
+                        id DESC
+                    LIMIT 1;";
+
+                    using (SQLiteCommand cmd = new SQLiteCommand(statement, connection))
+                    {
+                        using (SQLiteDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                result = reader.GetInt32(reader.GetOrdinal("Id"));
+                            }
+                        }
+                    }
+
+                    connection.Close();
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+
+            return result;
+        } 
 
         public void Delete(IPurchaseModel purchase)
         {

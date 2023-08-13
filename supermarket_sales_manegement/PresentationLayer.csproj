@@ -78,6 +78,12 @@
     <Compile Include="UserControls\ProductUserControl.Designer.cs">
       <DependentUpon>ProductUserControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\PurchaseUserControl\AddPurchaseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserControls\PurchaseUserControl\AddPurchaseForm.Designer.cs">
+      <DependentUpon>AddPurchaseForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\RayUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -117,6 +123,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\ProductUserControl.resx">
       <DependentUpon>ProductUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\PurchaseUserControl\AddPurchaseForm.resx">
+      <DependentUpon>AddPurchaseForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\RayUserControl.resx">
       <DependentUpon>RayUserControl.cs</DependentUpon>

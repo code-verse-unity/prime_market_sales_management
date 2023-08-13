@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using supermarket_sales_manegement.UserControls.PurchaseUserControl;
 
 namespace supermarket_sales_manegement.UserControls
 {
@@ -48,7 +49,13 @@ namespace supermarket_sales_manegement.UserControls
 
         private void button1_Click(object sender, EventArgs e)
         {
+            AddPurchaseForm addPurchaseForm = new AddPurchaseForm
+            {
+                FormBorderStyle = FormBorderStyle.FixedSingle,
+                StartPosition = FormStartPosition.CenterScreen
+            };
 
+            addPurchaseForm.ShowDialog();
         }
 
         private void InitPurchaseDataGridView()
