@@ -44,7 +44,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel9 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.AddPurchaseButton = new System.Windows.Forms.Button();
             this.panel8 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -57,7 +57,7 @@
             this.label12 = new System.Windows.Forms.Label();
             this.PurchaseDateLabel = new System.Windows.Forms.Label();
             this.PurchaseTotalLabel = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.ProductPurchaseDataGridView = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel7.SuspendLayout();
@@ -70,7 +70,7 @@
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PurchaseDataGridView)).BeginInit();
             this.panel12.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ProductPurchaseDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -228,27 +228,27 @@
             // 
             // panel9
             // 
-            this.panel9.Controls.Add(this.button1);
+            this.panel9.Controls.Add(this.AddPurchaseButton);
             this.panel9.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel9.Location = new System.Drawing.Point(785, 2);
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(200, 67);
             this.panel9.TabIndex = 5;
             // 
-            // button1
+            // AddPurchaseButton
             // 
-            this.button1.BackColor = System.Drawing.Color.MidnightBlue;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button1.Location = new System.Drawing.Point(22, 18);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(167, 32);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Enregister un achat";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.AddPurchaseButton.BackColor = System.Drawing.Color.MidnightBlue;
+            this.AddPurchaseButton.FlatAppearance.BorderSize = 0;
+            this.AddPurchaseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.AddPurchaseButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AddPurchaseButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.AddPurchaseButton.Location = new System.Drawing.Point(22, 18);
+            this.AddPurchaseButton.Name = "AddPurchaseButton";
+            this.AddPurchaseButton.Size = new System.Drawing.Size(167, 32);
+            this.AddPurchaseButton.TabIndex = 4;
+            this.AddPurchaseButton.Text = "Enregister un achat";
+            this.AddPurchaseButton.UseVisualStyleBackColor = false;
+            this.AddPurchaseButton.Click += new System.EventHandler(this.AddPurchaseButton_Click);
             // 
             // panel8
             // 
@@ -261,7 +261,7 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.dataGridView1);
+            this.panel2.Controls.Add(this.ProductPurchaseDataGridView);
             this.panel2.Controls.Add(this.panel12);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel2.Location = new System.Drawing.Point(420, 157);
@@ -290,11 +290,14 @@
             this.PurchaseDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.PurchaseDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PurchaseDataGridView.Location = new System.Drawing.Point(3, 3);
+            this.PurchaseDataGridView.MultiSelect = false;
             this.PurchaseDataGridView.Name = "PurchaseDataGridView";
             this.PurchaseDataGridView.ReadOnly = true;
+            this.PurchaseDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.PurchaseDataGridView.Size = new System.Drawing.Size(414, 441);
             this.PurchaseDataGridView.TabIndex = 0;
             this.PurchaseDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.PurchaseDataGridView_CellContentClick);
+            this.PurchaseDataGridView.SelectionChanged += new System.EventHandler(this.PurchaseDataGridView_SelectionChanged);
             // 
             // panel12
             // 
@@ -346,9 +349,8 @@
             this.PurchaseIdLabel.AutoSize = true;
             this.PurchaseIdLabel.Location = new System.Drawing.Point(89, 47);
             this.PurchaseIdLabel.Name = "PurchaseIdLabel";
-            this.PurchaseIdLabel.Size = new System.Drawing.Size(41, 13);
+            this.PurchaseIdLabel.Size = new System.Drawing.Size(0, 13);
             this.PurchaseIdLabel.TabIndex = 10;
-            this.PurchaseIdLabel.Text = "label11";
             // 
             // label12
             // 
@@ -364,32 +366,35 @@
             this.PurchaseDateLabel.AutoSize = true;
             this.PurchaseDateLabel.Location = new System.Drawing.Point(89, 76);
             this.PurchaseDateLabel.Name = "PurchaseDateLabel";
-            this.PurchaseDateLabel.Size = new System.Drawing.Size(41, 13);
+            this.PurchaseDateLabel.Size = new System.Drawing.Size(0, 13);
             this.PurchaseDateLabel.TabIndex = 12;
-            this.PurchaseDateLabel.Text = "label13";
             // 
             // PurchaseTotalLabel
             // 
             this.PurchaseTotalLabel.AutoSize = true;
             this.PurchaseTotalLabel.Location = new System.Drawing.Point(89, 103);
             this.PurchaseTotalLabel.Name = "PurchaseTotalLabel";
-            this.PurchaseTotalLabel.Size = new System.Drawing.Size(41, 13);
+            this.PurchaseTotalLabel.Size = new System.Drawing.Size(13, 13);
             this.PurchaseTotalLabel.TabIndex = 13;
-            this.PurchaseTotalLabel.Text = "label14";
+            this.PurchaseTotalLabel.Text = "0";
             // 
-            // dataGridView1
+            // ProductPurchaseDataGridView
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
-            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(8, 142);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(549, 297);
-            this.dataGridView1.TabIndex = 1;
+            this.ProductPurchaseDataGridView.AllowUserToAddRows = false;
+            this.ProductPurchaseDataGridView.AllowUserToDeleteRows = false;
+            this.ProductPurchaseDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.ProductPurchaseDataGridView.BackgroundColor = System.Drawing.Color.White;
+            this.ProductPurchaseDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.ProductPurchaseDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ProductPurchaseDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ProductPurchaseDataGridView.Location = new System.Drawing.Point(8, 142);
+            this.ProductPurchaseDataGridView.MultiSelect = false;
+            this.ProductPurchaseDataGridView.Name = "ProductPurchaseDataGridView";
+            this.ProductPurchaseDataGridView.ReadOnly = true;
+            this.ProductPurchaseDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.ProductPurchaseDataGridView.Size = new System.Drawing.Size(549, 297);
+            this.ProductPurchaseDataGridView.TabIndex = 1;
+            this.ProductPurchaseDataGridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.ProductPurchaseDataGridView_CellFormatting);
             // 
             // PurchaseUserControl
             // 
@@ -419,7 +424,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.PurchaseDataGridView)).EndInit();
             this.panel12.ResumeLayout(false);
             this.panel12.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ProductPurchaseDataGridView)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -442,12 +447,12 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button AddPurchaseButton;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.DataGridView PurchaseDataGridView;
         private System.Windows.Forms.Panel panel9;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView ProductPurchaseDataGridView;
         private System.Windows.Forms.Panel panel12;
         private System.Windows.Forms.Label PurchaseTotalLabel;
         private System.Windows.Forms.Label PurchaseDateLabel;

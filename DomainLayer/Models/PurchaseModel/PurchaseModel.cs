@@ -12,5 +12,18 @@ namespace DomainLayer.Models.PurchaseModel
         public int Id { get; set; }
         public DateTime CreatedAt { get; set; }
         public IEnumerable<IProductPurchaseModel> ProductPurchases { get; set; }
+        public double Total => CalculateTotal();
+
+        private double CalculateTotal()
+        {
+            double result = 0;
+
+            foreach (IProductPurchaseModel ProductPurchase in ProductPurchases)
+            {
+                result += ProductPurchase.SubTotal;
+            }
+
+            return result;
+        }
     }
 }

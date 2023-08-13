@@ -17,13 +17,17 @@ namespace supermarket_sales_manegement.UserControls.Purchase
     {
         private IPurchaseRepository purchaseRepository;
         private IEnumerable<IPurchaseModel> purchases;
+        private IPurchaseModel selectedPurchaseModel;
+        private IEnumerable<IProductPurchaseModel> productPurchases;
 
         public PurchaseUserControl(DockStyle dockStyle)
         {
             InitializeComponent();
             purchaseRepository = new PurchaseRepository();
+            productPurchases = new List<ProductPurchaseModel>();
             LoadPurchases();
-            InitPurchaseDataGridView();
+            ReloadPurchaseDataGridView();
+            ReloadProductPurchaseDataGridView();
         }
 
         public void LoadPurchases()
@@ -46,22 +50,11 @@ namespace supermarket_sales_manegement.UserControls.Purchase
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            AddPurchaseForm addPurchaseForm = new AddPurchaseForm
-            {
-                FormBorderStyle = FormBorderStyle.FixedSingle,
-                StartPosition = FormStartPosition.CenterScreen
-            };
-
-            addPurchaseForm.ShowDialog();
-        }
-
-        private void InitPurchaseDataGridView()
+        private void ReloadPurchaseDataGridView()
         {
             PurchaseDataGridView.Columns.Clear();
 
-            PurchaseDataGridView.DataSource = purchases;
+            PurchaseDataGridView.DataSource = purchases.ToList();
 
             DataGridViewButtonColumn editButton = new DataGridViewButtonColumn
             {
@@ -129,6 +122,69 @@ namespace supermarket_sales_manegement.UserControls.Purchase
         private void HandleEditPurchase(IPurchaseModel purchaseModel)
         {
             throw new NotImplementedException();
+        }
+
+        private void AddPurchaseButton_Click(object sender, EventArgs e)
+        {
+            AddPurchaseForm addPurchaseForm = new AddPurchaseForm
+            {
+                FormBorderStyle = FormBorderStyle.FixedSingle,
+                StartPosition = FormStartPosition.CenterScreen
+            };
+
+            addPurchaseForm.ShowDialog();
+        }
+
+        private void PurchaseDataGridView_SelectionChanged(object sender, EventArgs e)
+        {
+            if (PurchaseDataGridView.SelectedRows.Count > 0)
+            {
+                DataGridViewRow selectedRow = PurchaseDataGridView.SelectedRows[0];
+                selectedPurchaseModel = (IPurchaseModel)selectedRow.DataBoundItem;
+                productPurchases = selectedPurchaseModel.ProductPurchases;
+                PurchaseIdLabel.Text = selectedPurchaseModel.Id.ToString();
+                PurchaseDateLabel.Text = selectedPurchaseModel.CreatedAt.ToString(); // TODO format date
+                PurchaseTotalLabel.Text = selectedPurchaseModel.Total.ToString();
+            }
+            else
+            {
+                selectedPurchaseModel = null;
+                productPurchases = new List<ProductPurchaseModel>();
+                PurchaseIdLabel.Text = "";
+                PurchaseDateLabel.Text = "";
+                PurchaseTotalLabel.Text = "0";
+            }
+
+            ReloadProductPurchaseDataGridView();
+        }
+
+        private void ReloadProductPurchaseDataGridView()
+        {
+            ProductPurchaseDataGridView.Columns.Clear();
+
+            ProductPurchaseDataGridView.DataSource = productPurchases.ToList();
+            ProductPurchaseDataGridView.Columns["Id"].Visible = false;
+            ProductPurchaseDataGridView.Columns["ProductId"].Visible = false;
+            ProductPurchaseDataGridView.Columns["PurchaseId"].Visible = false;
+            ProductPurchaseDataGridView.Columns["Product"].DisplayIndex = 0;
+            ProductPurchaseDataGridView.Columns["Price"].DisplayIndex = 1;
+            ProductPurchaseDataGridView.Columns["Quantity"].HeaderText = "Quantité";
+            ProductPurchaseDataGridView.Columns["SubTotal"].HeaderText = "Sous-total";
+            ProductPurchaseDataGridView.Columns["Product"].HeaderText = "Désignation";
+            ProductPurchaseDataGridView.Columns["Price"].HeaderText = "Prix unitaire";
+        }
+
+        private void ProductPurchaseDataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.RowIndex >= 0 && ProductPurchaseDataGridView.Columns["Product"] != null && e.ColumnIndex == ProductPurchaseDataGridView.Columns["Product"].Index)
+            {
+                ProductPurchaseModel productPurchaseModel = (ProductPurchaseModel)ProductPurchaseDataGridView.Rows[e.RowIndex].DataBoundItem;
+                if (productPurchaseModel != null)
+                {
+                    e.Value = productPurchaseModel.Product.Name;
+                    e.FormattingApplied = true;
+                }
+            }
         }
     }
 }

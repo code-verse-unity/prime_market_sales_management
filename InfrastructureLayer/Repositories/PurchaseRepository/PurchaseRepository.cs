@@ -210,7 +210,9 @@ namespace InfrastructureLayer.Repositories.PurchaseRepository
 
                 if (dictionary.ContainsKey(purchaseId))
                 {
-                    dictionary[purchaseId].ProductPurchases.Append(new ProductPurchaseModel
+                    List<IProductPurchaseModel> newProductPurchases = dictionary[purchaseId].ProductPurchases.ToList();
+                    
+                    newProductPurchases.Add(new ProductPurchaseModel
                     {
                         Id = reader.GetInt32(reader.GetOrdinal("ProductPurchaseId")),
                         ProductId = reader.GetInt32(reader.GetOrdinal("ProductPurchaseProductId")),
@@ -227,6 +229,8 @@ namespace InfrastructureLayer.Repositories.PurchaseRepository
                             DeletedAt = !reader.IsDBNull(reader.GetOrdinal("ProductDeletedAt")) ? reader.GetDateTime(reader.GetOrdinal("ProductDeletedAt")) : (DateTime?)null,
                         }
                     });
+
+                    dictionary[purchaseId].ProductPurchases = newProductPurchases;
                 } else
                 {
                     dictionary.Add(purchaseId, new PurchaseModel
@@ -255,7 +259,7 @@ namespace InfrastructureLayer.Repositories.PurchaseRepository
                 }
             }
 
-            return new List<PurchaseModel>(dictionary.Values);
+            return dictionary.Values.ToList();
         }
     }
 }
