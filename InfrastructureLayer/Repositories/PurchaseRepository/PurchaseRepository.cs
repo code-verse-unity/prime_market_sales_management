@@ -173,7 +173,9 @@ namespace InfrastructureLayer.Repositories.PurchaseRepository
                         ON product_purchases.product_id = products.id
                     INNER JOIN categories
                         ON products.category_id = categories.id
-                    ORDER BY purchases.created_at ASC;";
+                    ORDER BY
+                        purchases.created_at DESC,
+                        purchases.id DESC;";
 
                     using (SQLiteCommand cmd = new SQLiteCommand(sql, connection))
                     {
