@@ -25,16 +25,11 @@ namespace supermarket_sales_manegement.UserControls.Purchase
             InitializeComponent();
             purchaseRepository = new PurchaseRepository();
             productPurchases = new List<ProductPurchaseModel>();
-            LoadPurchases();
+            purchases = purchaseRepository.GetAll();
             ReloadPurchaseDataGridView();
             ReloadProductPurchaseDataGridView();
             ReloadRevenueLabel();
             ReloadPurchaseProductCountLabel();
-        }
-
-        public void LoadPurchases()
-        {
-            purchases = purchaseRepository.GetAll();
         }
 
         private void SaleUserControl_Load(object sender, EventArgs e)
@@ -142,6 +137,12 @@ namespace supermarket_sales_manegement.UserControls.Purchase
             };
 
             addPurchaseForm.ShowDialog();
+
+            purchases = purchaseRepository.GetAll();
+
+            ReloadPurchaseDataGridView();
+            ReloadRevenueLabel();
+            ReloadPurchaseProductCountLabel();
         }
 
         private void PurchaseDataGridView_SelectionChanged(object sender, EventArgs e)
