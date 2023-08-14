@@ -7,6 +7,7 @@ using DomainLayer.Models.PurchaseModel;
 using System.Data.SQLite;
 using DomainLayer.Models.ProductPurchaseModel;
 using DomainLayer.Models.ProductModel;
+using InfrastructureLayer.Repositories.Stock;
 
 namespace InfrastructureLayer.Repositories.PurchaseRepository
 {
@@ -65,6 +66,8 @@ namespace InfrastructureLayer.Repositories.PurchaseRepository
 
                             cmd.Prepare();
 
+                            StockRepository stockRepository =  new StockRepository();
+
                             foreach (IProductPurchaseModel productPurchaseModel in purchase.ProductPurchases)
                             {
                                 paramProductId.Value = productPurchaseModel.ProductId;
@@ -74,7 +77,8 @@ namespace InfrastructureLayer.Repositories.PurchaseRepository
                                 cmd.ExecuteNonQuery();
 
                                 IProductModel product = productPurchaseModel.Product;
-                                // TODO update/decrease product.Stock
+                                // decrease the product stock
+                                stockRepository.RemoveQuantity(productPurchaseModel.ProductId, productPurchaseModel.Quantity);
                             }
 
                             cmd.Parameters.AddWithValue("@created_at", purchase.CreatedAt);
