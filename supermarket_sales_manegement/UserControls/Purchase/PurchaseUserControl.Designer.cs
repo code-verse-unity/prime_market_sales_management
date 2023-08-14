@@ -30,18 +30,26 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.PurchaseCreatedAtDateTimePicker = new System.Windows.Forms.DateTimePicker();
-            this.label5 = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.PurchaseCreatedAtDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.label5 = new System.Windows.Forms.Label();
+            this.panel14 = new System.Windows.Forms.Panel();
+            this.label14 = new System.Windows.Forms.Label();
+            this.PurchaseProductCountLabel = new System.Windows.Forms.Label();
+            this.panel13 = new System.Windows.Forms.Panel();
+            this.label11 = new System.Windows.Forms.Label();
+            this.RevenueLabel = new System.Windows.Forms.Label();
             this.panel9 = new System.Windows.Forms.Panel();
             this.AddPurchaseButton = new System.Windows.Forms.Button();
             this.panel8 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.ProductPurchaseDataGridView = new System.Windows.Forms.DataGridView();
             this.panel12 = new System.Windows.Forms.Panel();
+            this.ProductsCountLabel = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.PurchaseTotalLabel = new System.Windows.Forms.Label();
             this.PurchaseDateLabel = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
@@ -51,26 +59,18 @@
             this.label6 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.PurchaseDataGridView = new System.Windows.Forms.DataGridView();
-            this.panel13 = new System.Windows.Forms.Panel();
-            this.label11 = new System.Windows.Forms.Label();
-            this.RevenueLabel = new System.Windows.Forms.Label();
-            this.panel14 = new System.Windows.Forms.Panel();
-            this.label14 = new System.Windows.Forms.Label();
-            this.PurchaseProductCountLabel = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.ProductsCountLabel = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel4.SuspendLayout();
+            this.panel14.SuspendLayout();
+            this.panel13.SuspendLayout();
             this.panel9.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ProductPurchaseDataGridView)).BeginInit();
             this.panel12.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PurchaseDataGridView)).BeginInit();
-            this.panel13.SuspendLayout();
-            this.panel14.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -91,24 +91,6 @@
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(985, 75);
             this.panel5.TabIndex = 1;
-            // 
-            // PurchaseCreatedAtDateTimePicker
-            // 
-            this.PurchaseCreatedAtDateTimePicker.Location = new System.Drawing.Point(19, 47);
-            this.PurchaseCreatedAtDateTimePicker.Name = "PurchaseCreatedAtDateTimePicker";
-            this.PurchaseCreatedAtDateTimePicker.Size = new System.Drawing.Size(200, 20);
-            this.PurchaseCreatedAtDateTimePicker.TabIndex = 16;
-            this.PurchaseCreatedAtDateTimePicker.ValueChanged += new System.EventHandler(this.PurchaseCreatedAtDateTimePicker_ValueChanged);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(16, 23);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(101, 13);
-            this.label5.TabIndex = 15;
-            this.label5.Text = "Selectionner la date";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // panel6
             // 
@@ -155,6 +137,86 @@
             this.panel4.Size = new System.Drawing.Size(985, 82);
             this.panel4.TabIndex = 0;
             this.panel4.Paint += new System.Windows.Forms.PaintEventHandler(this.panel4_Paint);
+            // 
+            // PurchaseCreatedAtDateTimePicker
+            // 
+            this.PurchaseCreatedAtDateTimePicker.Location = new System.Drawing.Point(19, 47);
+            this.PurchaseCreatedAtDateTimePicker.Name = "PurchaseCreatedAtDateTimePicker";
+            this.PurchaseCreatedAtDateTimePicker.Size = new System.Drawing.Size(200, 20);
+            this.PurchaseCreatedAtDateTimePicker.TabIndex = 16;
+            this.PurchaseCreatedAtDateTimePicker.ValueChanged += new System.EventHandler(this.PurchaseCreatedAtDateTimePicker_ValueChanged);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(16, 23);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(101, 13);
+            this.label5.TabIndex = 15;
+            this.label5.Text = "Selectionner la date";
+            this.label5.Click += new System.EventHandler(this.label5_Click);
+            // 
+            // panel14
+            // 
+            this.panel14.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.panel14.Controls.Add(this.label14);
+            this.panel14.Controls.Add(this.PurchaseProductCountLabel);
+            this.panel14.Location = new System.Drawing.Point(470, 10);
+            this.panel14.Name = "panel14";
+            this.panel14.Size = new System.Drawing.Size(183, 63);
+            this.panel14.TabIndex = 16;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(13, 12);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(110, 16);
+            this.label14.TabIndex = 8;
+            this.label14.Text = "Produits vendus :";
+            // 
+            // PurchaseProductCountLabel
+            // 
+            this.PurchaseProductCountLabel.AutoSize = true;
+            this.PurchaseProductCountLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PurchaseProductCountLabel.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.PurchaseProductCountLabel.Location = new System.Drawing.Point(13, 34);
+            this.PurchaseProductCountLabel.Name = "PurchaseProductCountLabel";
+            this.PurchaseProductCountLabel.Size = new System.Drawing.Size(17, 18);
+            this.PurchaseProductCountLabel.TabIndex = 9;
+            this.PurchaseProductCountLabel.Text = "0";
+            // 
+            // panel13
+            // 
+            this.panel13.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.panel13.Controls.Add(this.label11);
+            this.panel13.Controls.Add(this.RevenueLabel);
+            this.panel13.Location = new System.Drawing.Point(269, 10);
+            this.panel13.Name = "panel13";
+            this.panel13.Size = new System.Drawing.Size(183, 63);
+            this.panel13.TabIndex = 15;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(13, 12);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(109, 16);
+            this.label11.TabIndex = 8;
+            this.label11.Text = "Chiffre d\'affaires :";
+            // 
+            // RevenueLabel
+            // 
+            this.RevenueLabel.AutoSize = true;
+            this.RevenueLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RevenueLabel.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.RevenueLabel.Location = new System.Drawing.Point(13, 34);
+            this.RevenueLabel.Name = "RevenueLabel";
+            this.RevenueLabel.Size = new System.Drawing.Size(61, 18);
+            this.RevenueLabel.TabIndex = 9;
+            this.RevenueLabel.Text = "0,00 Ar";
             // 
             // panel9
             // 
@@ -236,14 +298,32 @@
             this.panel12.Size = new System.Drawing.Size(549, 160);
             this.panel12.TabIndex = 0;
             // 
+            // ProductsCountLabel
+            // 
+            this.ProductsCountLabel.AutoSize = true;
+            this.ProductsCountLabel.Location = new System.Drawing.Point(129, 128);
+            this.ProductsCountLabel.Name = "ProductsCountLabel";
+            this.ProductsCountLabel.Size = new System.Drawing.Size(35, 13);
+            this.ProductsCountLabel.TabIndex = 15;
+            this.ProductsCountLabel.Text = "label4";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(30, 129);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(89, 13);
+            this.label3.TabIndex = 14;
+            this.label3.Text = "Produits vendus :";
+            // 
             // PurchaseTotalLabel
             // 
             this.PurchaseTotalLabel.AutoSize = true;
             this.PurchaseTotalLabel.Location = new System.Drawing.Point(89, 103);
             this.PurchaseTotalLabel.Name = "PurchaseTotalLabel";
-            this.PurchaseTotalLabel.Size = new System.Drawing.Size(13, 13);
+            this.PurchaseTotalLabel.Size = new System.Drawing.Size(41, 13);
             this.PurchaseTotalLabel.TabIndex = 13;
-            this.PurchaseTotalLabel.Text = "0";
+            this.PurchaseTotalLabel.Text = "0,00 Ar";
             // 
             // PurchaseDateLabel
             // 
@@ -326,87 +406,8 @@
             this.PurchaseDataGridView.Size = new System.Drawing.Size(414, 441);
             this.PurchaseDataGridView.TabIndex = 0;
             this.PurchaseDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.PurchaseDataGridView_CellContentClick);
+            this.PurchaseDataGridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.PurchaseDataGridView_CellFormatting);
             this.PurchaseDataGridView.SelectionChanged += new System.EventHandler(this.PurchaseDataGridView_SelectionChanged);
-            // 
-            // panel13
-            // 
-            this.panel13.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.panel13.Controls.Add(this.label11);
-            this.panel13.Controls.Add(this.RevenueLabel);
-            this.panel13.Location = new System.Drawing.Point(269, 10);
-            this.panel13.Name = "panel13";
-            this.panel13.Size = new System.Drawing.Size(183, 63);
-            this.panel13.TabIndex = 15;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(13, 12);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(109, 16);
-            this.label11.TabIndex = 8;
-            this.label11.Text = "Chiffre d\'affaires :";
-            // 
-            // RevenueLabel
-            // 
-            this.RevenueLabel.AutoSize = true;
-            this.RevenueLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RevenueLabel.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.RevenueLabel.Location = new System.Drawing.Point(13, 34);
-            this.RevenueLabel.Name = "RevenueLabel";
-            this.RevenueLabel.Size = new System.Drawing.Size(17, 18);
-            this.RevenueLabel.TabIndex = 9;
-            this.RevenueLabel.Text = "0";
-            // 
-            // panel14
-            // 
-            this.panel14.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.panel14.Controls.Add(this.label14);
-            this.panel14.Controls.Add(this.PurchaseProductCountLabel);
-            this.panel14.Location = new System.Drawing.Point(470, 10);
-            this.panel14.Name = "panel14";
-            this.panel14.Size = new System.Drawing.Size(183, 63);
-            this.panel14.TabIndex = 16;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(13, 12);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(110, 16);
-            this.label14.TabIndex = 8;
-            this.label14.Text = "Produits vendus :";
-            // 
-            // PurchaseProductCountLabel
-            // 
-            this.PurchaseProductCountLabel.AutoSize = true;
-            this.PurchaseProductCountLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PurchaseProductCountLabel.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.PurchaseProductCountLabel.Location = new System.Drawing.Point(13, 34);
-            this.PurchaseProductCountLabel.Name = "PurchaseProductCountLabel";
-            this.PurchaseProductCountLabel.Size = new System.Drawing.Size(17, 18);
-            this.PurchaseProductCountLabel.TabIndex = 9;
-            this.PurchaseProductCountLabel.Text = "0";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(30, 129);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(89, 13);
-            this.label3.TabIndex = 14;
-            this.label3.Text = "Produits vendus :";
-            // 
-            // ProductsCountLabel
-            // 
-            this.ProductsCountLabel.AutoSize = true;
-            this.ProductsCountLabel.Location = new System.Drawing.Point(129, 128);
-            this.ProductsCountLabel.Name = "ProductsCountLabel";
-            this.ProductsCountLabel.Size = new System.Drawing.Size(35, 13);
-            this.ProductsCountLabel.TabIndex = 15;
-            this.ProductsCountLabel.Text = "label4";
             // 
             // PurchaseUserControl
             // 
@@ -425,6 +426,10 @@
             this.panel6.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
+            this.panel14.ResumeLayout(false);
+            this.panel14.PerformLayout();
+            this.panel13.ResumeLayout(false);
+            this.panel13.PerformLayout();
             this.panel9.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ProductPurchaseDataGridView)).EndInit();
@@ -432,10 +437,6 @@
             this.panel12.PerformLayout();
             this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PurchaseDataGridView)).EndInit();
-            this.panel13.ResumeLayout(false);
-            this.panel13.PerformLayout();
-            this.panel14.ResumeLayout(false);
-            this.panel14.PerformLayout();
             this.ResumeLayout(false);
 
         }

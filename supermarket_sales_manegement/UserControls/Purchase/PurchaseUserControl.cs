@@ -73,6 +73,9 @@ namespace supermarket_sales_manegement.UserControls.Purchase
             PurchaseDataGridView.Columns["CreatedAt"].HeaderText = "Date et heure d'achat";
             PurchaseDataGridView.Columns["ProductsCount"].HeaderText = "Nombres de produits";
             PurchaseDataGridView.Columns["ProductsCount"].DisplayIndex = 3;
+            PurchaseDataGridView.Columns["ProductsCount"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            PurchaseDataGridView.Columns["Total"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            PurchaseDataGridView.Columns["CreatedAt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
             PurchaseDataGridView.Columns["ProductPurchases"].Visible = false;
         }
@@ -256,8 +259,8 @@ namespace supermarket_sales_manegement.UserControls.Purchase
                 selectedPurchaseModel = (IPurchaseModel)selectedRow.DataBoundItem;
                 productPurchases = selectedPurchaseModel.ProductPurchases;
                 PurchaseIdLabel.Text = selectedPurchaseModel.Id.ToString();
-                PurchaseDateLabel.Text = selectedPurchaseModel.CreatedAt.ToString(); // TODO format date
-                PurchaseTotalLabel.Text = selectedPurchaseModel.Total.ToString();
+                PurchaseDateLabel.Text = selectedPurchaseModel.CreatedAt.ToString("dd/MM/yyyy HH:mm");
+                PurchaseTotalLabel.Text = FormatCurrency(selectedPurchaseModel.Total);
                 ProductsCountLabel.Text = selectedPurchaseModel.ProductsCount.ToString();
             }
             else
@@ -266,7 +269,7 @@ namespace supermarket_sales_manegement.UserControls.Purchase
                 productPurchases = new List<ProductPurchaseModel>();
                 PurchaseIdLabel.Text = "";
                 PurchaseDateLabel.Text = "";
-                PurchaseTotalLabel.Text = "0";
+                PurchaseTotalLabel.Text = FormatCurrency(0);
                 ProductsCountLabel.Text = "0";
             }
 
@@ -287,17 +290,41 @@ namespace supermarket_sales_manegement.UserControls.Purchase
             ProductPurchaseDataGridView.Columns["SubTotal"].HeaderText = "Sous-total";
             ProductPurchaseDataGridView.Columns["Product"].HeaderText = "Désignation";
             ProductPurchaseDataGridView.Columns["Price"].HeaderText = "Prix unitaire";
+            ProductPurchaseDataGridView.Columns["Price"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            ProductPurchaseDataGridView.Columns["Quantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            ProductPurchaseDataGridView.Columns["SubTotal"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
         }
 
         private void ProductPurchaseDataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            if (e.RowIndex >= 0 && ProductPurchaseDataGridView.Columns["Product"] != null && e.ColumnIndex == ProductPurchaseDataGridView.Columns["Product"].Index)
+            if (e.RowIndex >= 0)
             {
-                ProductPurchaseModel productPurchaseModel = (ProductPurchaseModel)ProductPurchaseDataGridView.Rows[e.RowIndex].DataBoundItem;
-                if (productPurchaseModel != null)
+                if (ProductPurchaseDataGridView.Columns["Product"] != null && e.ColumnIndex == ProductPurchaseDataGridView.Columns["Product"].Index)
                 {
-                    e.Value = productPurchaseModel.Product.Name;
-                    e.FormattingApplied = true;
+                    ProductPurchaseModel productPurchaseModel = (ProductPurchaseModel)ProductPurchaseDataGridView.Rows[e.RowIndex].DataBoundItem;
+                    if (productPurchaseModel != null)
+                    {
+                        e.Value = productPurchaseModel.Product.Name;
+                        e.FormattingApplied = true;
+                    }
+                }
+                else if (ProductPurchaseDataGridView.Columns["Price"] != null && e.ColumnIndex == ProductPurchaseDataGridView.Columns["Price"].Index)
+                {
+                    ProductPurchaseModel productPurchaseModel = (ProductPurchaseModel)ProductPurchaseDataGridView.Rows[e.RowIndex].DataBoundItem;
+                    if (productPurchaseModel != null)
+                    {
+                        e.Value = FormatCurrency(productPurchaseModel.Price);
+                        e.FormattingApplied = true;
+                    }
+                }
+                else if (ProductPurchaseDataGridView.Columns["SubTotal"] != null && e.ColumnIndex == ProductPurchaseDataGridView.Columns["SubTotal"].Index)
+                {
+                    ProductPurchaseModel productPurchaseModel = (ProductPurchaseModel)ProductPurchaseDataGridView.Rows[e.RowIndex].DataBoundItem;
+                    if (productPurchaseModel != null)
+                    {
+                        e.Value = FormatCurrency(productPurchaseModel.SubTotal);
+                        e.FormattingApplied = true;
+                    }
                 }
             }
         }
@@ -337,7 +364,20 @@ namespace supermarket_sales_manegement.UserControls.Purchase
                 result += purchaseModel.Total;
             }
 
-            RevenueLabel.Text = result.ToString();
+            RevenueLabel.Text = FormatCurrency(result);
+        }
+
+        private void PurchaseDataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.RowIndex >= 0 && PurchaseDataGridView.Columns["Total"] != null && e.ColumnIndex == PurchaseDataGridView.Columns["Total"].Index)
+            {
+                PurchaseModel productModel = (PurchaseModel)PurchaseDataGridView.Rows[e.RowIndex].DataBoundItem;
+                if (productModel != null)
+                {
+                    e.Value = FormatCurrency(productModel.Total);
+                    e.FormattingApplied = true;
+                }
+            }
         }
     }
 }
