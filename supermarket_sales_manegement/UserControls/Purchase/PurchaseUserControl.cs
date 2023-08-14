@@ -12,6 +12,10 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using PdfSharp.Pdf;
 using PdfSharp.Drawing;
+using TheArtOfDev.HtmlRenderer.PdfSharp;
+using PdfSharp;
+using System.IO;
+using System.Diagnostics;
 
 namespace supermarket_sales_manegement.UserControls.Purchase
 {
@@ -112,14 +116,104 @@ namespace supermarket_sales_manegement.UserControls.Purchase
 
         private void HandleBillPurchase(IPurchaseModel purchaseModel)
         {
-            PdfDocument pdf = new PdfDocument();
+            string folder = "bills";
+            string fileName = $"bill_{purchaseModel.Id}_{purchaseModel.CreatedAt.ToString("yyyy-MM-dd")}.pdf";
+            string fullOutputPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"{folder}/{fileName}");
 
-            PdfPage page = pdf.AddPage();
-            XGraphics gfx = XGraphics.FromPdfPage(page);
+            if (!File.Exists(fullOutputPath))
+            {
+                StringBuilder tableStringBuilder = new StringBuilder();
+                int i = 0;
+                foreach (IProductPurchaseModel productPurchase in purchaseModel.ProductPurchases)
+                {
+                    string backgroundColor = i == 0 ? "#cfd8dc" : "#fff";
+                    tableStringBuilder.Append(
+                        $@"<tr>
+                            <td style=""background-color: {backgroundColor}; text-align: left; font-weight: bold; padding: 5px 10px;"">
+                                {productPurchase.Product.Name}
+                            </td>
+                            <td style=""background-color: {backgroundColor}; text-align: right; font-weight: right; padding: 5px 10px;"">
+                                {productPurchase.Price}
+                            </td>
+                            <td style=""background-color: {backgroundColor}; text-align: center; font-weight: center; padding: 5px 10px;"">
+                                {productPurchase.Quantity}
+                            </td>
+                            <td style=""background-color: {backgroundColor}; text-align: right; font-weight: right; padding: 5px 10px;"">
+                                {productPurchase.SubTotal}
+                            </td>
+                        </tr>"
+                    );
 
-            string htmlContent = $"<h1> {purchaseModel.Id} </h1>";
+                    i = i == 0 ? 1 : 0;
+                }
 
-            // TODO create the pdf
+                string htmlContent = $@"<!DOCTYPE html>
+<html lang = ""en"">
+<head>
+    <meta charset = ""UTF-8"">
+    <meta http-equiv = ""X-UA-Compatible"" content = ""IE=edge"">
+    <meta name = ""viewport"" content = ""width=device-width, initial-scale=1.0"">
+    <title>Facture {purchaseModel.Id} | {purchaseModel.CreatedAt.ToString("yyyy-MM-dd")}</title>
+</head>
+<body style=""margin: 1rem; padding: 1rem 2rem 7rem 2rem;"">
+    <div class=""bill-container"">
+        <h1 style=""text-align: center; font-size: x-large; margin-bottom: 3rem;"">
+            Facture : <span style=""font-weight: bold;"">{purchaseModel.Id}</span>
+        </h1>
+        
+        <div style=""font-size: larger; font-weight: bold; margin-bottom: 1rem;"">
+            Id : <span style=""font-weight: bold;"">{purchaseModel.Id}</span>
+        </div>
+
+        <div style=""font-size: larger; font-weight: bold; margin-bottom: 1rem;"">
+            Date et heure : <span style=""font-weight: bold;"">{purchaseModel.CreatedAt.ToString("dd/MM/yyyy HH:mm")}</span>
+        </div>
+
+        <div style=""font-size: larger; font-weight: bold; margin-bottom: 1rem;"">
+            Total : <span style=""font-weight: bold;"">{purchaseModel.Total} Ar</span>
+        </div>
+
+        <div style=""margin: 10px 0;"">
+            <table style=""width: 90%; margin: 0 auto; border-collapse: collapse; border-spacing: 0;"">
+                <thead>
+                    <tr style=""background-color: #263238; color: red;"">
+                        <th style=""text-align: center; padding: 5px 10px; border-right: solid 2px #fff; background-color: #263238; color: #fff;"">Désignation</th>
+                        <th style=""text-align: center; padding: 5px 10px; border-right: solid 2px #fff; background-color: #263238; color: #fff;"">Prix Unitaire</th>
+                        <th style=""text-align: center; padding: 5px 10px; border-right: solid 2px #fff; background-color: #263238; color: #fff;"">Quantité</th>
+                        <th style=""text-align: center; padding: 5px 10px; background-color: #263238; color: #fff;"">Sous-Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {tableStringBuilder.ToString()}
+                    <tr>
+                        <td style=""border: none;""></td>
+                        <td style=""border: none;""></td>
+                        <td style=""text-align: center; background-color: #263238; color: #fff; font-weight: bold; letter-spacing: 0.2rem; border: solid 2px #263238; text-transform: uppercase;"">Total</td>
+                        <td style=""text-align: right; padding: 5px 10px; font-weight: bold; border: solid 2px #263238;"">
+                            {purchaseModel.Total} Ar
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p>Arrêté par la présente facture à la somme de
+            <span style=""font-weight: bold; color: fff;"">
+                {purchaseModel.Total} Ariary
+            </span>
+        </p>
+    </div>
+</body>
+</html>";
+                
+                PdfDocument pdf = PdfGenerator.GeneratePdf(htmlContent, PageSize.A4);
+
+                Directory.CreateDirectory(folder);
+
+                pdf.Save(fullOutputPath);
+            }
+
+            Process.Start(fullOutputPath);
         }
 
         private void HandleDeletePurchase(IPurchaseModel purchaseModel)
