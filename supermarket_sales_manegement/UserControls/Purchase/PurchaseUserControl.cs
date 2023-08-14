@@ -59,34 +59,18 @@ namespace supermarket_sales_manegement.UserControls.Purchase
 
             PurchaseDataGridView.DataSource = purchases.ToList();
 
-            DataGridViewButtonColumn editButton = new DataGridViewButtonColumn
-            {
-                HeaderText = "Modification",
-                Text = "Modifier",
-                UseColumnTextForButtonValue = true,
-            };
-
-            DataGridViewButtonColumn deleteButton = new DataGridViewButtonColumn
-            {
-                HeaderText = "Annulation",
-                Text = "Annuler",
-                UseColumnTextForButtonValue = true,
-            };
-
             DataGridViewButtonColumn billButton = new DataGridViewButtonColumn
             {
                 HeaderText = "Facture",
                 Text = "Ouvrir",
                 UseColumnTextForButtonValue = true,
             };
-
-            PurchaseDataGridView.Columns.Insert(0, editButton);
-            PurchaseDataGridView.Columns.Insert(1, deleteButton);
-            PurchaseDataGridView.Columns.Insert(2, billButton);
+            
+            PurchaseDataGridView.Columns.Insert(0, billButton);
 
             PurchaseDataGridView.Columns["CreatedAt"].HeaderText = "Date et heure d'achat";
             PurchaseDataGridView.Columns["ProductsCount"].HeaderText = "Nombres de produits";
-            PurchaseDataGridView.Columns["ProductsCount"].DisplayIndex = 5;
+            PurchaseDataGridView.Columns["ProductsCount"].DisplayIndex = 3;
 
             PurchaseDataGridView.Columns["ProductPurchases"].Visible = false;
         }
@@ -98,17 +82,9 @@ namespace supermarket_sales_manegement.UserControls.Purchase
                 if (PurchaseDataGridView.Columns[e.ColumnIndex] is DataGridViewButtonColumn)
                 {
                     IPurchaseModel purchaseModel = (IPurchaseModel)PurchaseDataGridView.Rows[e.RowIndex].DataBoundItem;
-                    switch (PurchaseDataGridView.Columns[e.ColumnIndex].HeaderText)
+                    if (PurchaseDataGridView.Columns[e.ColumnIndex].HeaderText == "Facture")
                     {
-                        case "Modification":
-                            HandleEditPurchase(purchaseModel);
-                            break;
-                        case "Annulation":
-                            HandleDeletePurchase(purchaseModel);
-                            break;
-                        case "Facture":
-                            HandleBillPurchase(purchaseModel);
-                            break;
+                         HandleBillPurchase(purchaseModel);
                     }
                 }
             }
@@ -214,21 +190,6 @@ namespace supermarket_sales_manegement.UserControls.Purchase
             }
 
             Process.Start(fullOutputPath);
-        }
-
-        private void HandleDeletePurchase(IPurchaseModel purchaseModel)
-        {
-            DialogResult result = MessageBox.Show("Êtes-vous sûr de vouloir d'annuler cette vente ?", "Annulation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-
-            if (result == DialogResult.Yes)
-            {
-                purchaseRepository.Delete(purchaseModel);
-            }
-        }
-
-        private void HandleEditPurchase(IPurchaseModel purchaseModel)
-        {
-            throw new NotImplementedException();
         }
 
         private void AddPurchaseButton_Click(object sender, EventArgs e)
