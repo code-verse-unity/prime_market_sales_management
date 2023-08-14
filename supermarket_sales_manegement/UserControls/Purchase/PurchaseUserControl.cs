@@ -10,6 +10,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using PdfSharp.Pdf;
+using PdfSharp.Drawing;
 
 namespace supermarket_sales_manegement.UserControls.Purchase
 {
@@ -110,7 +112,14 @@ namespace supermarket_sales_manegement.UserControls.Purchase
 
         private void HandleBillPurchase(IPurchaseModel purchaseModel)
         {
-            throw new NotImplementedException();
+            PdfDocument pdf = new PdfDocument();
+
+            PdfPage page = pdf.AddPage();
+            XGraphics gfx = XGraphics.FromPdfPage(page);
+
+            string htmlContent = $"<h1> {purchaseModel.Id} </h1>";
+
+            // TODO create the pdf
         }
 
         private void HandleDeletePurchase(IPurchaseModel purchaseModel)
