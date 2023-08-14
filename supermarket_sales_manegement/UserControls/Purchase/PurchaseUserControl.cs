@@ -16,6 +16,8 @@ using TheArtOfDev.HtmlRenderer.PdfSharp;
 using PdfSharp;
 using System.IO;
 using System.Diagnostics;
+using System.Globalization;
+using Humanizer;
 
 namespace supermarket_sales_manegement.UserControls.Purchase
 {
@@ -109,13 +111,13 @@ namespace supermarket_sales_manegement.UserControls.Purchase
                                 {productPurchase.Product.Name}
                             </td>
                             <td style=""background-color: {backgroundColor}; text-align: right; font-weight: right; padding: 5px 10px;"">
-                                {productPurchase.Price}
+                                {FormatCurrency(productPurchase.Price)}
                             </td>
                             <td style=""background-color: {backgroundColor}; text-align: center; font-weight: center; padding: 5px 10px;"">
                                 {productPurchase.Quantity}
                             </td>
                             <td style=""background-color: {backgroundColor}; text-align: right; font-weight: right; padding: 5px 10px;"">
-                                {productPurchase.SubTotal}
+                                {FormatCurrency(productPurchase.SubTotal)}
                             </td>
                         </tr>"
                     );
@@ -146,7 +148,7 @@ namespace supermarket_sales_manegement.UserControls.Purchase
         </div>
 
         <div style=""font-size: larger; font-weight: bold; margin-bottom: 1rem;"">
-            Total : <span style=""font-weight: bold;"">{purchaseModel.Total} Ar</span>
+            Total : <span style=""font-weight: bold;"">{FormatCurrency(purchaseModel.Total)}</span>
         </div>
 
         <div style=""margin: 10px 0;"">
@@ -166,7 +168,7 @@ namespace supermarket_sales_manegement.UserControls.Purchase
                         <td style=""border: none;""></td>
                         <td style=""text-align: center; background-color: #263238; color: #fff; font-weight: bold; letter-spacing: 0.2rem; border: solid 2px #263238; text-transform: uppercase;"">Total</td>
                         <td style=""text-align: right; padding: 5px 10px; font-weight: bold; border: solid 2px #263238;"">
-                            {purchaseModel.Total} Ar
+                            {FormatCurrency(purchaseModel.Total)}
                         </td>
                     </tr>
                 </tbody>
@@ -175,7 +177,7 @@ namespace supermarket_sales_manegement.UserControls.Purchase
 
         <p>Arrêté par la présente facture à la somme de
             <span style=""font-weight: bold; color: fff;"">
-                {purchaseModel.Total} Ariary
+                {NumberToFullText(purchaseModel.Total)} Ariary
             </span>
         </p>
     </div>
@@ -192,7 +194,44 @@ namespace supermarket_sales_manegement.UserControls.Purchase
             Process.Start(fullOutputPath);
         }
 
-        private void AddPurchaseButton_Click(object sender, EventArgs e)
+        string FormatCurrency(double number)
+        {
+            CultureInfo cultureInfo = new CultureInfo("de-DE");
+            cultureInfo.NumberFormat.CurrencySymbol = "Ar";
+            return number.ToString("C", cultureInfo);
+        }
+
+        private string NumberToFullText(double number)
+        {
+            // Convert the integer part of the number to full French text
+            string integerPartText = ((int)number).ToWords(new CultureInfo("fr-FR"));
+
+            // Get the fractional part of the number
+            double fractionalPart = Math.Round(number - Math.Floor(number), 2);
+            string fractionalPartText = FractionalToWords(fractionalPart);
+
+            return $"{integerPartText} virgule {fractionalPartText}";
+        }
+
+        private string FractionalToWords(double fraction)
+        {
+            string[] numberWords = new string[] { "zéro", "un", "deux", "trois", "quatre", "cinq", "six", "sept", "huit", "neuf" };
+            int decimalPlaces = 2;
+
+            string fractionalPartText = string.Empty;
+
+            for (int i = 0; i < decimalPlaces; i++)
+            {
+                fraction *= 10;
+                int digit = (int)Math.Floor(fraction);
+                fractionalPartText += numberWords[digit] + " ";
+                fraction -= digit;
+            }
+
+            return fractionalPartText.Trim();
+       }
+
+    private void AddPurchaseButton_Click(object sender, EventArgs e)
         {
             AddPurchaseForm addPurchaseForm = new AddPurchaseForm
             {
