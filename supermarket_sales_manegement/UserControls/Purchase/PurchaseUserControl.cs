@@ -33,7 +33,7 @@ namespace supermarket_sales_manegement.UserControls.Purchase
             InitializeComponent();
             purchaseRepository = new PurchaseRepository();
             productPurchases = new List<ProductPurchaseModel>();
-            purchases = purchaseRepository.GetAll();
+            purchases = purchaseRepository.GetAllByDate(DateTime.Now);
             ReloadPurchaseDataGridView();
             ReloadProductPurchaseDataGridView();
             ReloadRevenueLabel();
@@ -244,7 +244,7 @@ namespace supermarket_sales_manegement.UserControls.Purchase
 
             addPurchaseForm.ShowDialog();
 
-            purchases = purchaseRepository.GetAll();
+            purchases = purchaseRepository.GetAllByDate(DateTime.Now);
 
             ReloadPurchaseDataGridView();
             ReloadRevenueLabel();
