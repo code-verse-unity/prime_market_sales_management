@@ -16,5 +16,7 @@ namespace InfrastructureLayer.Repositories.Product
         void Delete(IProductModel product);
         void Update(IProductModel product);
         IEnumerable<IProductModel> GetAll();
+        IEnumerable<IProductModel> FindByName(string name);
+        void UpdateCump(int productId);
     }
 }

@@ -1,16 +1,10 @@
-﻿using DomainLayer.Models.CategoryModel;
-using DomainLayer.Models.ProductModel;
+﻿using DomainLayer.Models.ProductModel;
 using InfrastructureLayer.Repositories.Category;
 using InfrastructureLayer.Repositories.Product;
 using supermarket_sales_manegement.UserControls.Product;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace supermarket_sales_manegement.UserControls
@@ -19,15 +13,19 @@ namespace supermarket_sales_manegement.UserControls
     {
         private IEnumerable<IProductModel> products;
         private ProductRepository productRepository;
+        private CategoryRepository categoryRepository;
         public ProductUserControl(DockStyle dockStyle)
         {
             InitializeComponent();
             productRepository = new ProductRepository();
+            categoryRepository = new CategoryRepository();
 
-            LoadProductsIntoDataGridView();
+            products = productRepository.GetAll();
+
+            LoadProductsIntoDataGridView(products);
         }
 
-        public void LoadProductsIntoDataGridView()
+        public void LoadProductsIntoDataGridView(IEnumerable<IProductModel> products)
         {
             ProductsDataGridView.Columns.Clear();
 
@@ -79,7 +77,7 @@ namespace supermarket_sales_manegement.UserControls
             ProductsDataGridView.Columns["Category"].DataPropertyName = "Category";
 
 
-            products = productRepository.GetAll();
+
             ProductsDataGridView.DataSource = products;
             ProductsDataGridView.CellFormatting += ProductsDataGridView_CellFormatting;
 
@@ -88,6 +86,14 @@ namespace supermarket_sales_manegement.UserControls
                 ProductsDataGridView.Columns["DeletedAt"].Visible = false; // hide the delete_at column
                 ProductsDataGridView.Columns["CategoryId"].Visible = false;
             }
+
+            UpdateProductsCount();
+        }
+
+        private void UpdateProductsCount()
+        {
+            ProductCount.Text = products.Count().ToString();
+            ProductPerishableCount.Text = products.Count(product => product.IsPerishable).ToString();
         }
 
         private void ProductsDataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -117,7 +123,7 @@ namespace supermarket_sales_manegement.UserControls
 
         private void button1_Click(object sender, EventArgs e)
         {
-            NewStockForm  newStockForm = new NewStockForm();
+            NewStockForm  newStockForm = new NewStockForm(this);
             newStockForm.ShowDialog();
         }
 
@@ -126,13 +132,18 @@ namespace supermarket_sales_manegement.UserControls
             DataGridView senderGrid = (DataGridView)sender;
             DataGridViewRow row = senderGrid.CurrentRow;
 
+            int categoryId = int.Parse(row.Cells["CategoryId"].Value.ToString());
+
             ProductModel product = new ProductModel()
             {
                 Id = int.Parse(row.Cells["Id"].Value.ToString()),
                 Name = row.Cells["Name"].Value.ToString(),
-                CategoryId = int.Parse(row.Cells["CategoryId"].Value.ToString()),
+                CategoryId = categoryId,
                 InStock = int.Parse(row.Cells["InStock"].Value.ToString()),
                 IsPerishable = (bool)row.Cells["IsPerishable"].Value,
+                Price = (double)row.Cells["Price"].Value,
+                Unit = row.Cells["Unit"].Value.ToString(),
+                Category = categoryRepository.GetById(categoryId)
             };
 
 
@@ -140,13 +151,33 @@ namespace supermarket_sales_manegement.UserControls
             {
                 if (senderGrid.Columns[e.ColumnIndex].Name == "edit")
                 {
-                    UpdateProductForm updateProductForm = new UpdateProductForm();
+                    UpdateProductForm updateProductForm = new UpdateProductForm(product, this);
                     updateProductForm.ShowDialog();
                 }
                 else
                 {
                     DialogResult result = MessageBox.Show("Etes-vous sur de vouloir supprimer cet produit", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                    if (result == DialogResult.Yes)
+                    {
+                        productRepository.Delete(product);
+
+                        LoadProductsIntoDataGridView(productRepository.GetAll());
+                    }
                 }
+            }
+        }
+
+        private void SearchButton_Click(object sender, EventArgs e)
+        {
+            string name = ProductNameToSearch.Text;
+            if ( name != "")
+            {
+                LoadProductsIntoDataGridView(productRepository.FindByName(name));
+            }
+            else
+            {
+                LoadProductsIntoDataGridView(productRepository.GetAll());
             }
         }
     }
