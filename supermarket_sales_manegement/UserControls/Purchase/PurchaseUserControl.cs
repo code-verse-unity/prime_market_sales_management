@@ -417,5 +417,20 @@ namespace supermarket_sales_manegement.UserControls.Purchase
                 }
             }
         }
+
+        private void panel12_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void ProductsCountLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void PurchaseTotalLabel_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

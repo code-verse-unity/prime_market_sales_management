@@ -297,15 +297,19 @@
             this.panel12.Name = "panel12";
             this.panel12.Size = new System.Drawing.Size(549, 160);
             this.panel12.TabIndex = 0;
+            this.panel12.Paint += new System.Windows.Forms.PaintEventHandler(this.panel12_Paint);
             // 
             // ProductsCountLabel
             // 
             this.ProductsCountLabel.AutoSize = true;
-            this.ProductsCountLabel.Location = new System.Drawing.Point(129, 128);
+            this.ProductsCountLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ProductsCountLabel.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.ProductsCountLabel.Location = new System.Drawing.Point(137, 125);
             this.ProductsCountLabel.Name = "ProductsCountLabel";
-            this.ProductsCountLabel.Size = new System.Drawing.Size(35, 13);
+            this.ProductsCountLabel.Size = new System.Drawing.Size(17, 18);
             this.ProductsCountLabel.TabIndex = 15;
-            this.ProductsCountLabel.Text = "label4";
+            this.ProductsCountLabel.Text = "0";
+            this.ProductsCountLabel.Click += new System.EventHandler(this.ProductsCountLabel_Click);
             // 
             // label3
             // 
@@ -319,18 +323,23 @@
             // PurchaseTotalLabel
             // 
             this.PurchaseTotalLabel.AutoSize = true;
-            this.PurchaseTotalLabel.Location = new System.Drawing.Point(89, 103);
+            this.PurchaseTotalLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PurchaseTotalLabel.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.PurchaseTotalLabel.Location = new System.Drawing.Point(89, 99);
             this.PurchaseTotalLabel.Name = "PurchaseTotalLabel";
-            this.PurchaseTotalLabel.Size = new System.Drawing.Size(41, 13);
+            this.PurchaseTotalLabel.Size = new System.Drawing.Size(61, 18);
             this.PurchaseTotalLabel.TabIndex = 13;
             this.PurchaseTotalLabel.Text = "0,00 Ar";
+            this.PurchaseTotalLabel.Click += new System.EventHandler(this.PurchaseTotalLabel_Click);
             // 
             // PurchaseDateLabel
             // 
             this.PurchaseDateLabel.AutoSize = true;
-            this.PurchaseDateLabel.Location = new System.Drawing.Point(89, 76);
+            this.PurchaseDateLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PurchaseDateLabel.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.PurchaseDateLabel.Location = new System.Drawing.Point(89, 72);
             this.PurchaseDateLabel.Name = "PurchaseDateLabel";
-            this.PurchaseDateLabel.Size = new System.Drawing.Size(0, 13);
+            this.PurchaseDateLabel.Size = new System.Drawing.Size(0, 18);
             this.PurchaseDateLabel.TabIndex = 12;
             // 
             // label12
@@ -345,9 +354,11 @@
             // PurchaseIdLabel
             // 
             this.PurchaseIdLabel.AutoSize = true;
-            this.PurchaseIdLabel.Location = new System.Drawing.Point(89, 47);
+            this.PurchaseIdLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PurchaseIdLabel.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.PurchaseIdLabel.Location = new System.Drawing.Point(89, 43);
             this.PurchaseIdLabel.Name = "PurchaseIdLabel";
-            this.PurchaseIdLabel.Size = new System.Drawing.Size(0, 13);
+            this.PurchaseIdLabel.Size = new System.Drawing.Size(0, 18);
             this.PurchaseIdLabel.TabIndex = 10;
             // 
             // label10
