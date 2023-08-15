@@ -36,10 +36,10 @@
             this.ProductQuatity = new System.Windows.Forms.NumericUpDown();
             this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.ProductExpirationDate = new System.Windows.Forms.DateTimePicker();
+            this.ProductList = new System.Windows.Forms.ComboBox();
             this.CancelButton = new System.Windows.Forms.Button();
-            this.AddProductButton = new System.Windows.Forms.Button();
+            this.AddInStockButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.ProductPrice)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ProductQuatity)).BeginInit();
             this.SuspendLayout();
@@ -114,20 +114,21 @@
             this.label4.TabIndex = 22;
             this.label4.Text = "Date d\'expiration";
             // 
-            // dateTimePicker1
+            // ProductExpirationDate
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(27, 270);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker1.TabIndex = 23;
+            this.ProductExpirationDate.Location = new System.Drawing.Point(27, 270);
+            this.ProductExpirationDate.Name = "ProductExpirationDate";
+            this.ProductExpirationDate.Size = new System.Drawing.Size(200, 20);
+            this.ProductExpirationDate.TabIndex = 23;
             // 
-            // comboBox1
+            // ProductList
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(27, 130);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(342, 21);
-            this.comboBox1.TabIndex = 24;
+            this.ProductList.FormattingEnabled = true;
+            this.ProductList.Location = new System.Drawing.Point(27, 130);
+            this.ProductList.Name = "ProductList";
+            this.ProductList.Size = new System.Drawing.Size(342, 21);
+            this.ProductList.TabIndex = 24;
+            this.ProductList.SelectedIndexChanged += new System.EventHandler(this.ProductList_SelectedIndexChanged);
             // 
             // CancelButton
             // 
@@ -144,19 +145,20 @@
             this.CancelButton.UseVisualStyleBackColor = false;
             this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
-            // AddProductButton
+            // AddInStockButton
             // 
-            this.AddProductButton.BackColor = System.Drawing.Color.MidnightBlue;
-            this.AddProductButton.FlatAppearance.BorderSize = 0;
-            this.AddProductButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.AddProductButton.Font = new System.Drawing.Font("Lucida Sans", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AddProductButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.AddProductButton.Location = new System.Drawing.Point(26, 324);
-            this.AddProductButton.Name = "AddProductButton";
-            this.AddProductButton.Size = new System.Drawing.Size(169, 32);
-            this.AddProductButton.TabIndex = 25;
-            this.AddProductButton.Text = "Enregistrer le stock";
-            this.AddProductButton.UseVisualStyleBackColor = false;
+            this.AddInStockButton.BackColor = System.Drawing.Color.MidnightBlue;
+            this.AddInStockButton.FlatAppearance.BorderSize = 0;
+            this.AddInStockButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.AddInStockButton.Font = new System.Drawing.Font("Lucida Sans", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AddInStockButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.AddInStockButton.Location = new System.Drawing.Point(26, 324);
+            this.AddInStockButton.Name = "AddInStockButton";
+            this.AddInStockButton.Size = new System.Drawing.Size(169, 32);
+            this.AddInStockButton.TabIndex = 25;
+            this.AddInStockButton.Text = "Enregistrer le stock";
+            this.AddInStockButton.UseVisualStyleBackColor = false;
+            this.AddInStockButton.Click += new System.EventHandler(this.AddInStockButton_Click);
             // 
             // NewStockForm
             // 
@@ -164,9 +166,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(405, 408);
             this.Controls.Add(this.CancelButton);
-            this.Controls.Add(this.AddProductButton);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.AddInStockButton);
+            this.Controls.Add(this.ProductList);
+            this.Controls.Add(this.ProductExpirationDate);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.ProductPrice);
             this.Controls.Add(this.label7);
@@ -195,9 +197,9 @@
         private System.Windows.Forms.NumericUpDown ProductQuatity;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.DateTimePicker ProductExpirationDate;
+        private System.Windows.Forms.ComboBox ProductList;
         private System.Windows.Forms.Button CancelButton;
-        private System.Windows.Forms.Button AddProductButton;
+        private System.Windows.Forms.Button AddInStockButton;
     }
 }

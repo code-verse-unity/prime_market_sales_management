@@ -28,10 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.label8 = new System.Windows.Forms.Label();
             this.CancelButton = new System.Windows.Forms.Button();
-            this.AddProductButton = new System.Windows.Forms.Button();
+            this.UpdateProductButton = new System.Windows.Forms.Button();
             this.ProductPrice = new System.Windows.Forms.NumericUpDown();
             this.label7 = new System.Windows.Forms.Label();
             this.ProductIsPerishable = new System.Windows.Forms.CheckBox();
@@ -47,22 +45,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.ProductPrice)).BeginInit();
             this.SuspendLayout();
             // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(30, 373);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker1.TabIndex = 43;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(26, 348);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(144, 13);
-            this.label8.TabIndex = 42;
-            this.label8.Text = "Date d\'expiration ( Facultatif )";
-            // 
             // CancelButton
             // 
             this.CancelButton.BackColor = System.Drawing.Color.LightSteelBlue;
@@ -70,26 +52,28 @@
             this.CancelButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CancelButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CancelButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.CancelButton.Location = new System.Drawing.Point(215, 429);
+            this.CancelButton.Location = new System.Drawing.Point(215, 357);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(160, 32);
             this.CancelButton.TabIndex = 41;
             this.CancelButton.Text = "Annuler";
             this.CancelButton.UseVisualStyleBackColor = false;
+            this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
-            // AddProductButton
+            // UpdateProductButton
             // 
-            this.AddProductButton.BackColor = System.Drawing.Color.MidnightBlue;
-            this.AddProductButton.FlatAppearance.BorderSize = 0;
-            this.AddProductButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.AddProductButton.Font = new System.Drawing.Font("Lucida Sans", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AddProductButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.AddProductButton.Location = new System.Drawing.Point(32, 429);
-            this.AddProductButton.Name = "AddProductButton";
-            this.AddProductButton.Size = new System.Drawing.Size(157, 32);
-            this.AddProductButton.TabIndex = 40;
-            this.AddProductButton.Text = "Sauvegarder";
-            this.AddProductButton.UseVisualStyleBackColor = false;
+            this.UpdateProductButton.BackColor = System.Drawing.Color.MidnightBlue;
+            this.UpdateProductButton.FlatAppearance.BorderSize = 0;
+            this.UpdateProductButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.UpdateProductButton.Font = new System.Drawing.Font("Lucida Sans", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UpdateProductButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.UpdateProductButton.Location = new System.Drawing.Point(32, 357);
+            this.UpdateProductButton.Name = "UpdateProductButton";
+            this.UpdateProductButton.Size = new System.Drawing.Size(157, 32);
+            this.UpdateProductButton.TabIndex = 40;
+            this.UpdateProductButton.Text = "Sauvegarder";
+            this.UpdateProductButton.UseVisualStyleBackColor = false;
+            this.UpdateProductButton.Click += new System.EventHandler(this.AddProductButton_Click);
             // 
             // ProductPrice
             // 
@@ -200,11 +184,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(417, 524);
-            this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.label8);
+            this.ClientSize = new System.Drawing.Size(417, 460);
             this.Controls.Add(this.CancelButton);
-            this.Controls.Add(this.AddProductButton);
+            this.Controls.Add(this.UpdateProductButton);
             this.Controls.Add(this.ProductPrice);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.ProductIsPerishable);
@@ -227,11 +209,8 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button CancelButton;
-        private System.Windows.Forms.Button AddProductButton;
+        private System.Windows.Forms.Button UpdateProductButton;
         private System.Windows.Forms.NumericUpDown ProductPrice;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.CheckBox ProductIsPerishable;

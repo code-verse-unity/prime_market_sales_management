@@ -13,5 +13,6 @@ namespace InfrastructureLayer.Repositories.Stock
         void Update(IStockModel stock);
         void RemoveQuantity(int productId, int quantity);
         IEnumerable<IStockModel> GetByProductId(int productId);
+        void Add(IStockModel stock);
     }
 }
