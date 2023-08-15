@@ -280,11 +280,28 @@ namespace supermarket_sales_manegement.UserControls.Purchase
         {
             ProductPurchaseDataGridView.Columns.Clear();
 
+            DataGridViewTextBoxColumn productNameColumn = new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Désignation",
+                Name = "Désignation",
+            };
+
+            DataGridViewTextBoxColumn unitColumn = new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Unité",
+                Name = "Unité",
+            };
+
+            ProductPurchaseDataGridView.Columns.Add(productNameColumn);
+            ProductPurchaseDataGridView.Columns.Add(unitColumn);
+
             ProductPurchaseDataGridView.DataSource = productPurchases.ToList();
             ProductPurchaseDataGridView.Columns["Id"].Visible = false;
             ProductPurchaseDataGridView.Columns["ProductId"].Visible = false;
             ProductPurchaseDataGridView.Columns["PurchaseId"].Visible = false;
-            ProductPurchaseDataGridView.Columns["Product"].DisplayIndex = 0;
+            ProductPurchaseDataGridView.Columns["Product"].Visible = false;
+
+            ProductPurchaseDataGridView.Columns["Désignation"].DisplayIndex = 0;
             ProductPurchaseDataGridView.Columns["Price"].DisplayIndex = 1;
             ProductPurchaseDataGridView.Columns["Quantity"].HeaderText = "Quantité";
             ProductPurchaseDataGridView.Columns["SubTotal"].HeaderText = "Sous-total";
@@ -299,12 +316,21 @@ namespace supermarket_sales_manegement.UserControls.Purchase
         {
             if (e.RowIndex >= 0)
             {
-                if (ProductPurchaseDataGridView.Columns["Product"] != null && e.ColumnIndex == ProductPurchaseDataGridView.Columns["Product"].Index)
+                if (ProductPurchaseDataGridView.Columns["Désignation"] != null && e.ColumnIndex == ProductPurchaseDataGridView.Columns["Désignation"].Index)
                 {
                     ProductPurchaseModel productPurchaseModel = (ProductPurchaseModel)ProductPurchaseDataGridView.Rows[e.RowIndex].DataBoundItem;
                     if (productPurchaseModel != null)
                     {
                         e.Value = productPurchaseModel.Product.Name;
+                        e.FormattingApplied = true;
+                    }
+                }
+                else if (ProductPurchaseDataGridView.Columns["Unité"] != null && e.ColumnIndex == ProductPurchaseDataGridView.Columns["Unité"].Index)
+                {
+                    ProductPurchaseModel productPurchaseModel = (ProductPurchaseModel)ProductPurchaseDataGridView.Rows[e.RowIndex].DataBoundItem;
+                    if (productPurchaseModel != null)
+                    {
+                        e.Value = productPurchaseModel.Product.Unit;
                         e.FormattingApplied = true;
                     }
                 }
