@@ -145,7 +145,6 @@ namespace InfrastructureLayer.Repositories.Product
                                         Console.WriteLine("Error: " + ex.Message);
                                     }
 
-
                                     product.InStock = CalculateTotalQuantity(product.Id);
                                     product.Category = categoryRepository.GetById(product.CategoryId);
 

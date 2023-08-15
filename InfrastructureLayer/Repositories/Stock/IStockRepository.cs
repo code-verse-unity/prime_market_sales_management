@@ -9,6 +9,10 @@ namespace InfrastructureLayer.Repositories.Stock
 {
     public interface IStockRepository
     {
+        void Delete(IStockModel stock);
+        void Update(IStockModel stock);
+        void RemoveQuantity(int productId, int quantity);
+        IEnumerable<IStockModel> GetByProductId(int productId);
         void Add(IStockModel stock);
     }
 }

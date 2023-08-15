@@ -48,13 +48,14 @@
     <Compile Include="Models\PriceModel\PriceModel.cs" />
     <Compile Include="Models\ProductModel\IProductModel.cs" />
     <Compile Include="Models\ProductModel\ProductModel.cs" />
+    <Compile Include="Models\ProductPurchaseModel\IProductPurchaseModel.cs" />
+    <Compile Include="Models\ProductPurchaseModel\ProductPurchaseModel.cs" />
+    <Compile Include="Models\PurchaseModel\IPurchaseModel.cs" />
+    <Compile Include="Models\PurchaseModel\PurchaseModel.cs" />
     <Compile Include="Models\StockModel\IStockModel.cs" />
     <Compile Include="Models\StockModel\StockModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\ProductPurchaseModel\" />
-    <Folder Include="Models\PurchaseModel\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
