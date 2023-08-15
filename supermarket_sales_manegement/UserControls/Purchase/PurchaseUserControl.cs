@@ -78,6 +78,12 @@ namespace supermarket_sales_manegement.UserControls.Purchase
             PurchaseDataGridView.Columns["CreatedAt"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
             PurchaseDataGridView.Columns["ProductPurchases"].Visible = false;
+
+            Font font = new Font("Arial", 9, FontStyle.Bold);
+            foreach (DataGridViewColumn column in PurchaseDataGridView.Columns)
+            {
+                column.HeaderCell.Style.Font = font;
+            }
         }
 
         private void PurchaseDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -310,6 +316,12 @@ namespace supermarket_sales_manegement.UserControls.Purchase
             ProductPurchaseDataGridView.Columns["Price"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             ProductPurchaseDataGridView.Columns["Quantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             ProductPurchaseDataGridView.Columns["SubTotal"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
+            Font font = new Font("Arial", 9, FontStyle.Bold);
+            foreach (DataGridViewColumn column in ProductPurchaseDataGridView.Columns)
+            {
+                column.HeaderCell.Style.Font = font;
+            }
         }
 
         private void ProductPurchaseDataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
