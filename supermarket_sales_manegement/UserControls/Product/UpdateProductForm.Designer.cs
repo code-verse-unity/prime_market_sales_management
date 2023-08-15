@@ -87,19 +87,20 @@
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(29, 160);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(61, 13);
+            this.label7.Size = new System.Drawing.Size(68, 13);
             this.label7.TabIndex = 38;
-            this.label7.Text = "Prix unitaire";
+            this.label7.Text = "Prix unitaire *";
             // 
             // ProductIsPerishable
             // 
             this.ProductIsPerishable.AutoSize = true;
-            this.ProductIsPerishable.Location = new System.Drawing.Point(29, 314);
+            this.ProductIsPerishable.Location = new System.Drawing.Point(34, 318);
             this.ProductIsPerishable.Name = "ProductIsPerishable";
             this.ProductIsPerishable.Size = new System.Drawing.Size(46, 17);
             this.ProductIsPerishable.TabIndex = 35;
             this.ProductIsPerishable.Text = "Non";
             this.ProductIsPerishable.UseVisualStyleBackColor = true;
+            this.ProductIsPerishable.CheckedChanged += new System.EventHandler(this.ProductIsPerishable_CheckedChanged);
             // 
             // label5
             // 
@@ -124,18 +125,18 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(31, 221);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(38, 13);
+            this.label4.Size = new System.Drawing.Size(45, 13);
             this.label4.TabIndex = 32;
-            this.label4.Text = "Rayon";
+            this.label4.Text = "Rayon *";
             // 
             // ProductUnit
             // 
             this.ProductUnit.AutoSize = true;
             this.ProductUnit.Location = new System.Drawing.Point(286, 160);
             this.ProductUnit.Name = "ProductUnit";
-            this.ProductUnit.Size = new System.Drawing.Size(32, 13);
+            this.ProductUnit.Size = new System.Drawing.Size(39, 13);
             this.ProductUnit.TabIndex = 31;
-            this.ProductUnit.Text = "Unité";
+            this.ProductUnit.Text = "Unité *";
             // 
             // ProductUnitName
             // 
@@ -169,9 +170,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(30, 98);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(79, 13);
+            this.label1.Size = new System.Drawing.Size(86, 13);
             this.label1.TabIndex = 27;
-            this.label1.Text = "Nom du produit";
+            this.label1.Text = "Nom du produit *";
             // 
             // ProductName
             // 

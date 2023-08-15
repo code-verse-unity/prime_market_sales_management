@@ -8,6 +8,7 @@ using InfrastructureLayer.Repositories.Stock;
 using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
+using System.Diagnostics;
 
 namespace InfrastructureLayer.Repositories.Product
 {
@@ -217,10 +218,9 @@ namespace InfrastructureLayer.Repositories.Product
                 try
                 {
                     connection.Open();
-                    string retrieveTotalQuantityQuery = "SELECT stock.quantity as quantity, price.unit_price as price from products " +
-                        "LEFT JOIN stock on products.id = stock.product_id " +
-                        "LEFT JOIN price on products.id = price.product_id " +
-                        "where products.id = @productId;";
+                    string retrieveTotalQuantityQuery = "SELECT stock.quantity, price.unit_price as price from stock " +
+                       "LEFT JOIN price on price.price_date = stock.created_at "+
+                        "WHERE stock.product_id = @productId";
 
                     using (SQLiteCommand cmd = new SQLiteCommand(retrieveTotalQuantityQuery, connection))
                     {

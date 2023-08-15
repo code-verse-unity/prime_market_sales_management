@@ -59,7 +59,10 @@ namespace supermarket_sales_manegement.UserControls.Product
 
         private void AddProductButton_Click(object sender, EventArgs e)
         {
-            if (ProductCategory.SelectedIndex > 0)
+            bool validated = ProductCategory.SelectedIndex > 0 &&
+                ProductName.Text != "" && ProductPrice.Value > 0 && ProductUnitName.Text != "";
+
+            if (validated)
             {
                 ProductModel product = new ProductModel()
                 {
@@ -76,7 +79,23 @@ namespace supermarket_sales_manegement.UserControls.Product
                 parent.LoadProductsIntoDataGridView(new ProductRepository().GetAll());
                 Close();
             }
+            else
+            {
+                MessageBox.Show("Veuillez remplir correctement tous les champs requis");
+            }
                
+        }
+
+        private void ProductIsPerishable_CheckedChanged(object sender, EventArgs e)
+        {
+            if (ProductIsPerishable.Checked)
+            {
+                ProductIsPerishable.Text = "Oui";
+            }
+            else
+            {
+                ProductIsPerishable.Text = "Non";
+            }
         }
     }
 }

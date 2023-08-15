@@ -43,45 +43,80 @@ namespace supermarket_sales_manegement.UserControls
 
         private void AddProductButton_Click(object sender, EventArgs e)
         {
-            IPriceModel priceModel = new PriceModel()
-            {
-                UnitPrice = (double)ProductPrice.Value,
-            };
+            bool validated = 
+                ProductName.Text != "" &&
+                ProductPrice.Value > 0 && 
+                ProductUnitName.Text != "" &&
+                ProductQuatity.Value > 0 && ProductCategory.SelectedIndex > 0;
 
-            bool isPerishable = ProductIsPerishable.Checked;
-            DateTime? expirationDate;
-            if (isPerishable)
-                expirationDate = ProductExpirationDate.Value;
+            if (!validated)
+            {
+                MessageBox.Show("Veuillez remplir correctement tous les champs requis");
+            }
             else
-                expirationDate = null;
-
-            IStockModel stockModel = new StockModel()
             {
-                ExpirationDate = expirationDate,
-                Quantity = (int)ProductQuatity.Value,
-            };
-
-            if(ProductCategory.SelectedIndex > 0)
-            {
-                IProductModel productModel = new ProductModel()
+                IPriceModel priceModel = new PriceModel()
                 {
-                    CategoryId = ((CategoryModel)ProductCategory.SelectedItem).Id,
-                    IsPerishable = isPerishable,
-                    Name = ProductName.Text,
-                    Unit = ProductUnitName.Text
+                    UnitPrice = (double)ProductPrice.Value,
                 };
 
-                ProductRepository productRepository = new ProductRepository();
-                productRepository.Add(productModel, priceModel, stockModel);
+                bool isPerishable = ProductIsPerishable.Checked;
+                DateTime? expirationDate;
+                if (isPerishable)
+                {
+                    expirationDate = ProductExpirationDate.Value;
+                    if(expirationDate <= DateTime.Now)
+                    {
+                        MessageBox.Show("Veuillez spécifier une date d'expiration valide");
+                        return;
+                    }
+                }
+                else
+                    expirationDate = null;
 
-                parent.LoadProductsIntoDataGridView(productRepository.GetAll());
-                Close();
+                IStockModel stockModel = new StockModel()
+                {
+                    ExpirationDate = expirationDate,
+                    Quantity = (int)ProductQuatity.Value,
+                };
+
+                if (ProductCategory.SelectedIndex > 0)
+                {
+                    IProductModel productModel = new ProductModel()
+                    {
+                        CategoryId = ((CategoryModel)ProductCategory.SelectedItem).Id,
+                        IsPerishable = isPerishable,
+                        Name = ProductName.Text,
+                        Unit = ProductUnitName.Text
+                    };
+
+                    ProductRepository productRepository = new ProductRepository();
+                    productRepository.Add(productModel, priceModel, stockModel);
+
+                    parent.LoadProductsIntoDataGridView(productRepository.GetAll());
+                    Close();
+                }
             }
+            
         }
 
         private void CancelButton_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void ProductIsPerishable_CheckedChanged(object sender, EventArgs e)
+        {
+            if(ProductIsPerishable.Checked)
+            {
+                ProductIsPerishable.Text = "Oui";
+                ProductExpirationDate.Enabled = true;
+            }
+            else
+            {
+                ProductIsPerishable.Text = "Non";
+                ProductExpirationDate.Enabled = false;
+            }
         }
     }
 }
