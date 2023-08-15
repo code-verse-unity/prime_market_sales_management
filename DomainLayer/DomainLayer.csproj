@@ -52,6 +52,8 @@
     <Compile Include="Models\ProductPurchaseModel\ProductPurchaseModel.cs" />
     <Compile Include="Models\PurchaseModel\IPurchaseModel.cs" />
     <Compile Include="Models\PurchaseModel\PurchaseModel.cs" />
+    <Compile Include="Models\RevenueModel\IRevenueModel.cs" />
+    <Compile Include="Models\RevenueModel\RevenueModel.cs" />
     <Compile Include="Models\StockModel\IStockModel.cs" />
     <Compile Include="Models\StockModel\StockModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
