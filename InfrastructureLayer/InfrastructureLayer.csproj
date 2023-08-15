@@ -71,6 +71,8 @@
     <Compile Include="Repositories\Price\PriceRepository.cs" />
     <Compile Include="Repositories\Product\IProductRepository.cs" />
     <Compile Include="Repositories\Product\ProductRepository.cs" />
+    <Compile Include="Repositories\Revenue\IRevenueRepository.cs" />
+    <Compile Include="Repositories\Revenue\RevenueRepository.cs" />
     <Compile Include="Repositories\Stock\IStockRepository.cs" />
     <Compile Include="Repositories\Stock\StockRepository.cs" />
   </ItemGroup>

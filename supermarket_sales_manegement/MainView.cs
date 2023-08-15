@@ -1,6 +1,8 @@
 ﻿using supermarket_sales_manegement.UserControls;
 using supermarket_sales_manegement.UserControls.Purchase;
+using supermarket_sales_manegement.UserControls.Revenue;
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace supermarket_sales_manegement
@@ -41,6 +43,12 @@ namespace supermarket_sales_manegement
         {
             outled.Controls.Clear();
             outled.Controls.Add(new PurchaseUserControl(Dock = DockStyle.Fill));
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            outled.Controls.Clear();
+            outled.Controls.Add(new RevenueUserControl(Dock = DockStyle.Fill));
         }
     }
 }
