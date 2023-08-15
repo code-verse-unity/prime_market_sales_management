@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -63,7 +64,7 @@ namespace supermarket_sales_manegement.UserControls.Purchase
             ProductDataGridView.DataSource = productsToShow.ToList();
 
             ProductDataGridView.Columns["Name"].HeaderText = "Nom";
-            ProductDataGridView.Columns["InStock"].HeaderText = "Quantité en stock";
+            ProductDataGridView.Columns["InStock"].HeaderText = "En stock";
             ProductDataGridView.Columns["Unit"].HeaderText = "Unité";
             ProductDataGridView.Columns["Price"].HeaderText = "Prix unitaire";
             ProductDataGridView.Columns["Id"].Visible = false;
@@ -71,6 +72,12 @@ namespace supermarket_sales_manegement.UserControls.Purchase
             ProductDataGridView.Columns["IsPerishable"].Visible = false;
             ProductDataGridView.Columns["DeletedAt"].Visible = false;
             ProductDataGridView.Columns["Category"].Visible = false;
+            ProductDataGridView.Columns["InStock"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            ProductDataGridView.Columns["Price"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            ProductDataGridView.Columns["Name"].HeaderCell.Style.Font = new Font("Arial", 9, FontStyle.Bold);
+            ProductDataGridView.Columns["InStock"].HeaderCell.Style.Font = new Font("Arial", 9, FontStyle.Bold);
+            ProductDataGridView.Columns["Unit"].HeaderCell.Style.Font = new Font("Arial", 9, FontStyle.Bold);
+            ProductDataGridView.Columns["Price"].HeaderCell.Style.Font = new Font("Arial", 9, FontStyle.Bold);
         }
 
         private void ReloadProductPurchaseDataGridView()
@@ -83,28 +90,48 @@ namespace supermarket_sales_manegement.UserControls.Purchase
                 Text = "Supprimer",
                 UseColumnTextForButtonValue = true,
             };
+            deleteButton.HeaderCell.Style.Font = new Font("Arial", 9, FontStyle.Bold);
 
-            ProductPurchaseDataGridView.Columns.Insert(0, deleteButton);
+            DataGridViewTextBoxColumn productNameColumn = new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Désignation",
+                Name = "Désignation",
+            };
+            productNameColumn.HeaderCell.Style.Font = new Font("Arial", 9, FontStyle.Bold);
+
+            DataGridViewTextBoxColumn unitColumn = new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Unité",
+                Name = "Unité",
+            };
+            unitColumn.HeaderCell.Style.Font = new Font("Arial", 9, FontStyle.Bold);
+
+            ProductPurchaseDataGridView.Columns.AddRange(deleteButton, productNameColumn, unitColumn);
 
             ProductPurchaseDataGridView.DataSource = productPurchases.ToList();
             ProductPurchaseDataGridView.Columns["Id"].Visible = false;
             ProductPurchaseDataGridView.Columns["ProductId"].Visible = false;
             ProductPurchaseDataGridView.Columns["PurchaseId"].Visible = false;
-            ProductPurchaseDataGridView.Columns["Product"].DisplayIndex = 1;
-            ProductPurchaseDataGridView.Columns["Price"].DisplayIndex = 2;
-            ProductPurchaseDataGridView.Columns["Quantity"].DisplayIndex = 3;
-            ProductPurchaseDataGridView.Columns["SubTotal"].DisplayIndex = 4;
+            ProductPurchaseDataGridView.Columns["Product"].Visible = false;
+            ProductPurchaseDataGridView.Columns["Price"].DisplayIndex = 4;
+            ProductPurchaseDataGridView.Columns["Quantity"].DisplayIndex = 5;
+            ProductPurchaseDataGridView.Columns["SubTotal"].DisplayIndex = 6;
             ProductPurchaseDataGridView.Columns["Quantity"].HeaderText = "Quantité";
             ProductPurchaseDataGridView.Columns["SubTotal"].HeaderText = "Sous-total";
-            ProductPurchaseDataGridView.Columns["Product"].HeaderText = "Désignation";
             ProductPurchaseDataGridView.Columns["Price"].HeaderText = "Prix unitaire";
+            ProductPurchaseDataGridView.Columns["Price"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            ProductPurchaseDataGridView.Columns["SubTotal"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            ProductPurchaseDataGridView.Columns["Quantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            ProductPurchaseDataGridView.Columns["Price"].HeaderCell.Style.Font = new Font("Arial", 9, FontStyle.Bold);
+            ProductPurchaseDataGridView.Columns["Quantity"].HeaderCell.Style.Font = new Font("Arial", 9, FontStyle.Bold);
+            ProductPurchaseDataGridView.Columns["SubTotal"].HeaderCell.Style.Font = new Font("Arial", 9, FontStyle.Bold);
         }
 
         private void ReloadTotalLabel()
         {
             double total = 0;
             productPurchases.ForEach(productPurchase => total += productPurchase.SubTotal);
-            TotalLabel.Text = total.ToString();
+            TotalLabel.Text = FormatCurrency(total);
         }
 
         private void InitProductCategoryComboBox()
@@ -119,6 +146,13 @@ namespace supermarket_sales_manegement.UserControls.Purchase
             ProductCategoryComboBox.DataSource = values;
             ProductCategoryComboBox.DisplayMember = "Name";
             ProductCategoryComboBox.ValueMember = "Id";
+        }
+
+        string FormatCurrency(double number)
+        {
+            CultureInfo cultureInfo = new CultureInfo("de-DE");
+            cultureInfo.NumberFormat.CurrencySymbol = "Ar";
+            return number.ToString("C", cultureInfo);
         }
 
         private void ProductCategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -240,12 +274,39 @@ namespace supermarket_sales_manegement.UserControls.Purchase
 
         private void ProductPurchaseDataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            if (e.RowIndex >= 0 && ProductPurchaseDataGridView.Columns["Product"] != null && e.ColumnIndex == ProductPurchaseDataGridView.Columns["Product"].Index)
+            if (e.RowIndex >= 0 && ProductPurchaseDataGridView.Columns["Désignation"] != null && e.ColumnIndex == ProductPurchaseDataGridView.Columns["Désignation"].Index)
             {
                 ProductPurchaseModel productPurchaseModel = (ProductPurchaseModel)ProductPurchaseDataGridView.Rows[e.RowIndex].DataBoundItem;
                 if (productPurchaseModel != null)
                 {
                     e.Value = productPurchaseModel.Product.Name;
+                    e.FormattingApplied = true;
+                }
+            }
+            else if (e.RowIndex >= 0 && ProductPurchaseDataGridView.Columns["Unité"] != null && e.ColumnIndex == ProductPurchaseDataGridView.Columns["Unité"].Index)
+            {
+                ProductPurchaseModel productPurchaseModel = (ProductPurchaseModel)ProductPurchaseDataGridView.Rows[e.RowIndex].DataBoundItem;
+                if (productPurchaseModel != null)
+                {
+                    e.Value = productPurchaseModel.Product.Unit;
+                    e.FormattingApplied = true;
+                }
+            }
+            else if (e.RowIndex >= 0 && ProductPurchaseDataGridView.Columns["Price"] != null && e.ColumnIndex == ProductPurchaseDataGridView.Columns["Price"].Index)
+            {
+                ProductPurchaseModel productPurchaseModel = (ProductPurchaseModel)ProductPurchaseDataGridView.Rows[e.RowIndex].DataBoundItem;
+                if (productPurchaseModel != null)
+                {
+                    e.Value = FormatCurrency(productPurchaseModel.Price);
+                    e.FormattingApplied = true;
+                }
+            }
+            else if (e.RowIndex >= 0 && ProductPurchaseDataGridView.Columns["SubTotal"] != null && e.ColumnIndex == ProductPurchaseDataGridView.Columns["SubTotal"].Index)
+            {
+                ProductPurchaseModel productPurchaseModel = (ProductPurchaseModel)ProductPurchaseDataGridView.Rows[e.RowIndex].DataBoundItem;
+                if (productPurchaseModel != null)
+                {
+                    e.Value = FormatCurrency(productPurchaseModel.SubTotal);
                     e.FormattingApplied = true;
                 }
             }
@@ -322,6 +383,24 @@ namespace supermarket_sales_manegement.UserControls.Purchase
                 this.Close();
                 MessageBox.Show("Achat éffecté avec succès.", "Achat éffectué", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+            }
+        }
+
+        private void panel5_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void ProductDataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.RowIndex >= 0 && ProductDataGridView.Columns["Price"] != null && e.ColumnIndex == ProductDataGridView.Columns["Price"].Index)
+            {
+                ProductModel productModel = (ProductModel)ProductDataGridView.Rows[e.RowIndex].DataBoundItem;
+                if (productModel != null)
+                {
+                    e.Value = FormatCurrency(productModel.Price);
+                    e.FormattingApplied = true;
+                }
             }
         }
     }

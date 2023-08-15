@@ -72,15 +72,15 @@
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(1370, 522);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(1429, 522);
             this.flowLayoutPanel1.TabIndex = 1;
             // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 58.21832F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 41.78168F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 551F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 61.23522F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 38.76478F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 662F));
             this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel3, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel2, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel5, 0, 0);
@@ -89,16 +89,16 @@
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1358, 513);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1423, 513);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // flowLayoutPanel3
             // 
             this.flowLayoutPanel3.Controls.Add(this.panel4);
             this.flowLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel3.Location = new System.Drawing.Point(472, 3);
+            this.flowLayoutPanel3.Location = new System.Drawing.Point(469, 3);
             this.flowLayoutPanel3.Name = "flowLayoutPanel3";
-            this.flowLayoutPanel3.Size = new System.Drawing.Size(331, 507);
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(288, 507);
             this.flowLayoutPanel3.TabIndex = 2;
             // 
             // panel4
@@ -191,9 +191,9 @@
             // 
             this.flowLayoutPanel2.Controls.Add(this.panel3);
             this.flowLayoutPanel2.Controls.Add(this.ProductPurchaseDataGridView);
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(809, 3);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(763, 3);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(546, 507);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(657, 507);
             this.flowLayoutPanel2.TabIndex = 3;
             // 
             // panel3
@@ -222,9 +222,9 @@
             this.TotalLabel.AutoSize = true;
             this.TotalLabel.Location = new System.Drawing.Point(89, 48);
             this.TotalLabel.Name = "TotalLabel";
-            this.TotalLabel.Size = new System.Drawing.Size(13, 13);
+            this.TotalLabel.Size = new System.Drawing.Size(41, 13);
             this.TotalLabel.TabIndex = 6;
-            this.TotalLabel.Text = "0";
+            this.TotalLabel.Text = "0.00 Ar";
             // 
             // label3
             // 
@@ -255,7 +255,7 @@
             this.ProductPurchaseDataGridView.Name = "ProductPurchaseDataGridView";
             this.ProductPurchaseDataGridView.ReadOnly = true;
             this.ProductPurchaseDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.ProductPurchaseDataGridView.Size = new System.Drawing.Size(543, 424);
+            this.ProductPurchaseDataGridView.Size = new System.Drawing.Size(649, 424);
             this.ProductPurchaseDataGridView.TabIndex = 1;
             this.ProductPurchaseDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ProductPurchaseDataGridView_CellContentClick);
             this.ProductPurchaseDataGridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.ProductPurchaseDataGridView_CellFormatting);
@@ -266,7 +266,7 @@
             this.flowLayoutPanel5.Controls.Add(this.ProductDataGridView);
             this.flowLayoutPanel5.Location = new System.Drawing.Point(3, 3);
             this.flowLayoutPanel5.Name = "flowLayoutPanel5";
-            this.flowLayoutPanel5.Size = new System.Drawing.Size(451, 507);
+            this.flowLayoutPanel5.Size = new System.Drawing.Size(459, 507);
             this.flowLayoutPanel5.TabIndex = 4;
             // 
             // panel5
@@ -278,6 +278,7 @@
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(448, 74);
             this.panel5.TabIndex = 0;
+            this.panel5.Paint += new System.Windows.Forms.PaintEventHandler(this.panel5_Paint);
             // 
             // label9
             // 
@@ -319,13 +320,14 @@
             this.ProductDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.ProductDataGridView.Size = new System.Drawing.Size(448, 424);
             this.ProductDataGridView.TabIndex = 0;
+            this.ProductDataGridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.ProductDataGridView_CellFormatting);
             this.ProductDataGridView.SelectionChanged += new System.EventHandler(this.ProductDataGridView_SelectionChanged);
             // 
             // AddPurchaseForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1370, 522);
+            this.ClientSize = new System.Drawing.Size(1429, 522);
             this.Controls.Add(this.flowLayoutPanel1);
             this.MaximizeBox = false;
             this.Name = "AddPurchaseForm";
