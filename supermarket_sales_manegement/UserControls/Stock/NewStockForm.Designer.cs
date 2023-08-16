@@ -69,9 +69,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(24, 103);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(79, 13);
+            this.label1.Size = new System.Drawing.Size(86, 13);
             this.label1.TabIndex = 10;
-            this.label1.Text = "Nom du produit";
+            this.label1.Text = "Nom du produit *";
             // 
             // ProductPrice
             // 
@@ -85,9 +85,9 @@
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(23, 171);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(61, 13);
+            this.label7.Size = new System.Drawing.Size(68, 13);
             this.label7.TabIndex = 20;
-            this.label7.Text = "Prix unitaire";
+            this.label7.Text = "Prix unitaire *";
             // 
             // ProductQuatity
             // 
@@ -101,18 +101,18 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(230, 171);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(47, 13);
+            this.label6.Size = new System.Drawing.Size(54, 13);
             this.label6.TabIndex = 18;
-            this.label6.Text = "Quantité";
+            this.label6.Text = "Quantité *";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(23, 242);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(86, 13);
+            this.label4.Size = new System.Drawing.Size(93, 13);
             this.label4.TabIndex = 22;
-            this.label4.Text = "Date d\'expiration";
+            this.label4.Text = "Date d\'expiration *";
             // 
             // ProductExpirationDate
             // 
@@ -123,6 +123,7 @@
             // 
             // ProductList
             // 
+            this.ProductList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ProductList.FormattingEnabled = true;
             this.ProductList.Location = new System.Drawing.Point(27, 130);
             this.ProductList.Name = "ProductList";

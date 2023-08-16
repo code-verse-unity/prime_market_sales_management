@@ -46,48 +46,67 @@ namespace supermarket_sales_manegement.UserControls
 
         private void AddInStockButton_Click(object sender, EventArgs e)
         {
-            DateTime stockDate = DateTime.Now;
+            bool validated = ProductList.SelectedIndex > 0 &&
+                ProductPrice.Value > 0 &&
+                ProductQuatity.Value > 0;
 
-            if (ProductList.SelectedIndex > 0)
+            if (!validated)
             {
-                ProductModel product = (ProductModel)ProductList.SelectedItem;
-
-                PriceModel price = new PriceModel()
-                {
-                    ProductId = product.Id,
-                    Date = stockDate,
-                    UnitPrice = (double)ProductPrice.Value,
-                };
-                StockModel stock;
-                if (product.IsPerishable)
-                {
-                    stock = new StockModel()
-                    {
-                        ProductId = product.Id,
-                        CreatedAt = stockDate,
-                        Quantity = (int)ProductQuatity.Value,
-                        ExpirationDate = ProductExpirationDate.Value,
-                    };
-                }
-                else
-                {
-                    stock = new StockModel()
-                    {
-                        ProductId = product.Id,
-                        CreatedAt = stockDate,
-                        Quantity = (int)ProductQuatity.Value,
-                        ExpirationDate = null,
-                    };
-                }
-
-                new PriceRepository().Add(price);
-                new StockRepository().Add(stock);
-                new ProductRepository().UpdateCump(product.Id);
-
-                parent.LoadProductsIntoDataGridView(new ProductRepository().GetAll());
-                Close();
+                MessageBox.Show("Veuillez remplir correctement tous les champs requis");
             }
+            else
+            {
 
+                DateTime stockDate = DateTime.Now;
+
+                if (ProductList.SelectedIndex > 0)
+                {
+                    ProductModel product = (ProductModel)ProductList.SelectedItem;
+
+                    PriceModel price = new PriceModel()
+                    {
+                        ProductId = product.Id,
+                        Date = stockDate,
+                        UnitPrice = (double)ProductPrice.Value,
+                    };
+                    StockModel stock;
+                    if (product.IsPerishable)
+                    {
+
+                        DateTime expirationDate = ProductExpirationDate.Value;
+                        if (expirationDate <= DateTime.Now)
+                        {
+                            MessageBox.Show("Veuillez spécifier une date d'expiration valide");
+                            return;
+                        }
+
+                        stock = new StockModel()
+                        {
+                            ProductId = product.Id,
+                            CreatedAt = stockDate,
+                            Quantity = (int)ProductQuatity.Value,
+                            ExpirationDate = expirationDate
+                        };
+                    }
+                    else
+                    {
+                        stock = new StockModel()
+                        {
+                            ProductId = product.Id,
+                            CreatedAt = stockDate,
+                            Quantity = (int)ProductQuatity.Value,
+                            ExpirationDate = null,
+                        };
+                    }
+
+                    new PriceRepository().Add(price);
+                    new StockRepository().Add(stock);
+                    new ProductRepository().UpdateCump(product.Id);
+
+                    parent.LoadProductsIntoDataGridView(new ProductRepository().GetAll());
+                    Close();
+                }
+            }
         }
 
         private void ProductList_SelectedIndexChanged(object sender, EventArgs e)
@@ -95,8 +114,8 @@ namespace supermarket_sales_manegement.UserControls
             if (ProductList.SelectedIndex > 0)
             {
                 ProductModel product = (ProductModel)ProductList.SelectedItem;
-                
-                if(product.IsPerishable)
+
+                if (product.IsPerishable)
                 {
                     ProductExpirationDate.Enabled = true;
                 }

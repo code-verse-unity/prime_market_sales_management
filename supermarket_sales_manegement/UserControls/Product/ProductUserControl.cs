@@ -87,10 +87,10 @@ namespace supermarket_sales_manegement.UserControls
                 ProductsDataGridView.Columns["CategoryId"].Visible = false;
             }
 
-            UpdateProductsCount();
+            UpdateProductsCount(products);
         }
 
-        private void UpdateProductsCount()
+        private void UpdateProductsCount(IEnumerable<IProductModel> products)
         {
             ProductCount.Text = products.Count().ToString();
             ProductPerishableCount.Text = products.Count(product => product.IsPerishable).ToString();
