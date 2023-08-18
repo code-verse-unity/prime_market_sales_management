@@ -134,7 +134,7 @@ namespace InfrastructureLayer.Repositories.Product
                                     try
                                     {
                                         product.Id = Convert.ToInt32(reader["id"].ToString());
-                                        product.Name = reader["name"].ToString();
+                                        product.Name = reader.GetString(reader.GetOrdinal("name"));
                                         product.CategoryId = Convert.ToInt32(reader["category_id"].ToString());
                                         product.Price = Convert.ToDouble(reader["cump"].ToString());
                                         product.IsPerishable = Convert.ToInt32(reader["is_perishable"].ToString()) == 1;
@@ -354,7 +354,7 @@ namespace InfrastructureLayer.Repositories.Product
                                     try
                                     {
                                         product.Id = Convert.ToInt32(reader["id"].ToString());
-                                        product.Name = reader["name"].ToString();
+                                        product.Name = reader.GetString(reader.GetOrdinal("name"));
                                         product.CategoryId = Convert.ToInt32(reader["category_id"].ToString());
                                         product.Price = Convert.ToDouble(reader["cump"].ToString());
                                         product.IsPerishable = Convert.ToInt32(reader["is_perishable"].ToString()) == 1;

@@ -242,10 +242,20 @@ namespace supermarket_sales_manegement.UserControls.Purchase
 
     private void AddPurchaseButton_Click(object sender, EventArgs e)
         {
-            AddPurchaseForm addPurchaseForm = new AddPurchaseForm
+            /*AddPurchaseForm addPurchaseForm = new AddPurchaseForm
             {
                 FormBorderStyle = FormBorderStyle.FixedSingle,
                 StartPosition = FormStartPosition.CenterScreen
+            };
+
+            addPurchaseForm.ShowDialog(); */
+
+             AddPurchaseForm addPurchaseForm = new AddPurchaseForm
+            {
+                FormBorderStyle = FormBorderStyle.FixedSingle,
+                StartPosition = FormStartPosition.CenterScreen,
+                Width = 1200,
+                Height = 700,
             };
 
             addPurchaseForm.ShowDialog();
