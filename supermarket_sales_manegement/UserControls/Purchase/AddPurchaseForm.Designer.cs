@@ -269,7 +269,7 @@
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(113, 17);
             this.label7.TabIndex = 17;
-            this.label7.Text = "Nom du produit :";
+            this.label7.Text = "Désignation :";
             // 
             // label6
             // 
@@ -338,7 +338,7 @@
             this.PerformPurchaseButton.Name = "PerformPurchaseButton";
             this.PerformPurchaseButton.Size = new System.Drawing.Size(223, 46);
             this.PerformPurchaseButton.TabIndex = 7;
-            this.PerformPurchaseButton.Text = "Valider l\'achat";
+            this.PerformPurchaseButton.Text = "Valider la vente";
             this.PerformPurchaseButton.UseVisualStyleBackColor = false;
             this.PerformPurchaseButton.Click += new System.EventHandler(this.PerformPurchaseButton_Click);
             // 

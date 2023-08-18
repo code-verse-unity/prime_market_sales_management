@@ -378,7 +378,7 @@ namespace supermarket_sales_manegement.UserControls.Purchase
                 purchaseRepository.Add(purchaseModel);
                 
                 this.Close();
-                MessageBox.Show("Achat éffecté avec succès.", "Achat éffectué", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Vente effectuée avec succès.", "Vente effectuée", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             }
         }

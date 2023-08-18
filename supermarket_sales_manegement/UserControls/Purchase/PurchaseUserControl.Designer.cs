@@ -111,7 +111,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(215, 25);
             this.label1.TabIndex = 4;
-            this.label1.Text = "Gestion des achats";
+            this.label1.Text = "Gestion des ventes";
             // 
             // label2
             // 
@@ -121,7 +121,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(312, 16);
             this.label2.TabIndex = 5;
-            this.label2.Text = "Ajouter, Modifier, Supprimer et Chercher des achats";
+            this.label2.Text = "Ajouter, Modifier, Supprimer et Chercher des ventes";
             // 
             // panel4
             // 
@@ -153,7 +153,7 @@
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(101, 13);
             this.label5.TabIndex = 15;
-            this.label5.Text = "Selectionner la date";
+            this.label5.Text = "Sélectionner la date";
             this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // panel14
@@ -238,7 +238,7 @@
             this.AddPurchaseButton.Name = "AddPurchaseButton";
             this.AddPurchaseButton.Size = new System.Drawing.Size(167, 32);
             this.AddPurchaseButton.TabIndex = 4;
-            this.AddPurchaseButton.Text = "Enregistrer un achat";
+            this.AddPurchaseButton.Text = "Enregistrer une vente";
             this.AddPurchaseButton.UseVisualStyleBackColor = false;
             this.AddPurchaseButton.Click += new System.EventHandler(this.AddPurchaseButton_Click);
             // 
@@ -388,7 +388,7 @@
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(148, 20);
             this.label6.TabIndex = 7;
-            this.label6.Text = "Détails de l\'achat";
+            this.label6.Text = "Détails de la vente";
             // 
             // panel3
             // 
