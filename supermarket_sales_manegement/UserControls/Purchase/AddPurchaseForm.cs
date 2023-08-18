@@ -1,25 +1,22 @@
-﻿using DomainLayer.Models.CategoryModel;
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Windows.Forms;
+using DomainLayer.Models.CategoryModel;
 using DomainLayer.Models.ProductModel;
 using DomainLayer.Models.ProductPurchaseModel;
 using DomainLayer.Models.PurchaseModel;
 using InfrastructureLayer.Repositories.Category;
 using InfrastructureLayer.Repositories.Product;
 using InfrastructureLayer.Repositories.PurchaseRepository;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace supermarket_sales_manegement.UserControls.Purchase
 {
     public partial class AddPurchaseForm : Form
-    {
+        {
         private IPurchaseRepository purchaseRepository;
         private IProductRepository productRepository;
         private ICategoryRepository categoryRepository;
