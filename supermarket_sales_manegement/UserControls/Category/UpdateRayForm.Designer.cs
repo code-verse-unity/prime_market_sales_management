@@ -109,6 +109,7 @@
             this.rayNumber.Name = "rayNumber";
             this.rayNumber.Size = new System.Drawing.Size(274, 20);
             this.rayNumber.TabIndex = 6;
+            this.rayNumber.Maximum = decimal.MaxValue;
             // 
             // label1
             // 

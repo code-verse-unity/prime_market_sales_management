@@ -81,6 +81,7 @@
             this.ProductPrice.Name = "ProductPrice";
             this.ProductPrice.Size = new System.Drawing.Size(239, 20);
             this.ProductPrice.TabIndex = 39;
+            this.ProductPrice.Maximum = decimal.MaxValue;
             // 
             // label7
             // 

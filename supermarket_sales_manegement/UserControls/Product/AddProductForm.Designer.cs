@@ -155,6 +155,7 @@
             this.ProductQuatity.Name = "ProductQuatity";
             this.ProductQuatity.Size = new System.Drawing.Size(136, 20);
             this.ProductQuatity.TabIndex = 15;
+            this.ProductQuatity.Maximum = decimal.MaxValue;
             // 
             // ProductPrice
             // 
@@ -162,6 +163,7 @@
             this.ProductPrice.Name = "ProductPrice";
             this.ProductPrice.Size = new System.Drawing.Size(239, 20);
             this.ProductPrice.TabIndex = 17;
+            this.ProductPrice.Maximum = decimal.MaxValue;
             // 
             // label7
             // 
