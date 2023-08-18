@@ -119,6 +119,7 @@
             this.categoryRayNumber.Name = "categoryRayNumber";
             this.categoryRayNumber.Size = new System.Drawing.Size(274, 20);
             this.categoryRayNumber.TabIndex = 6;
+            this.categoryRayNumber.Maximum = decimal.MaxValue;
             // 
             // button1
             // 
