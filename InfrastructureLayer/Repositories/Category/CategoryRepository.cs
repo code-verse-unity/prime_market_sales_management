@@ -61,7 +61,7 @@ namespace InfrastructureLayer.Repositories.Category
                     using (SQLiteCommand cmd = new SQLiteCommand(deleteStatement, connection))
                     {
                         cmd.CommandText= deleteStatement;
-                        cmd.Parameters.AddWithValue("@delete_at", new DateTime());
+                        cmd.Parameters.AddWithValue("@delete_at", DateTime.Now);
                         cmd.Parameters.AddWithValue("@id", category.Id);
 
                         try

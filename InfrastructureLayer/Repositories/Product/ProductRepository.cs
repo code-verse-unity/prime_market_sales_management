@@ -83,7 +83,7 @@ namespace InfrastructureLayer.Repositories.Product
                         cmd.Prepare();
 
                         cmd.Parameters.AddWithValue("@productId", product.Id);
-                        cmd.Parameters.AddWithValue("@deletedAt", DateTime.Now.ToString());
+                        cmd.Parameters.AddWithValue("@deletedAt", DateTime.Now);
 
                         try
                         {
