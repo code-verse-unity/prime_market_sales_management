@@ -110,7 +110,7 @@
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(137, 13);
             this.label5.TabIndex = 34;
-            this.label5.Text = "Le produit est-il perissable ?";
+            this.label5.Text = "Le produit est-il périssable ?";
             // 
             // ProductCategory
             // 
@@ -173,7 +173,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(86, 13);
             this.label1.TabIndex = 27;
-            this.label1.Text = "Nom du produit *";
+            this.label1.Text = "Désignation *";
             // 
             // ProductName
             // 

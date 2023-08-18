@@ -70,7 +70,7 @@ namespace supermarket_sales_manegement.UserControls.Purchase
             
             PurchaseDataGridView.Columns.Insert(0, billButton);
 
-            PurchaseDataGridView.Columns["CreatedAt"].HeaderText = "Date et heure d'achat";
+            PurchaseDataGridView.Columns["CreatedAt"].HeaderText = "Date et heure de vente";
             PurchaseDataGridView.Columns["ProductsCount"].HeaderText = "Nombres de produits";
             PurchaseDataGridView.Columns["ProductsCount"].DisplayIndex = 3;
             PurchaseDataGridView.Columns["ProductsCount"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
